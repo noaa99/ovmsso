@@ -309,7 +309,12 @@ document.getElementById("btn-reset").addEventListener("click",function(){
   this.dataset.armed="1"; this.textContent="Tap again to erase everything";
   setTimeout(()=>{if(this.dataset.armed){delete this.dataset.armed;this.textContent="Reset progress";}},4000);
 });
-meters(); renderDaily(); renderTopics();
+function boot(){ meters(); renderDaily(); renderTopics(); }
+fetch("extra.json",{cache:"no-store"})
+  .then(r=>r.ok?r.json():[])
+  .then(x=>{ if(Array.isArray(x)) for(const q of x){ if(q&&q.id&&!BYID[q.id]&&LABEL[q.topic]){ BANK.push(q); BYID[q.id]=q; ORDER.push(q); } } })
+  .catch(()=>{})
+  .finally(boot);
 </script>
 </body>
 </html>
