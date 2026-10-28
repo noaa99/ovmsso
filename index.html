@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Circuit Lab Daily</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+html{color-scheme:light}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}
+/* Layout: one narrow instrument-panel column — sticky meter bar, stacked question cards, no sidebars. */
+:root{
+  --bg:#f4f2ee; --panel:#ffffff; --ink:#1b1d1f; --muted:#6a6f75; --line:#ddd9d2;
+  --accent:#b4531b; --accent-soft:#f6e6da; --signal:#1f7a4d; --signal-soft:#e2f1e8;
+  --alert:#a62828; --alert-soft:#f7e3e3; --rail:#e9e5de;
+  --f-display:"IBM Plex Sans Condensed","Arial Narrow",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#141617; --panel:#1d2022; --ink:#eceae6; --muted:#9aa0a6; --line:#2e3336;
+  --accent:#e08a4e; --accent-soft:#3a2a1d; --signal:#5fc28c; --signal-soft:#1d3129;
+  --alert:#e8807e; --alert-soft:#3a2323; --rail:#272b2e; color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#141617; --panel:#1d2022; --ink:#eceae6; --muted:#9aa0a6; --line:#2e3336;
+  --accent:#e08a4e; --accent-soft:#3a2a1d; --signal:#5fc28c; --signal-soft:#1d3129;
+  --alert:#e8807e; --alert-soft:#3a2323; --rail:#272b2e; color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--panel)}
+.wrap{max-width:720px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 56px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0}
+
+/* header */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--panel);border-bottom:1px solid var(--line);margin-left:calc(-1*max(16px,env(safe-area-inset-left,0px)));margin-right:calc(-1*max(16px,env(safe-area-inset-right,0px)));margin-bottom:22px}
+.bar-in{max-width:720px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:12px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.brand{display:flex;align-items:baseline;gap:9px;min-width:0}
+.brand h1{font-size:19px;letter-spacing:-.01em}
+.brand .div{font-family:var(--f-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent);border-radius:3px;padding:1px 5px}
+.meters{display:flex;gap:16px;margin-left:auto;font-variant-numeric:tabular-nums}
+.meter{text-align:right;min-width:0}
+.meter b{display:block;font-family:var(--f-mono);font-size:17px;font-weight:600;line-height:1.1}
+.meter span{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+
+/* cards */
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:20px;margin-bottom:16px}
+.card.ok{border-color:var(--signal)}
+.card.no{border-color:var(--alert)}
+.qhead{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:2px 7px;border-radius:3px;background:var(--rail);color:var(--muted)}
+.tag.topic{background:var(--accent-soft);color:var(--accent)}
+.bands{display:inline-flex;gap:3px;align-items:center}
+.bands i{width:5px;height:13px;border-radius:1px;background:var(--rail);display:block}
+.bands i.on{background:var(--accent)}
+.qtext{font-size:17px;line-height:1.5;margin:0 0 16px}
+.choices{display:flex;flex-direction:column;gap:8px}
+.choice{display:flex;gap:11px;align-items:flex-start;text-align:left;width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:7px;background:transparent;color:var(--ink);font:inherit;cursor:pointer;transition:border-color .12s,background .12s}
+.choice:hover:not(:disabled){border-color:var(--accent)}
+.choice:disabled{cursor:default}
+.choice .key{font-family:var(--f-mono);font-size:12px;font-weight:600;color:var(--muted);padding-top:2px}
+.choice.pick{border-color:var(--accent);background:var(--accent-soft)}
+.choice.right{border-color:var(--signal);background:var(--signal-soft)}
+.choice.wrong{border-color:var(--alert);background:var(--alert-soft)}
+.numrow{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.numrow input{font-family:var(--f-mono);font-size:17px;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:var(--bg);color:var(--ink);width:170px;max-width:100%}
+.numrow .unit{font-family:var(--f-mono);font-size:15px;color:var(--muted)}
+button.go{font-family:var(--f-body);font-weight:600;font-size:14px;padding:10px 18px;border-radius:7px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+button.go:hover{filter:brightness(1.08)}
+button.ghost{background:transparent;color:var(--accent)}
+.verdict{margin-top:15px;padding:13px 15px;border-radius:7px;font-size:14px;line-height:1.6}
+.verdict.ok{background:var(--signal-soft);border-left:3px solid var(--signal)}
+.verdict.no{background:var(--alert-soft);border-left:3px solid var(--alert)}
+.verdict b{font-family:var(--f-display);display:block;font-size:14px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:4px}
+.verdict .ansline{font-family:var(--f-mono);font-size:13px}
+.sec-h{display:flex;align-items:baseline;gap:10px;margin:26px 0 12px}
+.sec-h h2{font-size:14px;letter-spacing:.12em;text-transform:uppercase}
+.sec-h .rule{flex:1;height:1px;background:var(--line);min-width:0}
+.note{color:var(--muted);font-size:13px}
+.topics{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
+.trow{display:flex;flex-direction:column;gap:5px;min-width:0}
+.trow .tl{display:flex;justify-content:space-between;gap:8px;font-size:12px}
+.trow .tl b{font-weight:600}
+.trow .tl span{font-family:var(--f-mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.track{height:5px;border-radius:3px;background:var(--rail);overflow:hidden}
+.track i{display:block;height:100%;background:var(--accent);border-radius:3px}
+.foot{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:22px;padding-top:16px;border-top:1px solid var(--line)}
+.foot button{font:inherit;font-size:13px;background:none;border:none;color:var(--muted);text-decoration:underline;cursor:pointer;padding:0}
+.foot button:hover{color:var(--accent)}
+select,input[type=text]{font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink)}
+.done{text-align:center;padding:30px 20px}
+.done .big{font-family:var(--f-display);font-size:26px;margin-bottom:6px}
+.hint{font-size:13px;color:var(--muted);margin-top:10px}
+*:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+</head>
+<body>
+<div class="bar"><div class="bar-in">
+  <div class="brand"><h1>Circuit Lab Daily</h1><span class="div">Div B · 2027</span></div>
+  <div class="meters">
+    <div class="meter"><b id="m-streak">0</b><span>day streak</span></div>
+    <div class="meter"><b id="m-done">0</b><span>answered</span></div>
+    <div class="meter"><b id="m-acc">—</b><span>accuracy</span></div>
+  </div>
+</div></div>
+
+<div class="wrap">
+  <div class="sec-h"><h2 id="setlabel">Today's set</h2><div class="rule"></div><span class="note" id="datelabel"></span></div>
+  <div id="daily"></div>
+
+  <div id="extra"></div>
+
+  <div class="sec-h"><h2>Topic progress</h2><div class="rule"></div></div>
+  <div class="topics" id="topics"></div>
+
+  <div class="foot">
+    <span class="note">Student:</span>
+    <input type="text" id="who" placeholder="your name" style="width:150px" autocomplete="off">
+    <button id="btn-practice">Extra practice</button>
+    <button id="btn-missed">Review missed</button>
+    <button id="btn-reset">Reset progress</button>
+  </div>
+  <p class="hint">Two questions a day, drawn from a 118-question bank built on the 2027 Division B rules: history, charges and fields, AC/DC, Ohm's law and power, series/parallel circuits, control devices, diodes and LEDs, and digital logic. Kirchhoff items are tagged — those appear at State and Nationals only. Numeric answers are graded within the tolerance printed with each problem; use the units asked for.</p>
+</div>
+
+<script>
+const BANK = [{"id": "h01", "topic": "history", "diff": 1, "type": "mc", "q": "Which scientist's name is used for the SI unit of electric current?", "choices": ["Alessandro Volta", "Charles-Augustin de Coulomb", "André-Marie Ampère", "Georg Ohm"], "ans": 2, "explain": "The ampere (A) is named for André-Marie Ampère (French, 1775–1836), who founded the study of electrodynamics — the magnetic force between current-carrying wires."}, {"id": "h02", "topic": "history", "diff": 1, "type": "mc", "q": "Alessandro Volta is best known for inventing which device?", "choices": ["The incandescent lamp", "The electromagnet", "The transistor", "The voltaic pile (first chemical battery)"], "ans": 3, "explain": "Volta (Italian, 1745–1827) stacked zinc and copper discs separated by brine-soaked cloth to build the voltaic pile — the first source of steady DC current. The volt is named for him."}, {"id": "h03", "topic": "history", "diff": 1, "type": "mc", "q": "Coulomb's law describes the force between charges. Which statement about Charles-Augustin de Coulomb is correct?", "choices": ["English mathematician who created a system of logic", "German physicist who stated the voltage–current–resistance relation", "Italian count who invented the battery", "French physicist who used a torsion balance to measure electric force"], "ans": 3, "explain": "Coulomb (French, 1736–1806) measured the inverse-square electric force with a torsion balance. The coulomb (C), the unit of charge, is named for him."}, {"id": "h04", "topic": "history", "diff": 1, "type": "mc", "q": "Who published the two circuit rules known as the current law and the voltage law?", "choices": ["Alessandro Volta", "George Boole", "Gustav Kirchhoff", "Heinrich Hertz"], "ans": 2, "explain": "Gustav Kirchhoff (German, 1824–1887) published his current law (junction rule) and voltage law (loop rule) in 1845 while still a student."}, {"id": "h05", "topic": "history", "diff": 1, "type": "mc", "q": "The SI unit of frequency, the hertz, honors a scientist who did what?", "choices": ["Defined the ohm", "Invented the vacuum tube", "Discovered the electron", "Experimentally produced and detected radio waves"], "ans": 3, "explain": "Heinrich Hertz (German, 1857–1894) generated and detected electromagnetic waves in the lab, confirming Maxwell's prediction. 1 Hz = 1 cycle per second."}, {"id": "h06", "topic": "history", "diff": 2, "type": "mc", "q": "George Boole's main contribution to circuit lab topics is:", "choices": ["The law relating voltage, current and resistance", "The unit of capacitance", "An algebra of logic using TRUE/FALSE values", "The inverse-square law of charge"], "ans": 2, "explain": "Boole (English, 1815–1864) created Boolean algebra. Decades later it became the mathematics behind logic gates and digital circuits."}, {"id": "h07", "topic": "history", "diff": 2, "type": "mc", "q": "Georg Ohm is remembered for:", "choices": ["Formulating De Morgan's laws", "Showing current is proportional to voltage for a metal conductor", "Discovering superconductivity", "Inventing the galvanometer"], "ans": 1, "explain": "Georg Simon Ohm (German, 1789–1854) published V = IR in 1827. His work was ridiculed at first and only later accepted."}, {"id": "h08", "topic": "history", "diff": 2, "type": "mc", "q": "Match the unit to the scientist: which pair is INCORRECT?", "choices": ["Ohm — Georg Ohm", "Volt — Alessandro Volta", "Ampere — André-Marie Ampère", "Hertz — unit of charge"], "ans": 3, "explain": "The hertz is the unit of frequency, not charge. Charge is measured in coulombs, named for Coulomb."}, {"id": "h09", "topic": "history", "diff": 2, "type": "mc", "q": "Which of these scientists was NOT primarily a physicist working with electricity?", "choices": ["Heinrich Hertz", "André-Marie Ampère", "George Boole", "Gustav Kirchhoff"], "ans": 2, "explain": "Boole was a mathematician and logician. His Boolean algebra became essential to electronics only after his death."}, {"id": "h10", "topic": "history", "diff": 3, "type": "mc", "q": "Put these discoveries in chronological order: (1) Coulomb's torsion-balance experiments, (2) Ohm's law published, (3) Hertz detects radio waves, (4) Volta's pile.", "choices": ["4, 1, 2, 3", "2, 1, 4, 3", "1, 2, 4, 3", "1, 4, 2, 3"], "ans": 3, "explain": "Coulomb ~1785, Volta's pile 1800, Ohm's law 1827, Hertz's radio waves 1887."}, {"id": "c01", "topic": "charges", "diff": 1, "type": "mc", "q": "Two objects carry charges of +3 μC and −5 μC. The force between them is:", "choices": ["Zero", "Attractive only if they touch", "Repulsive", "Attractive"], "ans": 3, "explain": "Opposite signs attract. The sign of the product q₁q₂ tells you the direction; the magnitude comes from F = k|q₁q₂|/r²."}, {"id": "c02", "topic": "charges", "diff": 1, "type": "mc", "q": "A neutral metal sphere is touched by a negatively charged rod and the rod is removed. The sphere is now:", "choices": ["Negatively charged", "Charged only on one side", "Positively charged", "Still neutral"], "ans": 0, "explain": "This is charging by conduction: electrons flow from the rod onto the sphere, so the sphere keeps a negative charge of the same sign as the rod."}, {"id": "c03", "topic": "charges", "diff": 2, "type": "mc", "q": "A negatively charged rod is brought near (but not touching) a neutral metal sphere on an insulating stand. The side of the sphere nearest the rod becomes:", "choices": ["Negative, while the far side becomes positive", "Positive everywhere", "Positive, while the far side becomes negative", "Neutral everywhere"], "ans": 2, "explain": "Charging by induction (polarization): free electrons in the metal are repelled to the far side, leaving the near side positive. Total charge is still zero."}, {"id": "c04", "topic": "charges", "diff": 2, "type": "num", "q": "Two point charges of +2.0 μC and +3.0 μC are 0.30 m apart. Find the magnitude of the force between them, in newtons. (k = 8.99×10⁹ N·m²/C²)", "ans": 0.5994, "unit": "N", "tol": 0.03, "explain": "F = k|q₁q₂|/r² = (8.99e9)(2.0e-6 × 3.0e-6)/(0.30²) = (8.99e9)(6.0e-12)/0.09 = 0.0539/0.09 ≈ 0.60 N."}, {"id": "c05", "topic": "charges", "diff": 2, "type": "mc", "q": "If the distance between two point charges is tripled, the electric force between them becomes:", "choices": ["1/3 as large", "1/9 as large", "3 times as large", "9 times as large"], "ans": 1, "explain": "F ∝ 1/r². Tripling r divides the force by 3² = 9."}, {"id": "c06", "topic": "charges", "diff": 2, "type": "num", "q": "What is the magnitude of the electric field 0.50 m from a point charge of +4.0 μC, in N/C? (k = 8.99×10⁹)", "ans": 143840, "unit": "N/C", "tol": 0.03, "explain": "E = kQ/r² = (8.99e9)(4.0e-6)/(0.25) = 35960/0.25 ≈ 1.44×10⁵ N/C."}, {"id": "c07", "topic": "charges", "diff": 2, "type": "num", "q": "Two parallel plates are 0.020 m apart with 12 V across them. What is the electric field between them, in V/m?", "ans": 600, "unit": "V/m", "tol": 0.02, "explain": "For parallel plates the field is uniform: E = V/d = 12/0.020 = 600 V/m."}, {"id": "c08", "topic": "charges", "diff": 2, "type": "num", "q": "How much work, in joules, is done moving a charge of 5.0 μC through a potential difference of 9.0 V?", "ans": 4.5e-05, "unit": "J", "tol": 0.02, "explain": "W = qΔV = (5.0×10⁻⁶ C)(9.0 V) = 4.5×10⁻⁵ J."}, {"id": "c09", "topic": "charges", "diff": 1, "type": "mc", "q": "Charge is quantized. This means:", "choices": ["Charge disappears in a closed system", "Charge can take any real value", "Charge only exists on conductors", "Any charge is a whole-number multiple of the elementary charge e"], "ans": 3, "explain": "The elementary charge e = 1.602×10⁻¹⁹ C is the smallest free charge; every observed charge is ±Ne for some integer N."}, {"id": "c10", "topic": "charges", "diff": 2, "type": "mc", "q": "Why does rubbing a balloon on hair make the balloon stick to a wall?", "choices": ["The balloon gains electrons, then polarizes the wall's molecules so it is attracted", "Air pressure holds it there", "The wall becomes negatively charged by conduction", "The balloon loses all its charge to the wall"], "ans": 0, "explain": "Charging by friction gives the balloon a net negative charge. Near the wall it induces polarization — the wall's nearby surface becomes slightly positive — and opposite charges attract."}, {"id": "c11", "topic": "charges", "diff": 3, "type": "num", "q": "Two identical conducting spheres carry +8.0 nC and −2.0 nC. They are touched together and separated. What charge, in nC, is on each sphere afterward?", "ans": 3, "unit": "nC", "tol": 0.02, "explain": "Charge is conserved and identical spheres share it equally: total = +8 − 2 = +6 nC, so each has +3.0 nC."}, {"id": "c12", "topic": "charges", "diff": 2, "type": "mc", "q": "Grounding a charged conductor does what?", "choices": ["Doubles its charge", "Converts its charge to the opposite sign", "Lets excess charge flow to Earth, leaving it essentially neutral", "Insulates it from the environment"], "ans": 2, "explain": "Earth is an enormous charge reservoir. A conducting path to ground drains excess charge — the principle behind grounding pins, lightning rods and ESD straps."}, {"id": "c13", "topic": "charges", "diff": 3, "type": "num", "q": "A point charge produces an electric field of 2000 N/C at a distance of 1.5 m. What is the magnitude of the charge, in μC? (k = 8.99×10⁹)", "ans": 0.5006, "unit": "μC", "tol": 0.03, "explain": "Q = Er²/k = (2000)(2.25)/(8.99×10⁹) = 4500/8.99e9 = 5.0×10⁻⁷ C = 0.50 μC."}, {"id": "c14", "topic": "charges", "diff": 2, "type": "mc", "q": "An electrostatic discharge (ESD) wrist strap protects circuit boards because it:", "choices": ["Creates a magnetic shield", "Adds charge to the board", "Blocks all current", "Keeps the technician at the same potential as the board, preventing a sudden discharge"], "ans": 3, "explain": "Static can reach thousands of volts. The strap (through a high-value resistor) bleeds charge away slowly so no damaging spark jumps to a sensitive component."}, {"id": "a01", "topic": "acdc", "diff": 1, "type": "mc", "q": "Which is a typical source of direct current (DC)?", "choices": ["A generator at a hydroelectric dam", "A utility power line", "A AA battery", "A wall outlet in a US home"], "ans": 2, "explain": "Batteries and solar cells produce DC — current in one direction only. Outlets, power lines and rotating generators produce AC."}, {"id": "a02", "topic": "acdc", "diff": 1, "type": "mc", "q": "The main reason electric power is distributed as AC rather than DC is:", "choices": ["DC cannot flow through copper", "AC has no frequency", "AC voltage can be stepped up and down easily with transformers, cutting transmission losses", "AC is safer at any voltage"], "ans": 2, "explain": "High voltage means low current for the same power, and I²R losses fall with the square of the current. Transformers change AC voltage easily."}, {"id": "a03", "topic": "acdc", "diff": 2, "type": "num", "q": "A sinusoidal AC voltage has a peak value of 170 V. What is its RMS value, in volts?", "ans": 120.2, "unit": "V", "tol": 0.02, "explain": "V_RMS = V_p/√2 = 170/1.414 ≈ 120 V — the standard US household value."}, {"id": "a04", "topic": "acdc", "diff": 2, "type": "num", "q": "A sine wave has a peak-to-peak voltage of 24 V. What is its peak voltage, in volts?", "ans": 12, "unit": "V", "tol": 0.01, "explain": "Peak-to-peak spans from the negative peak to the positive peak, so V_p = V_pp/2 = 12 V."}, {"id": "a05", "topic": "acdc", "diff": 1, "type": "num", "q": "A waveform has a period of 0.025 s. What is its frequency, in hertz?", "ans": 40, "unit": "Hz", "tol": 0.01, "explain": "f = 1/T = 1/0.025 = 40 Hz."}, {"id": "a06", "topic": "acdc", "diff": 1, "type": "num", "q": "US mains power runs at 60 Hz. What is the period of one cycle, in milliseconds?", "ans": 16.67, "unit": "ms", "tol": 0.02, "explain": "T = 1/f = 1/60 s = 0.01667 s = 16.7 ms."}, {"id": "a07", "topic": "acdc", "diff": 2, "type": "mc", "q": "Which statement about RMS voltage is correct?", "choices": ["It equals the peak voltage", "It applies only to square waves", "It is always half the peak-to-peak value", "It is the DC voltage that would deliver the same average power to a resistor"], "ans": 3, "explain": "RMS (root-mean-square) is the 'effective' value: 120 V RMS heats a resistor exactly as 120 V DC would. For a sine wave V_RMS = V_p/√2."}, {"id": "a08", "topic": "acdc", "diff": 2, "type": "num", "q": "An AC sine wave measures 9.0 V RMS. What is its peak-to-peak voltage, in volts?", "ans": 25.46, "unit": "V", "tol": 0.03, "explain": "V_p = V_RMS × √2 = 12.73 V; V_pp = 2V_p ≈ 25.5 V."}, {"id": "a09", "topic": "acdc", "diff": 2, "type": "mc", "q": "Why is a 120 V AC shock generally considered dangerous?", "choices": ["It magnetizes the body", "Enough current can pass through the body to disrupt the heart's rhythm", "Voltage alone destroys tissue regardless of current", "AC cannot be interrupted by a breaker"], "ans": 1, "explain": "Current, not voltage by itself, causes injury. Roughly 100 mA through the chest can cause ventricular fibrillation; body resistance plus 120 V can reach that range."}, {"id": "a10", "topic": "acdc", "diff": 3, "type": "mc", "q": "A device is labeled '5 V DC, 2 A' and is powered from a wall adapter. The adapter must:", "choices": ["Increase the frequency to 120 Hz", "Rectify and step down the AC mains to a steady 5 V", "Pass the AC straight through", "Convert DC to AC"], "ans": 1, "explain": "The adapter steps the voltage down and rectifies (and filters) the AC into DC. A rectifier uses diodes to allow current in one direction only."}, {"id": "o01", "topic": "ohm", "diff": 1, "type": "num", "q": "A 12 V battery drives current through a 4.0 Ω resistor. What is the current, in amperes?", "ans": 3, "unit": "A", "tol": 0.01, "explain": "Ohm's law: I = V/R = 12/4.0 = 3.0 A."}, {"id": "o02", "topic": "ohm", "diff": 1, "type": "num", "q": "A current of 0.25 A flows through a resistor with 5.0 V across it. What is its resistance, in ohms?", "ans": 20, "unit": "Ω", "tol": 0.01, "explain": "R = V/I = 5.0/0.25 = 20 Ω."}, {"id": "o03", "topic": "ohm", "diff": 1, "type": "num", "q": "How much charge, in coulombs, passes a point in 30 s when the current is 1.5 A?", "ans": 45, "unit": "C", "tol": 0.01, "explain": "I = Q/t, so Q = It = (1.5)(30) = 45 C."}, {"id": "o04", "topic": "ohm", "diff": 1, "type": "num", "q": "A 9.0 V source delivers 0.50 A to a lamp. What power, in watts, does the lamp dissipate?", "ans": 4.5, "unit": "W", "tol": 0.01, "explain": "P = IV = (0.50)(9.0) = 4.5 W."}, {"id": "o05", "topic": "ohm", "diff": 2, "type": "num", "q": "A 220 Ω resistor carries 0.040 A. How much power, in watts, does it dissipate?", "ans": 0.352, "unit": "W", "tol": 0.02, "explain": "P = I²R = (0.040)²(220) = 0.0016 × 220 = 0.352 W — so a ¼ W resistor would be marginal; use ½ W."}, {"id": "o06", "topic": "ohm", "diff": 2, "type": "num", "q": "What power, in watts, is dissipated by a 100 Ω resistor with 5.0 V across it?", "ans": 0.25, "unit": "W", "tol": 0.02, "explain": "P = V²/R = 25/100 = 0.25 W."}, {"id": "o07", "topic": "ohm", "diff": 2, "type": "mc", "q": "A conductor is called 'ohmic' when:", "choices": ["It obeys Coulomb's law", "Its resistance stays constant, so a V-vs-I graph is a straight line through the origin", "It conducts only in one direction", "Its resistance rises with voltage"], "ans": 1, "explain": "Ohmic devices (metal resistors at constant temperature) give a linear V–I graph whose slope is R. Diodes and filament lamps are non-ohmic."}, {"id": "o08", "topic": "ohm", "diff": 2, "type": "mc", "q": "The V-vs-I graph of an incandescent lamp filament curves upward (slope increases). Why?", "choices": ["The filament becomes a superconductor", "The voltage source weakens", "The filament heats up and its resistance increases with temperature", "Current stops being conserved"], "ans": 2, "explain": "In metals, resistance rises with temperature: R = R₀[1 + α(T − T₀)]. A hot filament has several times its cold resistance."}, {"id": "o09", "topic": "ohm", "diff": 2, "type": "num", "q": "A copper wire has resistivity 1.68×10⁻⁸ Ω·m, length 20 m, and cross-sectional area 1.0×10⁻⁶ m². Find its resistance, in ohms.", "ans": 0.336, "unit": "Ω", "tol": 0.03, "explain": "R = ρL/A = (1.68e-8)(20)/(1.0e-6) = 3.36e-7/1.0e-6 = 0.336 Ω."}, {"id": "o10", "topic": "ohm", "diff": 2, "type": "mc", "q": "If you double the length of a wire and keep everything else the same, its resistance:", "choices": ["Quadruples", "Halves", "Is unchanged", "Doubles"], "ans": 3, "explain": "R = ρL/A, so R ∝ L. (Doubling the diameter instead would quadruple A and cut R to one quarter.)"}, {"id": "o11", "topic": "ohm", "diff": 3, "type": "mc", "q": "Wire A and wire B are the same material and length, but A's diameter is twice B's. How do their resistances compare?", "choices": ["R_A = R_B/4", "They are equal", "R_A = R_B/2", "R_A = 2R_B"], "ans": 0, "explain": "Area ∝ d². Doubling the diameter multiplies the area by 4, and R = ρL/A, so the resistance drops to one fourth."}, {"id": "o12", "topic": "ohm", "diff": 2, "type": "num", "q": "A 1500 W space heater runs for 4.0 hours. How much energy does it use, in kilowatt-hours?", "ans": 6, "unit": "kWh", "tol": 0.01, "explain": "1500 W = 1.5 kW; E = Pt = 1.5 × 4.0 = 6.0 kWh."}, {"id": "o13", "topic": "ohm", "diff": 2, "type": "num", "q": "Electricity costs $0.18 per kWh. What does it cost, in dollars, to run a 60 W bulb for 50 hours?", "ans": 0.54, "unit": "$", "tol": 0.02, "explain": "Energy = 0.060 kW × 50 h = 3.0 kWh; cost = 3.0 × $0.18 = $0.54."}, {"id": "o14", "topic": "ohm", "diff": 2, "type": "num", "q": "A motor draws 200 W and delivers 150 W of mechanical power. What is its efficiency, as a percent?", "ans": 75, "unit": "%", "tol": 0.01, "explain": "η = useful output / input = 150/200 = 0.75 = 75%. The missing 50 W becomes heat and sound."}, {"id": "o15", "topic": "ohm", "diff": 3, "type": "num", "q": "A resistor is 50.0 Ω at 20 °C with α = 0.0040 /°C. What is its resistance, in ohms, at 70 °C?", "ans": 60, "unit": "Ω", "tol": 0.02, "explain": "R = R₀[1 + α(T − T₀)] = 50[1 + 0.0040(50)] = 50(1.20) = 60 Ω."}, {"id": "o16", "topic": "ohm", "diff": 2, "type": "mc", "q": "A superconductor is a material that, below a critical temperature:", "choices": ["Converts heat directly to voltage", "Has exactly zero electrical resistance", "Has very high resistance", "Only conducts AC"], "ans": 1, "explain": "Below its critical temperature a superconductor's resistance drops to exactly zero, so a current can persist with no voltage source and no I²R heating."}, {"id": "o17", "topic": "ohm", "diff": 2, "type": "mc", "q": "A dimmer switch built from a potentiometer reduces a bulb's brightness because:", "choices": ["It lowers the frequency", "Added resistance lowers the current and therefore the power delivered to the bulb", "It reverses the current", "It increases the bulb's resistance"], "ans": 1, "explain": "The potentiometer adds series resistance, so I = V/R_total falls and P = I²R_bulb falls with it. (Modern dimmers instead switch the AC on and off rapidly, wasting less heat.)"}, {"id": "o18", "topic": "ohm", "diff": 3, "type": "num", "q": "A toaster draws 8.0 A from a 120 V outlet. How much energy, in joules, does it use in 90 s?", "ans": 86400, "unit": "J", "tol": 0.02, "explain": "P = IV = 8.0 × 120 = 960 W; E = Pt = 960 × 90 = 86,400 J (86.4 kJ)."}, {"id": "s01", "topic": "circuits", "diff": 1, "type": "num", "q": "Three resistors of 10 Ω, 20 Ω and 30 Ω are connected in series. What is the equivalent resistance, in ohms?", "ans": 60, "unit": "Ω", "tol": 0.01, "explain": "Series resistances add: R = 10 + 20 + 30 = 60 Ω."}, {"id": "s02", "topic": "circuits", "diff": 1, "type": "num", "q": "Two 100 Ω resistors are connected in parallel. What is the equivalent resistance, in ohms?", "ans": 50, "unit": "Ω", "tol": 0.01, "explain": "Two equal resistors in parallel give R/2 = 50 Ω. In general 1/R = 1/R₁ + 1/R₂."}, {"id": "s03", "topic": "circuits", "diff": 2, "type": "num", "q": "A 6.0 Ω and a 3.0 Ω resistor are in parallel. What is the equivalent resistance, in ohms?", "ans": 2, "unit": "Ω", "tol": 0.01, "explain": "R = (R₁R₂)/(R₁+R₂) = (6×3)/9 = 2.0 Ω. Parallel resistance is always smaller than the smallest branch."}, {"id": "s04", "topic": "circuits", "diff": 2, "type": "num", "q": "A 12 V battery is connected across a series pair of 40 Ω and 80 Ω resistors. What is the voltage, in volts, across the 80 Ω resistor?", "ans": 8, "unit": "V", "tol": 0.01, "explain": "Voltage divider: V = 12 × 80/(40+80) = 12 × 2/3 = 8.0 V."}, {"id": "s05", "topic": "circuits", "diff": 2, "type": "num", "q": "In the previous divider (12 V across 40 Ω + 80 Ω in series), what current, in milliamperes, flows?", "ans": 100, "unit": "mA", "tol": 0.01, "explain": "I = V/R_total = 12/120 = 0.10 A = 100 mA. Series current is the same everywhere."}, {"id": "s06", "topic": "circuits", "diff": 1, "type": "mc", "q": "In a series circuit, which quantity is the same through every component?", "choices": ["Current", "Voltage", "Resistance", "Power"], "ans": 0, "explain": "There is only one path, so the same current flows through every element. In a parallel circuit it is the voltage that is shared."}, {"id": "s07", "topic": "circuits", "diff": 1, "type": "mc", "q": "Two lamps are wired in parallel across a battery. One burns out. The other:", "choices": ["Flickers", "Stays lit at the same brightness", "Goes out too", "Becomes twice as bright"], "ans": 1, "explain": "Each parallel branch has its own path and sees the full source voltage, so losing one branch does not affect the other. In series, one failure opens the whole circuit."}, {"id": "s08", "topic": "circuits", "diff": 2, "type": "mc", "q": "A short circuit across a resistor means:", "choices": ["A near-zero-resistance path bypasses it, so almost no current goes through the resistor", "No current flows anywhere", "The resistance becomes infinite", "The resistor is removed from the board"], "ans": 0, "explain": "Current takes the low-resistance path. A short also drops the total circuit resistance, so the source current can rise dangerously — that's what fuses protect against."}, {"id": "s09", "topic": "circuits", "diff": 1, "type": "mc", "q": "An ideal ammeter and an ideal voltmeter are connected how?", "choices": ["Both in series", "Ammeter in parallel, voltmeter in series", "Both in parallel", "Ammeter in series, voltmeter in parallel"], "ans": 3, "explain": "An ammeter must carry the current it measures (series, near-zero resistance). A voltmeter measures the difference across a component (parallel, near-infinite resistance)."}, {"id": "s10", "topic": "circuits", "diff": 2, "type": "num", "q": "A resistor has color bands brown, black, red, gold. What is its nominal resistance, in ohms?", "ans": 1000, "unit": "Ω", "tol": 0.01, "explain": "Brown=1, black=0 → 10; red multiplier = ×10² → 1000 Ω = 1 kΩ. Gold means ±5% tolerance."}, {"id": "s11", "topic": "circuits", "diff": 2, "type": "mc", "q": "A resistor is banded yellow, violet, orange, gold. Its value is:", "choices": ["47 kΩ ±5%", "470 Ω ±5%", "4.7 kΩ ±5%", "47 Ω ±10%"], "ans": 0, "explain": "Yellow=4, violet=7 → 47; orange multiplier = ×10³ → 47,000 Ω = 47 kΩ; gold = ±5%."}, {"id": "s12", "topic": "circuits", "diff": 3, "type": "num", "q": "What is the tolerance range for a 2.2 kΩ ±5% resistor? Give the maximum allowed value, in ohms.", "ans": 2310, "unit": "Ω", "tol": 0.02, "explain": "5% of 2200 is 110, so the range is 2090–2310 Ω. The maximum is 2310 Ω."}, {"id": "s13", "topic": "circuits", "diff": 3, "type": "num", "q": "A 10 Ω resistor is in series with a parallel pair of 20 Ω and 20 Ω. What is the total resistance, in ohms?", "ans": 20, "unit": "Ω", "tol": 0.01, "explain": "The parallel pair = 20/2 = 10 Ω; in series with 10 Ω gives 20 Ω total."}, {"id": "s14", "topic": "circuits", "diff": 3, "type": "num", "q": "Using only 100 Ω resistors, what is the smallest number you need in parallel to make 25 Ω?", "ans": 4, "unit": "resistors", "tol": 0.01, "explain": "N identical resistors in parallel give R/N. 100/N = 25 → N = 4."}, {"id": "s15", "topic": "circuits", "diff": 3, "type": "num", "q": "A 24 V supply feeds 6.0 Ω in series with a parallel combination of 12 Ω and 12 Ω. What is the total current drawn, in amperes?", "ans": 2, "unit": "A", "tol": 0.01, "explain": "Parallel pair = 6.0 Ω; total R = 6.0 + 6.0 = 12 Ω; I = 24/12 = 2.0 A."}, {"id": "s16", "topic": "circuits", "diff": 3, "type": "num", "q": "In that same circuit (24 V, 6.0 Ω series, then two 12 Ω in parallel), what is the voltage, in volts, across one of the 12 Ω resistors?", "ans": 12, "unit": "V", "tol": 0.01, "explain": "Total current 2.0 A through the 6.0 Ω drops 12 V, leaving 24 − 12 = 12 V across the parallel section — and both 12 Ω resistors share that same 12 V."}, {"id": "s17", "topic": "circuits", "diff": 2, "type": "mc", "q": "Which schematic symbol detail distinguishes a battery from a single cell?", "choices": ["A battery is drawn as a circle with an X", "A battery is drawn as several long–short line pairs in a row", "There is no difference in the symbol", "A battery is drawn as a zig-zag"], "ans": 1, "explain": "A cell is one long line (+) and one short line (−). A battery is several cells in series, drawn as repeated long–short pairs."}, {"id": "s18", "topic": "circuits", "diff": 2, "type": "mc", "q": "A potentiometer used as a variable resistor (rheostat) is wired using:", "choices": ["The wiper and one end terminal", "All three terminals to the same node", "The wiper only", "Both end terminals only"], "ans": 0, "explain": "Using the wiper plus one end gives a two-terminal variable resistance. Using all three terminals with the wiper as output makes an adjustable voltage divider."}, {"id": "k01", "topic": "control", "diff": 1, "type": "mc", "q": "What does SPDT stand for in switch terminology?", "choices": ["Single Pole, Double Throw", "Standard Power Distribution Terminal", "Series Parallel Dual Toggle", "Single Pin, Direct Terminal"], "ans": 0, "explain": "'Pole' = how many separate circuits the switch controls; 'throw' = how many positions each pole can connect to. An SPDT has one common terminal that connects to either of two outputs."}, {"id": "k02", "topic": "control", "diff": 2, "type": "mc", "q": "A 3-way lighting circuit (one lamp controlled from two locations) is built from:", "choices": ["Two SPST switches in series", "Two SPDT switches wired with two traveler wires between them", "One DPDT switch", "Two relays and a fuse"], "ans": 1, "explain": "Each SPDT switch routes the hot line onto one of two travelers. The lamp is on when both switches select the same traveler, so flipping either one toggles the lamp."}, {"id": "k03", "topic": "control", "diff": 2, "type": "mc", "q": "The main purpose of a fuse is to:", "choices": ["Smooth out AC ripple", "Store charge for surges", "Lower the voltage", "Melt and open the circuit when current exceeds a safe value"], "ans": 3, "explain": "A fuse is a deliberately weak link: excess current heats its wire until it melts, breaking the circuit before wiring or devices are damaged. It must be replaced after it blows."}, {"id": "k04", "topic": "control", "diff": 2, "type": "mc", "q": "How does a circuit breaker differ from a fuse?", "choices": ["A breaker works only on DC", "There is no functional difference", "A breaker responds to voltage, a fuse to current", "A breaker can be reset and reused; a fuse must be replaced"], "ans": 3, "explain": "Both interrupt overcurrent. A breaker uses a thermal bimetallic strip and/or an electromagnet to trip a mechanical switch that you can flip back on."}, {"id": "k05", "topic": "control", "diff": 2, "type": "mc", "q": "A GFCI outlet trips when:", "choices": ["The frequency changes", "The current in the hot wire differs from the current returning in the neutral", "Voltage drops below 100 V", "Total current exceeds 20 A"], "ans": 1, "explain": "A difference of about 5 mA means current is leaking somewhere else — possibly through a person — so the GFCI opens the circuit in milliseconds. That's why they're required near water."}, {"id": "k06", "topic": "control", "diff": 2, "type": "mc", "q": "A relay is best described as:", "choices": ["A switch operated by an electromagnet, letting a small current control a large one", "A one-way current valve", "A resistor that varies with light", "A device that converts AC to DC"], "ans": 0, "explain": "Energizing the coil pulls an armature that moves the contacts. This isolates a low-power control circuit from a high-power load circuit."}, {"id": "k07", "topic": "control", "diff": 3, "type": "mc", "q": "A relay has normally open (NO) and normally closed (NC) contacts. With the coil de-energized:", "choices": ["The NO contact conducts", "Both contacts conduct", "Neither contact conducts", "The NC contact conducts and the NO contact does not"], "ans": 3, "explain": "'Normal' means the coil is off. Energizing the coil swaps the states: NO closes and NC opens."}, {"id": "k08", "topic": "control", "diff": 2, "type": "mc", "q": "In US household wiring, the color of the equipment grounding conductor is usually:", "choices": ["Red", "Black", "White", "Green or bare copper"], "ans": 3, "explain": "Black (and red) are hot, white is neutral, green or bare is ground. The ground carries no current normally — it provides a safe fault path that trips the breaker."}, {"id": "k09", "topic": "control", "diff": 2, "type": "mc", "q": "Why should a switch be placed in the hot (line) wire rather than the neutral?", "choices": ["To reduce resistance", "Because switches only work on hot wires", "So the device is fully disconnected from the dangerous potential when switched off", "Because the neutral carries more current"], "ans": 2, "explain": "Switching the neutral leaves the fixture energized at line potential even when 'off' — a shock hazard for anyone changing a bulb."}, {"id": "k10", "topic": "control", "diff": 3, "type": "num", "q": "A 120 V branch circuit is protected by a 15 A breaker. What is the maximum power, in watts, it can supply continuously at 100% of its rating?", "ans": 1800, "unit": "W", "tol": 0.01, "explain": "P = IV = 15 × 120 = 1800 W. (Codes often limit continuous loads to 80%, or 1440 W.)"}, {"id": "k11", "topic": "control", "diff": 2, "type": "mc", "q": "A DPDT switch has how many terminals?", "choices": ["6", "8", "4", "3"], "ans": 0, "explain": "Double pole, double throw: two independent poles, each with a common plus two throws — 2 × 3 = 6 terminals."}, {"id": "k12", "topic": "control", "diff": 3, "type": "mc", "q": "Two SPST switches wired in series to a lamp behave like which logic gate?", "choices": ["NOT", "AND", "XOR", "OR"], "ans": 1, "explain": "Both switches must be closed for current to flow — that is the AND function. Two switches in parallel act as an OR gate."}, {"id": "d01", "topic": "diodes", "diff": 1, "type": "mc", "q": "A diode conducts current:", "choices": ["Equally in both directions", "Only at high frequency", "Mainly in one direction, when forward biased", "Only when cold"], "ans": 2, "explain": "A PN junction allows significant current when the P side (anode) is at a higher potential than the N side (cathode), and blocks it when reverse biased."}, {"id": "d02", "topic": "diodes", "diff": 1, "type": "mc", "q": "On a diode's body, the painted band marks which terminal?", "choices": ["Either one", "The anode", "The cathode", "The case ground"], "ans": 2, "explain": "The band corresponds to the bar in the schematic symbol — the cathode, where the arrow (conventional current) points out of the device."}, {"id": "d03", "topic": "diodes", "diff": 2, "type": "num", "q": "A silicon diode is forward biased in a circuit. What is its typical forward voltage drop, in volts?", "ans": 0.7, "unit": "V", "tol": 0.15, "explain": "A silicon PN junction drops about 0.7 V when conducting (germanium ≈ 0.3 V; LEDs are higher, roughly 1.8–3.4 V depending on color)."}, {"id": "d04", "topic": "diodes", "diff": 2, "type": "num", "q": "A red LED with a 2.0 V forward drop and 20 mA target current runs from a 9.0 V supply. What series resistor, in ohms, is needed?", "ans": 350, "unit": "Ω", "tol": 0.03, "explain": "The resistor takes the leftover voltage: 9.0 − 2.0 = 7.0 V. R = V/I = 7.0/0.020 = 350 Ω (use the nearest standard value, 330 Ω or 360 Ω)."}, {"id": "d05", "topic": "diodes", "diff": 2, "type": "mc", "q": "Why does an LED need a series resistor?", "choices": ["Its current rises steeply with voltage, so without a limiter it would draw destructive current", "To convert AC to DC", "To change its color", "It needs extra voltage to turn on"], "ans": 0, "explain": "An LED is non-ohmic: past the forward voltage, a small voltage increase causes a huge current increase. The resistor sets a safe operating current."}, {"id": "d06", "topic": "diodes", "diff": 2, "type": "mc", "q": "A half-wave rectifier uses one diode. Its output:", "choices": ["Passes both halves as positive", "Doubles the input frequency", "Passes only one half of each AC cycle", "Is pure DC with no ripple"], "ans": 2, "explain": "The single diode blocks the reverse half-cycle, so the output is a series of positive humps with gaps. A full-wave bridge (4 diodes) uses both halves."}, {"id": "d07", "topic": "diodes", "diff": 3, "type": "mc", "q": "How many diodes are in a full-wave bridge rectifier?", "choices": ["1", "6", "2", "4"], "ans": 3, "explain": "Four diodes in a bridge route both halves of the AC waveform to the load in the same direction, giving twice as many output pulses per cycle as a half-wave rectifier."}, {"id": "d08", "topic": "diodes", "diff": 2, "type": "mc", "q": "In a PN junction, the depletion region is:", "choices": ["The part that stores charge like a battery", "A zone near the junction emptied of free carriers, creating a built-in barrier", "The region where the LED emits light", "The metal contact layer"], "ans": 1, "explain": "Electrons and holes recombine near the junction, leaving fixed ions and a built-in electric field that opposes further diffusion. Forward bias narrows it; reverse bias widens it."}, {"id": "d09", "topic": "diodes", "diff": 2, "type": "mc", "q": "Two LEDs are connected in series to one supply through a single resistor. Compared with wiring them in parallel through one shared resistor, the series arrangement:", "choices": ["Always makes them dimmer", "Makes one of them a rectifier", "Guarantees both carry the same current, so they glow equally brightly", "Requires less supply voltage"], "ans": 2, "explain": "Series forces identical current. In parallel, small differences in forward voltage make one LED hog the current — which is why each parallel LED needs its own resistor."}, {"id": "d10", "topic": "diodes", "diff": 3, "type": "num", "q": "Two LEDs, each dropping 2.1 V, are in series with one resistor on a 12 V supply, with a target current of 15 mA. What resistor value, in ohms, is required?", "ans": 520, "unit": "Ω", "tol": 0.03, "explain": "Voltage across the resistor = 12 − 2(2.1) = 7.8 V. R = 7.8/0.015 = 520 Ω."}, {"id": "g01", "topic": "logic", "diff": 1, "type": "mc", "q": "The output of a 2-input AND gate is HIGH when:", "choices": ["At least one input is HIGH", "The inputs differ", "Both inputs are LOW", "Both inputs are HIGH"], "ans": 3, "explain": "AND gives 1 only for 1·1. Its truth table outputs are 0, 0, 0, 1."}, {"id": "g02", "topic": "logic", "diff": 1, "type": "mc", "q": "A 2-input NOR gate outputs HIGH only when:", "choices": ["Always", "Exactly one input is HIGH", "Both inputs are LOW", "Both inputs are HIGH"], "ans": 2, "explain": "NOR = NOT(OR). OR is 0 only for 0,0, so NOR is 1 only for 0,0."}, {"id": "g03", "topic": "logic", "diff": 1, "type": "mc", "q": "An XOR gate outputs HIGH when:", "choices": ["The two inputs are different", "Both inputs are LOW", "Both inputs are HIGH", "Always"], "ans": 0, "explain": "XOR (exclusive OR) detects inequality: 0⊕1 = 1⊕0 = 1, while 0⊕0 = 1⊕1 = 0. It is the sum bit of a half adder."}, {"id": "g04", "topic": "logic", "diff": 2, "type": "num", "q": "Convert the binary number 1011 to decimal.", "ans": 11, "unit": "", "tol": 0.01, "explain": "1011₂ = 8 + 0 + 2 + 1 = 11₁₀."}, {"id": "g05", "topic": "logic", "diff": 2, "type": "num", "q": "Convert decimal 45 to binary, then give the number of 1s in the result.", "ans": 4, "unit": "ones", "tol": 0.01, "explain": "45 = 101101₂ (32 + 8 + 4 + 1). That contains four 1 bits."}, {"id": "g06", "topic": "logic", "diff": 2, "type": "num", "q": "Add the binary numbers 1101 + 0110 and give the decimal value of the sum.", "ans": 19, "unit": "", "tol": 0.01, "explain": "1101₂ = 13, 0110₂ = 6, sum = 19 = 10011₂. Binary addition carries whenever 1 + 1 = 10."}, {"id": "g07", "topic": "logic", "diff": 2, "type": "num", "q": "What is the largest decimal number that can be represented with 6 bits (unsigned)?", "ans": 63, "unit": "", "tol": 0.01, "explain": "2⁶ − 1 = 63, which is 111111₂."}, {"id": "g08", "topic": "logic", "diff": 2, "type": "mc", "q": "De Morgan's law states that NOT(A AND B) equals:", "choices": ["(NOT A) OR (NOT B)", "NOT(A OR B)", "A OR B", "(NOT A) AND (NOT B)"], "ans": 0, "explain": "Bubble-pushing: inverting the output of an AND is the same as inverting both inputs of an OR. The other form is NOT(A OR B) = (NOT A) AND (NOT B)."}, {"id": "g09", "topic": "logic", "diff": 2, "type": "mc", "q": "Which gate is a 'universal gate' — able to build any other gate by itself?", "choices": ["NAND", "AND", "XOR", "OR"], "ans": 0, "explain": "NAND and NOR are both universal. For example, tying a NAND's inputs together makes a NOT, and a NAND followed by that NOT makes an AND."}, {"id": "g10", "topic": "logic", "diff": 2, "type": "mc", "q": "How do you make a NOT gate from a single 2-input NOR gate?", "choices": ["Connect the output back to an input", "Tie both inputs together to the signal", "Ground one input and leave the other open", "It is impossible"], "ans": 1, "explain": "With both inputs equal to A, NOR gives NOT(A OR A) = NOT A. (Tying one input LOW also works.)"}, {"id": "g11", "topic": "logic", "diff": 2, "type": "num", "q": "How many rows are in the truth table of a logic circuit with 4 inputs?", "ans": 16, "unit": "rows", "tol": 0.01, "explain": "2ⁿ rows for n inputs: 2⁴ = 16."}, {"id": "g12", "topic": "logic", "diff": 2, "type": "mc", "q": "Simplify the Boolean expression A + A·B.", "choices": ["A + B", "A·B", "B", "A"], "ans": 3, "explain": "Absorption law: if A is 1 the whole expression is 1; if A is 0 then A·B is 0 too. So the result is just A."}, {"id": "g13", "topic": "logic", "diff": 2, "type": "mc", "q": "Simplify A·(A + B).", "choices": ["A", "A + B", "B", "0"], "ans": 0, "explain": "The other absorption law. Expanding gives A·A + A·B = A + A·B = A."}, {"id": "g14", "topic": "logic", "diff": 3, "type": "mc", "q": "What is the value of A + A' (A OR NOT A)?", "choices": ["A'", "Always 0", "A", "Always 1"], "ans": 3, "explain": "Complement law: a variable or its inverse covers every case, so the result is 1. Likewise A·A' = 0."}, {"id": "g15", "topic": "logic", "diff": 2, "type": "mc", "q": "A half adder adds two bits and produces:", "choices": ["Only a carry bit", "Two sum bits", "A sum bit from XOR and a carry bit from AND", "A sum bit from AND and a carry from OR"], "ans": 2, "explain": "1+1 = 10₂: the sum bit is A⊕B and the carry is A·B. A full adder adds a carry-in and uses two half adders plus an OR."}, {"id": "g16", "topic": "logic", "diff": 3, "type": "mc", "q": "A full adder has how many inputs and outputs?", "choices": ["3 inputs, 3 outputs", "2 inputs, 2 outputs", "3 inputs, 2 outputs", "4 inputs, 2 outputs"], "ans": 2, "explain": "Inputs A, B and carry-in; outputs sum and carry-out. Chaining full adders builds a ripple-carry adder for multi-bit numbers."}, {"id": "g17", "topic": "logic", "diff": 2, "type": "num", "q": "A multiplexer has 8 data inputs. How many select lines does it need?", "ans": 3, "unit": "select lines", "tol": 0.01, "explain": "2ⁿ inputs need n select lines: 2³ = 8, so 3 select lines."}, {"id": "g18", "topic": "logic", "diff": 2, "type": "mc", "q": "A multiplexer (MUX) does what?", "choices": ["Adds two binary numbers", "Splits one input into many outputs", "Routes one of several inputs to a single output, chosen by select lines", "Stores one bit"], "ans": 2, "explain": "A MUX is a digitally controlled selector switch. The reverse device, a demultiplexer, sends one input to one of several outputs."}, {"id": "g19", "topic": "logic", "diff": 3, "type": "mc", "q": "A circuit's output is HIGH only when exactly one of its two inputs is HIGH. Which single gate implements it?", "choices": ["XOR", "AND", "NOR", "NAND"], "ans": 0, "explain": "'Exactly one of two' is the definition of XOR. (For three or more inputs the XOR chain means 'an odd number of HIGH inputs'.)"}, {"id": "g20", "topic": "logic", "diff": 3, "type": "mc", "q": "A safety interlock must turn a machine ON only when the guard is closed (G=1) AND the operator presses start (S=1) AND the emergency stop is NOT pressed (E=0). The Boolean expression is:", "choices": ["G·S·E", "G + S + E", "(G+S)·E", "G·S·E'"], "ans": 3, "explain": "AND the conditions that must be true and invert the one that must be false: Output = G·S·E'."}, {"id": "g21", "topic": "logic", "diff": 3, "type": "mc", "q": "Using De Morgan's law, NOT(A OR B OR C) is equivalent to:", "choices": ["A'·B'·C'", "A·B·C", "A'+B'+C'", "NOT(A·B·C)"], "ans": 0, "explain": "Inverting an OR of terms gives the AND of the inverted terms. All three must be LOW for the NOR output to be HIGH."}, {"id": "g22", "topic": "logic", "diff": 3, "type": "num", "q": "A truth table with inputs A and B has output 1 for the rows (A=0,B=1) and (A=1,B=0) only. How many 2-input gates of a single type are needed to build it in the simplest way?", "ans": 1, "unit": "gate", "tol": 0.01, "explain": "That output pattern is exactly XOR, so one XOR gate suffices."}, {"id": "kc1", "topic": "kirchhoff", "diff": 3, "type": "mc", "q": "Kirchhoff's current law (KCL) states that at any junction:", "choices": ["Current is proportional to resistance", "The sum of voltages is zero", "The sum of currents entering equals the sum of currents leaving", "Current splits equally among branches"], "ans": 2, "explain": "KCL expresses conservation of charge — charge cannot pile up at a node. (Division B sees Kirchhoff analysis at State and National tournaments.)"}, {"id": "kc2", "topic": "kirchhoff", "diff": 3, "type": "mc", "q": "Kirchhoff's voltage law (KVL) states that around any closed loop:", "choices": ["The total resistance is zero", "Current is constant", "The algebraic sum of all voltage rises and drops is zero", "Power is conserved only in series circuits"], "ans": 2, "explain": "KVL expresses conservation of energy: a charge returning to its starting point must have the same potential it began with."}, {"id": "kc3", "topic": "kirchhoff", "diff": 3, "type": "num", "q": "At a node, 4.0 A and 2.5 A flow in, and 3.0 A flows out on one branch. What current, in amperes, flows out on the only remaining branch?", "ans": 3.5, "unit": "A", "tol": 0.01, "explain": "KCL: 4.0 + 2.5 = 3.0 + I, so I = 6.5 − 3.0 = 3.5 A."}, {"id": "kc4", "topic": "kirchhoff", "diff": 3, "type": "num", "q": "A single loop has a 15 V battery and three resistors with drops of 4.0 V, 6.0 V and an unknown V₃. Find V₃, in volts.", "ans": 5, "unit": "V", "tol": 0.01, "explain": "KVL: 15 = 4.0 + 6.0 + V₃, so V₃ = 5.0 V."}];
+const KEY = "clab-daily-v1";
+const LABEL = {history:"History",charges:"Charges & fields",acdc:"AC / DC",ohm:"Ohm's law & power",circuits:"Series & parallel",control:"Switches & safety",diodes:"Diodes & LEDs",logic:"Digital logic",kirchhoff:"Kirchhoff (State/Nat'l)"};
+
+/* ---------- storage ---------- */
+function load(){
+  try{const r=localStorage.getItem(KEY);if(r)return JSON.parse(r);}catch(e){}
+  return {answers:{},days:{},name:"",streak:0,lastDay:""};
+}
+function save(){ try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){} }
+let S = load();
+if(!S.answers)S.answers={}; if(!S.days)S.days={};
+
+/* ---------- deterministic order ---------- */
+function rng(seed){let s=seed>>>0;return()=>{s^=s<<13;s>>>=0;s^=s>>17;s^=s<<5;s>>>=0;return s/4294967296;};}
+function shuffled(arr,seed){const a=arr.slice(),r=rng(seed);for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+const ORDER = (()=>{
+  const out=[];
+  [1,2,3].forEach(d=>{
+    const tier=shuffled(BANK.filter(q=>q.diff===d),9871+d*77);
+    const mc=tier.filter(q=>q.type==="mc"), num=tier.filter(q=>q.type!=="mc");
+    while(mc.length||num.length){ if(mc.length)out.push(mc.shift()); if(num.length)out.push(num.shift()); }
+  });
+  return out;
+})();
+const BYID = Object.fromEntries(BANK.map(q=>[q.id,q]));
+
+/* ---------- dates ---------- */
+function today(){const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");}
+function prettyDate(){return new Date().toLocaleDateString(undefined,{weekday:"long",month:"short",day:"numeric"});}
+function shiftDay(ds,n){const [y,m,d]=ds.split("-").map(Number);const t=new Date(y,m-1,d+n);return t.getFullYear()+"-"+String(t.getMonth()+1).padStart(2,"0")+"-"+String(t.getDate()).padStart(2,"0");}
+
+function todaysSet(){
+  const t=today();
+  if(S.days[t]) return S.days[t].map(id=>BYID[id]).filter(Boolean);
+  const used=new Set(Object.values(S.days).flat());
+  const pool=ORDER.filter(q=>!used.has(q.id));
+  const pick=[];
+  const mc=pool.find(q=>q.type==="mc"); if(mc)pick.push(mc);
+  const num=pool.find(q=>q.type!=="mc"&&q.id!==(mc&&mc.id)); if(num)pick.push(num);
+  if(pick.length<2){ for(const q of pool){ if(pick.length>=2)break; if(!pick.includes(q))pick.push(q);} }
+  S.days[t]=pick.map(q=>q.id); save();
+  return pick;
+}
+
+/* ---------- answer checking ---------- */
+function parseNum(raw){
+  let s=String(raw).trim().toLowerCase().replace(/,/g,"").replace(/\s+/g,"").replace(/\$/g,"").replace(/[×x]10\^?/g,"e").replace(/\*10\^?/g,"e").replace(/\^/g,"e");
+  const m=s.match(/-?\d*\.?\d+(e-?\+?\d+)?/);
+  return m?parseFloat(m[0]):NaN;
+}
+function numOK(q,val){
+  if(!isFinite(val))return false;
+  const tol=Math.max(Math.abs(q.ans)*(q.tol||0.02),1e-12);
+  return Math.abs(val-q.ans)<=tol;
+}
+function fmt(n){
+  const a=Math.abs(n);
+  if(a!==0&&(a<0.001||a>=100000))return n.toExponential(3).replace("e","×10^");
+  return String(Math.round(n*10000)/10000);
+}
+
+/* ---------- rendering ---------- */
+function bands(d){let h='<span class="bands" title="difficulty '+d+' of 3">';for(let i=1;i<=3;i++)h+='<i class="'+(i<=d?"on":"")+'"></i>';return h+"</span>";}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+function card(q,opts){
+  const rec=S.answers[q.id];
+  const answered=opts.locked&&rec;
+  const el=document.createElement("div");
+  el.className="card"+(answered?(rec.correct?" ok":" no"):"");
+  let h='<div class="qhead"><span class="tag topic">'+LABEL[q.topic]+'</span>'+bands(q.diff)+
+        '<span class="tag">'+(q.type==="mc"?"multiple choice":"numeric")+'</span></div>';
+  h+='<p class="qtext">'+esc(q.q)+'</p>';
+  if(q.type==="mc"){
+    h+='<div class="choices">'+q.choices.map((c,i)=>
+      '<button class="choice" data-i="'+i+'"><span class="key">'+"ABCD"[i]+'</span><span>'+esc(c)+'</span></button>').join("")+'</div>';
+  }else{
+    h+='<div class="numrow"><input type="text" inputmode="decimal" id="in-'+opts.slot+'-'+q.id+'" placeholder="answer" autocomplete="off">'+
+       (q.unit?'<span class="unit">'+esc(q.unit)+'</span>':"")+
+       '<button class="go" data-submit="1">Check</button>'+
+       '<span class="note">±'+Math.round((q.tol||0.02)*100)+'%</span></div>';
+  }
+  h+='<div class="verdict" hidden></div>';
+  el.innerHTML=h;
+
+  const verdict=el.querySelector(".verdict");
+  function reveal(correct,given){
+    el.classList.add(correct?"ok":"no");
+    verdict.hidden=false;
+    verdict.className="verdict "+(correct?"ok":"no");
+    let ans=q.type==="mc"?("ABCD"[q.ans]+". "+q.choices[q.ans]):(fmt(q.ans)+(q.unit?" "+q.unit:""));
+    verdict.innerHTML="<b>"+(correct?"Correct":"Not quite")+"</b>"+
+      '<div class="ansline">Answer: '+esc(ans)+"</div><div style='margin-top:6px'>"+esc(q.explain)+"</div>";
+  }
+  function record(correct){
+    if(opts.count!==false){
+      const prev=S.answers[q.id];
+      S.answers[q.id]={correct:correct,ts:Date.now(),tries:(prev&&prev.tries||0)+1};
+      bumpStreak(); save(); meters(); renderTopics();
+    }
+  }
+  if(q.type==="mc"){
+    el.querySelectorAll(".choice").forEach(b=>{
+      b.addEventListener("click",()=>{
+        const i=+b.dataset.i, correct=i===q.ans;
+        el.querySelectorAll(".choice").forEach((x,xi)=>{x.disabled=true;if(xi===q.ans)x.classList.add("right");});
+        if(!correct)b.classList.add("wrong");
+        record(correct); reveal(correct);
+      });
+    });
+  }else{
+    const inp=el.querySelector("input"), btn=el.querySelector("[data-submit]");
+    const go=()=>{ if(inp.disabled)return; const v=parseNum(inp.value); if(inp.value.trim()===""){inp.focus();return;}
+      const correct=numOK(q,v); inp.disabled=true; btn.disabled=true; record(correct); reveal(correct); };
+    btn.addEventListener("click",go);
+    inp.addEventListener("keydown",e=>{if(e.key==="Enter")go();});
+  }
+  if(answered) {
+    if(q.type==="mc"){ el.querySelectorAll(".choice").forEach((x,xi)=>{x.disabled=true;if(xi===q.ans)x.classList.add("right");}); }
+    else { el.querySelector("input").disabled=true; el.querySelector("[data-submit]").disabled=true; }
+    reveal(rec.correct);
+  }
+  return el;
+}
+
+function bumpStreak(){
+  const t=today();
+  const set=S.days[t]||[];
+  const allDone=set.length>0&&set.every(id=>S.answers[id]);
+  if(allDone&&S.lastDay!==t){
+    S.streak = (S.lastDay===shiftDay(t,-1))?(S.streak||0)+1:1;
+    S.lastDay=t;
+  }
+}
+function meters(){
+  const vals=Object.values(S.answers);
+  const n=vals.length, ok=vals.filter(a=>a.correct).length;
+  // streak lapses if the last completed day was not today or yesterday
+  let st=S.streak||0; const t=today();
+  if(S.lastDay&&S.lastDay!==t&&S.lastDay!==shiftDay(t,-1))st=0;
+  document.getElementById("m-streak").textContent=st;
+  document.getElementById("m-done").textContent=n;
+  document.getElementById("m-acc").textContent=n?Math.round(ok/n*100)+"%":"—";
+}
+function renderTopics(){
+  const box=document.getElementById("topics"); box.innerHTML="";
+  Object.keys(LABEL).forEach(t=>{
+    const all=BANK.filter(q=>q.topic===t);
+    const seen=all.filter(q=>S.answers[q.id]);
+    const ok=seen.filter(q=>S.answers[q.id].correct).length;
+    const pct=all.length?Math.round(seen.length/all.length*100):0;
+    const d=document.createElement("div"); d.className="trow";
+    d.innerHTML='<div class="tl"><b>'+LABEL[t]+'</b><span>'+ok+"/"+seen.length+" of "+all.length+'</span></div>'+
+                '<div class="track"><i style="width:'+pct+'%"></i></div>';
+    box.appendChild(d);
+  });
+}
+
+function renderDaily(){
+  const box=document.getElementById("daily"); box.innerHTML="";
+  document.getElementById("datelabel").textContent=prettyDate();
+  const set=todaysSet();
+  if(!set.length){
+    box.innerHTML='<div class="card done"><div class="big">Bank complete</div><p class="note">All 118 questions answered. Use Extra practice or Review missed to keep sharp.</p></div>';
+    return;
+  }
+  set.forEach((q,i)=>box.appendChild(card(q,{locked:true,slot:"d"+i})));
+  const allDone=set.every(q=>S.answers[q.id]);
+  if(allDone){
+    const d=document.createElement("div"); d.className="card done";
+    d.innerHTML='<div class="big">Set complete</div><p class="note">New questions unlock tomorrow. '+
+      (BANK.length-new Set(Object.values(S.days).flat()).size)+' still in the bank.</p>';
+    box.appendChild(d);
+  }
+}
+
+function renderExtra(mode){
+  const box=document.getElementById("extra"); box.innerHTML="";
+  if(!mode)return;
+  const head=document.createElement("div"); head.className="sec-h";
+  box.appendChild(head);
+  if(mode==="missed"){
+    const miss=BANK.filter(q=>S.answers[q.id]&&!S.answers[q.id].correct);
+    head.innerHTML='<h2>Review missed</h2><div class="rule"></div><span class="note">'+miss.length+' question'+(miss.length===1?"":"s")+'</span>';
+    if(!miss.length){const p=document.createElement("div");p.className="card done";p.innerHTML='<div class="big">Nothing missed</div><p class="note">Everything you have answered so far was correct.</p>';box.appendChild(p);return;}
+    shuffled(miss,Date.now()&0xffff).slice(0,5).forEach((q,i)=>box.appendChild(card(q,{locked:false,count:true,slot:"m"+i})));
+  }else{
+    head.innerHTML='<h2>Extra practice</h2><div class="rule"></div>';
+    const sel=document.createElement("select");
+    sel.innerHTML='<option value="">All topics</option>'+Object.keys(LABEL).map(t=>'<option value="'+t+'">'+LABEL[t]+'</option>').join("");
+    const btn=document.createElement("button"); btn.className="go"; btn.textContent="Draw 3";
+    const row=document.createElement("div"); row.className="numrow"; row.style.marginBottom="14px";
+    row.append(sel,btn); box.appendChild(row);
+    const holder=document.createElement("div"); box.appendChild(holder);
+    const draw=()=>{
+      holder.innerHTML="";
+      const pool=BANK.filter(q=>!sel.value||q.topic===sel.value);
+      shuffled(pool,(Date.now()&0xffff)+pool.length).slice(0,3).forEach((q,i)=>holder.appendChild(card(q,{locked:false,count:true,slot:"p"+i+Date.now()})));
+    };
+    btn.addEventListener("click",draw); draw();
+  }
+  box.scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+/* ---------- wiring ---------- */
+const who=document.getElementById("who");
+who.value=S.name||"";
+who.addEventListener("input",()=>{S.name=who.value;save();});
+document.getElementById("btn-practice").addEventListener("click",()=>renderExtra("practice"));
+document.getElementById("btn-missed").addEventListener("click",()=>renderExtra("missed"));
+document.getElementById("btn-reset").addEventListener("click",function(){
+  if(this.dataset.armed){S={answers:{},days:{},name:who.value,streak:0,lastDay:""};save();this.textContent="Reset progress";delete this.dataset.armed;renderDaily();renderExtra(null);meters();renderTopics();return;}
+  this.dataset.armed="1"; this.textContent="Tap again to erase everything";
+  setTimeout(()=>{if(this.dataset.armed){delete this.dataset.armed;this.textContent="Reset progress";}},4000);
+});
+meters(); renderDaily(); renderTopics();
+</script>
+
+</body>
+</html>
