@@ -1,0 +1,1372 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Water Quality Field Book</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Caveat:wght@600&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+html{color-scheme:light}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+/* Layout: a graph-paper lab notebook that flips in 3D on a sea-foam desk; two-page spread on wide screens, one page on phones. */
+:root{
+  --desk:#d6e9e6; --desk-2:#bcdcd7;
+  --paper:#f8fbfa; --paper-2:#eef5f3; --line:rgba(14,124,134,.10); --rule:rgba(16,49,47,.16);
+  --ink:#10312f; --muted:#4d6b69;
+  --accent:#0e7c86; --accent-ink:#ffffff;
+  --coral:#d9434b; --hl:rgba(242,179,61,.45); --note:#fff2b8; --note-ink:#4a3a06;
+  --ok:#1b8a57; --ok-soft:rgba(27,138,87,.14); --bad:#c8363e; --bad-soft:rgba(200,54,62,.12);
+  --g:#0e7c86; --ip:#7a4bc2; --atl:#c2611f;
+  --cover:#0b3b4a; --cover-2:#0f4f60; --cover-ink:#e9f7f4; --cover-gold:#f2c46b;
+  --shadow:rgba(9,40,44,.28);
+  --f-display:"Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --f-body:"Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --f-hand:"Caveat", "Comic Sans MS", cursive;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --desk:#061a20; --desk-2:#0a2a33;
+  --paper:#12282d; --paper-2:#183338; --line:rgba(65,195,201,.08); --rule:rgba(221,237,234,.16);
+  --ink:#ddedea; --muted:#93b3b0;
+  --accent:#45c4ca; --accent-ink:#06252a;
+  --coral:#ff7b80; --hl:rgba(245,196,99,.30); --note:#3d3615; --note-ink:#f6e7a8;
+  --ok:#4ed39a; --ok-soft:rgba(78,211,154,.16); --bad:#ff7b80; --bad-soft:rgba(255,123,128,.15);
+  --g:#45c4ca; --ip:#b691f2; --atl:#f0a066;
+  --cover:#0a3240; --cover-2:#0e4556; --cover-ink:#e9f7f4; --cover-gold:#f2c46b;
+  --shadow:rgba(0,0,0,.55); color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --desk:#061a20; --desk-2:#0a2a33;
+  --paper:#12282d; --paper-2:#183338; --line:rgba(65,195,201,.08); --rule:rgba(221,237,234,.16);
+  --ink:#ddedea; --muted:#93b3b0;
+  --accent:#45c4ca; --accent-ink:#06252a;
+  --coral:#ff7b80; --hl:rgba(245,196,99,.30); --note:#3d3615; --note-ink:#f6e7a8;
+  --ok:#4ed39a; --ok-soft:rgba(78,211,154,.16); --bad:#ff7b80; --bad-soft:rgba(255,123,128,.15);
+  --g:#45c4ca; --ip:#b691f2; --atl:#f0a066;
+  --cover:#0a3240; --cover-2:#0e4556; --cover-ink:#e9f7f4; --cover-gold:#f2c46b;
+  --shadow:rgba(0,0,0,.55); color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  background:radial-gradient(120% 80% at 50% 0%, var(--desk-2), var(--desk) 60%);
+  background-color:var(--desk);
+  color:var(--ink); font-family:var(--f-body);
+  display:flex; flex-direction:column; overflow:hidden;
+}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+/* ---------- top & bottom bars ---------- */
+.bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  padding-block:10px; padding-left:max(16px, env(safe-area-inset-left,0px)); padding-right:max(16px, env(safe-area-inset-right,0px));}
+.top{justify-content:space-between}
+.brand{font-family:var(--f-display);font-weight:800;font-size:17px;letter-spacing:-.01em;display:flex;align-items:center;gap:8px}
+.brand a{color:var(--accent);font:600 13px var(--f-body);text-decoration:none;margin-right:4px}
+.brand a:hover{text-decoration:underline}
+.brand small{font-family:var(--f-mono);font-weight:500;font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.top-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+select#chapterJump{font:600 13px var(--f-body);color:var(--ink);background:var(--paper);border:1.5px solid var(--ink);border-radius:8px;padding:6px 8px;max-width:58vw}
+.xp{display:flex;align-items:center;gap:8px;font:700 12px var(--f-mono);background:var(--paper);border:1.5px solid var(--ink);border-radius:999px;padding:4px 10px 4px 4px}
+.xp svg{display:block}
+.bottom{justify-content:center;gap:14px}
+.navbtn{font:700 14px var(--f-display);border:1.5px solid var(--ink);background:var(--paper);border-radius:10px;padding:8px 16px;box-shadow:2px 2px 0 var(--ink);cursor:pointer}
+.navbtn:active{transform:translate(2px,2px);box-shadow:none}
+.navbtn:disabled{opacity:.35;cursor:default;box-shadow:none}
+#pageInfo{font:500 13px var(--f-mono);color:var(--muted);min-width:9em;text-align:center;font-variant-numeric:tabular-nums}
+.keyhint{font:500 11px var(--f-mono);color:var(--muted)}
+@media (max-width:700px){.keyhint{display:none}.brand small{display:none}}
+
+/* ---------- 3D book ---------- */
+.stage{flex:1;min-height:0;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;
+  padding-left:max(16px, env(safe-area-inset-left,0px));padding-right:max(16px, env(safe-area-inset-right,0px))}
+.persp{perspective:2400px;perspective-origin:50% 40%}
+.book{position:relative;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.3,.7,.2,1);width:calc(var(--pw) * 2);height:var(--ph)}
+.book.single{width:var(--pw)}
+.book.at-start{transform:translateX(calc(var(--pw) * -.5)) rotateX(10deg) rotateY(-16deg) rotateZ(1deg)}
+.book.single.at-start{transform:rotateX(8deg) rotateY(-10deg)}
+.book.at-end{transform:translateX(calc(var(--pw) * .5)) rotateX(6deg) rotateY(10deg)}
+.book::after{content:"";position:absolute;inset:auto 6% -26px 6%;height:30px;border-radius:50%;background:var(--shadow);filter:blur(18px);transform:translateZ(-40px);pointer-events:none}
+.sheet{position:absolute;top:0;left:50%;width:var(--pw);height:var(--ph);transform-origin:left center;transform-style:preserve-3d;
+  transition:transform .85s cubic-bezier(.645,.045,.355,1)}
+.book.single .sheet{left:0}
+.sheet.flipped{transform:rotateY(-180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:var(--paper);overflow:hidden;
+  background-image:linear-gradient(var(--line) 1px, transparent 1px),linear-gradient(90deg,var(--line) 1px, transparent 1px);background-size:22px 22px;
+  border-radius:3px 12px 12px 3px;box-shadow:0 1px 0 var(--rule), 0 10px 30px -12px var(--shadow)}
+.face.back{transform:rotateY(180deg);border-radius:12px 3px 3px 12px}
+.face.front::before,.face.back::before{content:"";position:absolute;top:0;bottom:0;width:38px;pointer-events:none;z-index:2}
+.face.front::before{left:0;background:linear-gradient(90deg, rgba(0,0,0,.16), transparent)}
+.face.back::before{right:0;background:linear-gradient(270deg, rgba(0,0,0,.16), transparent)}
+.face.blank{background-color:var(--paper-2)}
+.face.is-cover{background:var(--cover)}
+.face.is-cover::before{display:none}
+.scroll{position:absolute;inset:0 0 34px 0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-width:thin}
+.folio{position:absolute;left:0;right:0;bottom:0;height:34px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;
+  font:500 11px var(--f-mono);color:var(--muted);letter-spacing:.06em;border-top:1px dashed var(--rule);background:var(--paper)}
+.folio button{border:0;background:none;cursor:pointer;font:700 12px var(--f-mono);color:var(--accent);padding:6px 4px}
+.is-cover .folio{display:none}
+.is-cover .scroll{inset:0}
+
+/* ---------- page typography ---------- */
+.pg{font-size:var(--fs,15px);line-height:1.5;padding:26px 30px 28px 34px;max-width:100%}
+.face.back .pg{padding:26px 34px 28px 30px}
+.pg h2{font-family:var(--f-display);font-weight:800;font-size:1.95em;line-height:1.02;letter-spacing:-.015em;margin:.15em 0 .45em;text-wrap:balance}
+.pg h3{font-family:var(--f-display);font-weight:700;font-size:1.13em;margin:1.1em 0 .3em;text-wrap:balance}
+.pg p{margin:.5em 0}
+.pg ul{margin:.4em 0;padding-left:1.2em}
+.pg li{margin:.18em 0}
+.eyebrow{font:700 .7em var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.lead{font-size:1.06em}
+.hl{background:linear-gradient(transparent 58%, var(--hl) 58%);font-weight:700}
+.num{font-family:var(--f-mono);font-weight:700;font-variant-numeric:tabular-nums}
+.muted{color:var(--muted)}
+.formula{font-family:var(--f-mono);font-size:.92em;background:var(--paper-2);border:1.5px dashed var(--rule);border-radius:8px;padding:.55em .75em;margin:.6em 0;overflow-x:auto}
+.formula b{color:var(--accent)}
+.tw{overflow-x:auto;margin:.6em 0}
+table.t{width:100%;border-collapse:collapse;font-size:.88em;font-variant-numeric:tabular-nums}
+table.t th{text-align:left;font-family:var(--f-mono);font-size:.82em;letter-spacing:.05em;text-transform:uppercase;border-bottom:2px solid var(--ink);padding:.35em .4em}
+table.t td{border-bottom:1px solid var(--rule);padding:.35em .4em;vertical-align:top}
+.divc{display:inline-block;font:700 .66em var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border:1.5px dashed var(--muted);border-radius:5px;padding:.1em .45em;vertical-align:middle}
+.ollie{position:relative;background:var(--note);color:var(--note-ink);font-family:var(--f-hand);font-size:1.32em;line-height:1.15;padding:.6em .8em .55em 3.1em;margin:1em .2em;transform:rotate(-1deg);box-shadow:2px 3px 0 rgba(0,0,0,.08);border-radius:2px}
+.ollie::before{content:"";position:absolute;top:-8px;left:40%;width:70px;height:16px;background:rgba(255,255,255,.45);transform:rotate(-3deg)}
+.ollie svg{position:absolute;left:.55em;top:.5em;width:2em;height:2em}
+.ollie b{font-weight:600;text-decoration:underline;text-decoration-thickness:2px}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(12em,1fr));gap:.8em}
+.cols > *{min-width:0}
+.box{border:1.5px solid var(--rule);border-radius:10px;padding:.6em .8em;background:var(--paper)}
+.box h3{margin-top:.1em}
+
+/* widgets */
+.widget{border:1.5px solid var(--ink);border-radius:12px;padding:.8em .9em;background:var(--paper-2);box-shadow:3px 3px 0 var(--ink);margin:1em 0}
+.wlabel{font:700 .68em var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:.4em;display:flex;justify-content:space-between;gap:.5em;flex-wrap:wrap}
+.widget input[type=range]{width:100%;accent-color:var(--accent)}
+.readout{font-family:var(--f-display);font-weight:800;font-size:1.5em;line-height:1.1}
+.btn{font:700 .92em var(--f-display);border:1.5px solid var(--ink);background:var(--paper);border-radius:8px;padding:.4em .85em;box-shadow:2px 2px 0 var(--ink);cursor:pointer}
+.btn:active{transform:translate(2px,2px);box-shadow:none}
+.btn.primary{background:var(--accent);color:var(--accent-ink)}
+.btn.small{font-size:.8em;padding:.25em .6em}
+.row{display:flex;gap:.6em;align-items:center;flex-wrap:wrap}
+.field{font:600 1em var(--f-mono);width:6.5em;padding:.35em .5em;border:1.5px solid var(--ink);border-radius:8px;background:var(--paper);color:var(--ink)}
+details.worked{border:1.5px solid var(--rule);border-radius:10px;padding:.5em .8em;margin:.6em 0;background:var(--paper)}
+details.worked summary{cursor:pointer;font-weight:700;color:var(--accent)}
+details.worked ol{margin:.4em 0 .2em;padding-left:1.3em}
+.chips{display:flex;flex-wrap:wrap;gap:.35em;margin:.5em 0}
+.chip{font:600 .78em var(--f-body);border:1.5px solid var(--rule);border-radius:999px;padding:.2em .65em;background:var(--paper);transition:background .3s,border-color .3s,color .3s}
+.chip.on{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.chip.done{border-color:var(--accent)}
+.meter{height:12px;border-radius:999px;background:var(--rule);overflow:hidden}
+.meter > i{display:block;height:100%;background:var(--accent);border-radius:999px;transition:width .5s}
+canvas.mol{width:100%;height:190px;display:block;touch-action:none;cursor:grab}
+
+/* region tags */
+.tag{display:inline-block;font:700 .64em var(--f-mono);letter-spacing:.08em;text-transform:uppercase;border-radius:5px;padding:.15em .45em;border:1.5px solid currentColor}
+.tag.g{color:var(--g)} .tag.ip{color:var(--ip)} .tag.atl{color:var(--atl)}
+
+/* flip cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(9.4em,1fr));gap:.6em;margin-top:.6em}
+.card{perspective:900px;height:10.6em;cursor:pointer;border:0;background:none;padding:0;text-align:left}
+.card-in{position:relative;width:100%;height:100%;transition:transform .6s cubic-bezier(.3,.7,.2,1);transform-style:preserve-3d}
+.card.flipped .card-in{transform:rotateY(180deg)}
+.cf,.cb{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border:1.5px solid var(--ink);border-radius:10px;padding:.55em .6em;overflow:hidden;display:flex;flex-direction:column;gap:.3em;font-size:.84em;line-height:1.3}
+.cf{background:var(--paper)}
+.cb{background:var(--paper-2);transform:rotateY(180deg)}
+.card .big{font:800 1.15em/1.05 var(--f-display)}
+.card .tap{margin-top:auto;font:500 .78em var(--f-mono);color:var(--muted)}
+
+/* quiz */
+.quiz{border:1.5px solid var(--ink);border-radius:14px;background:var(--paper);box-shadow:4px 4px 0 var(--ink);padding:.9em 1em;margin:.8em 0}
+.qhead{display:flex;justify-content:space-between;align-items:center;gap:.5em;font:700 .74em var(--f-mono);letter-spacing:.06em;color:var(--muted);text-transform:uppercase}
+.qdots{display:flex;gap:3px;flex-wrap:wrap}
+.qdots i{width:8px;height:8px;border-radius:50%;background:var(--rule)}
+.qdots i.r{background:var(--ok)} .qdots i.w{background:var(--bad)} .qdots i.c{outline:2px solid var(--accent);outline-offset:1px}
+.qtext{font-weight:700;font-size:1.05em;margin:.6em 0 .5em}
+.ch{display:block;width:100%;text-align:left;margin:.35em 0;padding:.5em .75em;border:1.5px solid var(--ink);border-radius:9px;background:var(--paper);cursor:pointer;line-height:1.3}
+.ch:hover:not(:disabled){background:var(--paper-2)}
+.ch:disabled{cursor:default}
+.ch.right{background:var(--ok-soft);border-color:var(--ok)}
+.ch.wrong{background:var(--bad-soft);border-color:var(--bad)}
+.fb{margin-top:.6em;padding:.55em .7em;border-radius:9px;font-size:.95em}
+.fb.r{background:var(--ok-soft)} .fb.w{background:var(--bad-soft)}
+.fb strong{display:block;font-family:var(--f-display)}
+.qfoot{display:flex;justify-content:flex-end;margin-top:.6em}
+.stars{font:800 2em var(--f-display);color:var(--cover-gold);letter-spacing:.1em}
+.review{font-size:.88em;margin-top:.5em}
+.review li{margin:.35em 0}
+
+/* cover */
+.cover{height:100%;min-height:100%;display:flex;flex-direction:column;color:var(--cover-ink);position:relative;overflow:hidden;padding:0;
+  background:
+    repeating-linear-gradient(45deg, rgba(255,255,255,.025) 0 2px, transparent 2px 5px),
+    repeating-linear-gradient(-45deg, rgba(0,0,0,.05) 0 2px, transparent 2px 5px),
+    linear-gradient(160deg, var(--cover-2), var(--cover));}
+.cover .plate{margin:12% 9% 0;border:2px solid var(--cover-gold);border-radius:6px;padding:1.1em 1.1em 1.2em;position:relative}
+.cover .plate::after{content:"";position:absolute;inset:5px;border:1px solid rgba(242,196,107,.45);border-radius:3px;pointer-events:none}
+.cover .k{font:700 .7em var(--f-mono);letter-spacing:.2em;text-transform:uppercase;color:var(--cover-gold)}
+.cover h1{font:800 3.1em/.88 var(--f-display);letter-spacing:-.03em;margin:.25em 0 .2em}
+.cover h1 span{display:block;color:var(--cover-gold)}
+.cover .sub{font-size:1em;opacity:.9;max-width:22em}
+.cover .waves{position:absolute;left:0;right:0;bottom:0;height:38%}
+.cover .waves svg{position:absolute;bottom:0;left:0;width:200%;height:100%}
+.cover .w1{animation:drift 14s linear infinite}
+.cover .w2{animation:drift 22s linear infinite reverse;opacity:.6}
+@keyframes drift{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.cover .open{position:absolute;right:9%;bottom:9%;z-index:3;font:700 .95em var(--f-display);background:var(--cover-gold);color:#14262a;border:0;border-radius:999px;padding:.6em 1.1em;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.3)}
+.cover .meta{margin-top:.9em;font:500 .72em var(--f-mono);letter-spacing:.08em;color:var(--cover-gold)}
+#p-back{padding:0;height:100%}
+.backcover{height:100%;display:flex;flex-direction:column;justify-content:center;gap:.8em;color:var(--cover-ink);padding:10%;
+  background:repeating-linear-gradient(45deg, rgba(255,255,255,.025) 0 2px, transparent 2px 5px),linear-gradient(200deg, var(--cover-2), var(--cover))}
+.backcover h2{color:var(--cover-gold)}
+.backcover .btn{align-self:flex-start;background:var(--cover-gold);color:#14262a;border-color:#14262a}
+
+/* contents */
+.toc{list-style:none;padding:0;margin:.5em 0}
+.toc li{display:flex;align-items:baseline;gap:.5em;margin:0;border-bottom:1px dashed var(--rule)}
+.toc button{flex:1;display:flex;align-items:baseline;gap:.6em;border:0;background:none;padding:.42em 0;cursor:pointer;text-align:left;font-size:1em}
+.toc button:hover .tt{color:var(--accent)}
+.toc .cn{font:700 .75em var(--f-mono);color:var(--accent);min-width:2.6em}
+.toc .tt{font-weight:700}
+.toc .pp{margin-left:auto;font:500 .8em var(--f-mono);color:var(--muted)}
+.toc .best{font:700 .7em var(--f-mono);color:var(--ok)}
+
+/* zones, chain */
+.zonebar{position:relative;height:150px;border-radius:10px;background:linear-gradient(#7fd3e0, #1f6f8b 18%, #0d3a52 40%, #061b2b 70%, #02070c);border:1.5px solid var(--ink)}
+.zonebar i{position:absolute;left:-6px;right:-6px;height:3px;background:var(--coral);border-radius:2px;transition:top .2s}
+.hydro svg{width:100%;max-width:260px;display:block;margin:0 auto}
+@media (max-width:520px){ select#chapterJump{max-width:46vw;font-size:12px} .xp{font-size:11px} .brand{font-size:15px} .top{row-gap:6px} }
+@media (prefers-reduced-motion: reduce){
+  .sheet,.book,.card-in{transition-duration:.01s !important}
+  .cover .w1,.cover .w2{animation:none}
+}
+</style>
+
+</head>
+<body>
+<header class="bar top">
+  <div class="brand"><a href="../">‹ Daily</a>Water Quality Field Book <small>SciOly Div B · 2027</small></div>
+  <div class="top-right">
+    <label for="chapterJump" class="keyhint" style="display:none">Jump to</label>
+    <select id="chapterJump" aria-label="Jump to chapter"></select>
+    <div class="xp" id="xpChip" title="Your XP from practice quizzes"></div>
+  </div>
+</header>
+<main class="stage" id="stage"><div class="persp"><div class="book" id="book"></div></div></main>
+<footer class="bar bottom">
+  <button class="navbtn" id="prevBtn" aria-label="Previous page">‹ Back</button>
+  <span id="pageInfo">Cover</span>
+  <button class="navbtn" id="nextBtn" aria-label="Next page">Turn ›</button>
+  <span class="keyhint">← → keys · swipe on phones</span>
+</footer>
+
+<!-- ==================== PAGES ==================== -->
+<div id="src" hidden>
+
+<section class="pg cover" id="p-cover" data-title="Cover">
+  <div class="plate">
+    <div class="k">Science Olympiad · Division B · 2027</div>
+    <h1>Water <span>Quality</span></h1>
+    <div class="sub">A field book for Marine &amp; Estuary water quality. Read it, play with it, then prove it with practice problems.</div>
+    <div class="meta">5 chapters · 5 checkpoints · 1 mock test</div>
+  </div>
+  <div class="waves" aria-hidden="true">
+    <svg class="w2" viewBox="0 0 1200 200" preserveAspectRatio="none"><path fill="rgba(69,196,202,.35)" d="M0 70 Q75 30 150 70 T300 70 T450 70 T600 70 T750 70 T900 70 T1050 70 T1200 70 V200 H0Z"/></svg>
+    <svg class="w1" viewBox="0 0 1200 200" preserveAspectRatio="none"><path fill="rgba(69,196,202,.55)" d="M0 100 Q75 65 150 100 T300 100 T450 100 T600 100 T750 100 T900 100 T1050 100 T1200 100 V200 H0Z"/></svg>
+  </div>
+  <button class="open" data-next>Open the book ›</button>
+</section>
+
+<section class="pg" id="p-welcome" data-title="How to use this book">
+  <div class="eyebrow">Inside cover</div>
+  <h2>Hi, future Water Quality champ!</h2>
+  <p class="lead">This book covers the <b>2027 Water Quality</b> event (Marine &amp; Estuaries). Every chapter has three kinds of pages:</p>
+  <ul>
+    <li><b>Learn pages</b> explain one idea, with the numbers tests love to ask about marked like <span class="hl">this</span>.</li>
+    <li><b>Lab pages</b> have sliders and models. Drag things and watch what changes.</li>
+    <li><b>Checkpoints</b> are practice quizzes. Each right answer earns <span class="num">10 XP</span> and moves you up the ranks.</li>
+  </ul>
+  <h3>Your rank</h3>
+  <div class="tw"><table class="t" id="rankTable"><thead><tr><th>Rank</th><th>XP needed</th></tr></thead><tbody></tbody></table></div>
+  <div class="ollie"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M4 22c2-9 10-14 16-14s14 5 16 14c-5 7-11 9-16 9S9 29 4 22z" fill="#c9b7a6" stroke="#6b5847" stroke-width="2"/><path d="M8 22c4 3 8 4 12 4s8-1 12-4" fill="none" stroke="#6b5847" stroke-width="2"/><circle cx="20" cy="22" r="3" fill="#fff" stroke="#6b5847"/></svg>
+  I'm <b>Ollie the Oyster</b>. I filter up to 190 liters of water a day, so I know a thing or two about clean water. Look for my sticky notes!</div>
+  <p class="muted">Source: the scio.ly Water Quality guide (reviewed Oct 2026). Rules can change, so always double-check the official rules at soinc.org.</p>
+</section>
+
+<section class="pg" id="p-toc" data-title="Contents">
+  <div class="eyebrow">Contents</div>
+  <h2>What's inside</h2>
+  <ul class="toc" id="tocList"></ul>
+</section>
+
+<section class="pg" id="p-event" data-title="The event at a glance" data-chapter="Start here">
+  <div class="eyebrow">Start here</div>
+  <h2>The event at a glance</h2>
+  <p>Teams of <b>up to 2</b>, about <b>50 minutes</b>. It's a hybrid event: a written test plus a device you build.</p>
+  <div class="tw"><table class="t">
+    <thead><tr><th>Part</th><th>Weight</th><th>What it is</th></tr></thead>
+    <tbody>
+      <tr><td>I. Marine &amp; Estuary Ecology</td><td class="num">30%</td><td>Multiple choice, matching, fill-in, short answer</td></tr>
+      <tr><td>II. Coral Reef ID</td><td class="num">30%</td><td>Identify 23 reef organisms and what they tell you</td></tr>
+      <tr><td>III. Water Monitoring</td><td class="num">30%</td><td>11 parameters. Read data and interpret it (no lab work)</td></tr>
+      <tr><td>IV. Salinometer</td><td class="num">10%</td><td>5% for bringing one, 5% for an accurate reading</td></tr>
+    </tbody></table></div>
+  <h3>Pack your bag</h3>
+  <ul>
+    <li>One <b>8.5" × 11" note sheet</b> (both sides, nothing taped on)</li>
+    <li>Up to two <b>non-graphing, non-programmable</b> calculators</li>
+    <li>Your homemade <b>salinometer or hydrometer</b></li>
+    <li><b>Splash goggles</b> (indirect vent, Z87). No goggles, no Part IV!</li>
+  </ul>
+  <h3>The 11 Part III parameters</h3>
+  <div class="chips"><span class="chip">Temperature</span><span class="chip">Salinity</span><span class="chip">pH</span><span class="chip">Dissolved oxygen</span><span class="chip">Nitrates</span><span class="chip">Phosphates</span><span class="chip">Turbidity</span><span class="chip">Total solids</span><span class="chip">Fecal coliform</span><span class="chip">BOD</span><span class="chip">Aragonite saturation (Ω)</span></div>
+  <p><span class="divc">Div C only</span> Traditional Ecological Knowledge and life-history topics (r/K, survivorship) are Division C. This book marks them so you know they're optional.</p>
+</section>
+
+<!-- ============ CHAPTER 1 ============ -->
+<section class="pg" id="p-water" data-title="Water, the weird molecule" data-chapter="Ch 1 · Water Chemistry">
+  <div class="eyebrow">Ch 1 · Water Chemistry</div>
+  <h2>Water is a weird little molecule</h2>
+  <div class="widget no-swipe">
+    <div class="wlabel"><span>3D model · H₂O</span><span>drag to spin</span></div>
+    <canvas class="mol" id="molCanvas" aria-label="Rotating 3D model of a water molecule, bent at 104.5 degrees"></canvas>
+  </div>
+  <p>Oxygen pulls electrons harder than hydrogen, so the O end is slightly negative (δ−) and the H ends slightly positive (δ+). Opposite ends of neighboring molecules attract: that's a <span class="hl">hydrogen bond</span>.</p>
+  <p>Hydrogen bonds explain water's superpowers: it absorbs lots of heat before warming up, dissolves salts easily, and its ice floats.</p>
+  <h3>Salinity: how salty is it?</h3>
+  <p>Open ocean salinity averages <span class="hl">about 35 ppt</span> (35 g of salt per kg of water, or 3.5%). Estuaries mix river water with seawater, so their salinity can be anything from 0.5 to 30 ppt.</p>
+</section>
+
+<section class="pg" id="p-salinity" data-title="Salinity zones and seawater facts">
+  <div class="eyebrow">Ch 1 · Water Chemistry</div>
+  <h2>The salinity slider</h2>
+  <p>Scientists name estuary water by salinity using the <b>Venice system</b>. Slide to explore.</p>
+  <div class="widget no-swipe">
+    <div class="wlabel"><span>Salinity</span><span id="venVal" class="num">12 ppt</span></div>
+    <input type="range" id="venSlider" min="0" max="45" step="0.5" value="12" aria-label="Salinity in ppt">
+    <div class="readout" id="venName">Mesohaline</div>
+    <div id="venInfo" class="muted">5–18 ppt · middle of the estuary</div>
+  </div>
+  <div class="tw"><table class="t"><thead><tr><th>Class</th><th>ppt</th></tr></thead><tbody>
+    <tr><td>Tidal freshwater</td><td class="num">&lt; 0.5</td></tr>
+    <tr><td>Oligohaline</td><td class="num">0.5–5</td></tr>
+    <tr><td>Mesohaline</td><td class="num">5–18</td></tr>
+    <tr><td>Polyhaline</td><td class="num">18–30</td></tr>
+    <tr><td>Euhaline</td><td class="num">30–40</td></tr>
+    <tr><td>Hyperhaline</td><td class="num">&gt; 40</td></tr>
+  </tbody></table></div>
+  <h3>Seawater numbers to memorize</h3>
+  <ul>
+    <li>Seawater freezes near <span class="num">−1.9 °C</span> (salt lowers the freezing point).</li>
+    <li>Coral reefs like <span class="num">32–40 ppt</span>.</li>
+    <li>Pressure goes up <span class="hl">1 atm every 10 m</span> of depth, plus 1 atm of air at the surface.</li>
+    <li>Units: <span class="num">1 mg/L ≈ 1 ppm</span>; <span class="num">1% = 10 ppt</span>.</li>
+  </ul>
+  <div class="ollie"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M4 22c2-9 10-14 16-14s14 5 16 14c-5 7-11 9-16 9S9 29 4 22z" fill="#c9b7a6" stroke="#6b5847" stroke-width="2"/><path d="M8 22c4 3 8 4 12 4s8-1 12-4" fill="none" stroke="#6b5847" stroke-width="2"/></svg>
+  Memory trick: <b>O</b>ligo → <b>M</b>eso → <b>P</b>oly → <b>E</b>u. "<b>O</b>llie <b>M</b>akes <b>P</b>erfect <b>E</b>stuaries."</div>
+</section>
+
+<section class="pg" id="p-ph" data-title="pH and ocean acidification">
+  <div class="eyebrow">Ch 1 · Water Chemistry</div>
+  <h2>pH and the souring sea</h2>
+  <p>pH measures hydrogen ions (H⁺). Lower pH = more acidic. The scale is <b>logarithmic</b>: each 1 unit is a <span class="hl">10× change</span> in H⁺.</p>
+  <div class="tw"><table class="t"><thead><tr><th>Water</th><th>Typical pH</th></tr></thead><tbody>
+    <tr><td>Surface ocean today</td><td class="num">≈ 8.1 (7.5–8.4)</td></tr>
+    <tr><td>OK for marine life</td><td class="num">6.5–8.5</td></tr>
+    <tr><td>OK for freshwater life</td><td class="num">6–9</td></tr>
+    <tr><td>Natural rain</td><td class="num">≈ 5.6</td></tr>
+  </tbody></table></div>
+  <h3>Ocean acidification</h3>
+  <p>The ocean has soaked up roughly a quarter to a third of the CO₂ people release. CO₂ + water makes carbonic acid, so surface pH has dropped about <span class="num">0.1</span> since pre-industrial times. That sounds tiny, but 10<sup>0.1</sup> ≈ 1.26, so it's about <span class="hl">26% more H⁺</span>.</p>
+  <h3>Aragonite saturation (Ω)</h3>
+  <p>Corals and shellfish build skeletons from aragonite (a form of CaCO₃). Ω tells you how easy that is.</p>
+  <div class="tw"><table class="t"><thead><tr><th>Ω</th><th>Meaning for reefs</th></tr></thead><tbody>
+    <tr><td class="num">&gt; 4.0</td><td>Optimal</td></tr>
+    <tr><td class="num">3.5–4.0</td><td>Adequate</td></tr>
+    <tr><td class="num">3.0–3.5</td><td>Marginal</td></tr>
+    <tr><td class="num">&lt; 3.0</td><td>Low</td></tr>
+    <tr><td class="num">&lt; 1.0</td><td>Corrosive: shells start dissolving</td></tr>
+  </tbody></table></div>
+  <p class="muted">Bonus numbers: surface seawater alkalinity ≈ 115 mg/L as CaCO₃; seawater conductivity ≈ 53 mS/cm.</p>
+</section>
+
+<section class="pg" id="p-do" data-title="Dissolved oxygen">
+  <div class="eyebrow">Ch 1 · Water Chemistry</div>
+  <h2>Dissolved oxygen: can the fish breathe?</h2>
+  <p>Fish breathe oxygen gas dissolved in water (DO), measured in <b>mg/L</b>. Two rules: <span class="hl">cold water holds more O₂</span>, and <span class="hl">salty water holds less</span>.</p>
+  <div class="widget no-swipe">
+    <div class="wlabel"><span>DO at saturation (approx.)</span><span id="doTempVal" class="num">20 °C</span></div>
+    <input type="range" id="doTemp" min="0" max="30" step="1" value="20" aria-label="Water temperature">
+    <div class="row" style="margin:.4em 0">
+      <button class="btn small" id="doFresh" aria-pressed="false">Fresh water</button>
+      <button class="btn small primary" id="doSea" aria-pressed="true">Seawater (35 ppt)</button>
+    </div>
+    <div class="readout"><span id="doOut">7.4</span> <span style="font-size:.6em">mg/L max</span></div>
+    <div class="meter" style="margin-top:.4em"><i id="doBar" style="width:50%"></i></div>
+    <div id="doMsg" class="muted" style="margin-top:.3em"></div>
+  </div>
+  <div class="tw"><table class="t"><thead><tr><th>DO (mg/L)</th><th>What it means</th></tr></thead><tbody>
+    <tr><td class="num">≥ 5</td><td>Supports most marine life</td></tr>
+    <tr><td class="num">4.8 / 2.3</td><td>EPA criteria: growth / survival (Virginian Province)</td></tr>
+    <tr><td class="num">&lt; 2</td><td><b>Hypoxia</b> (a "dead zone")</td></tr>
+    <tr><td class="num">≈ 0</td><td><b>Anoxia</b></td></tr>
+  </tbody></table></div>
+  <p>DO swings every day: photosynthesis adds O₂ in sunlight, and everything respires all night. DO is <span class="hl">lowest just before dawn</span>.</p>
+</section>
+
+<section class="pg" id="p-bod" data-title="Winkler titration and BOD">
+  <div class="eyebrow">Ch 1 · Water Chemistry</div>
+  <h2>Measuring oxygen: Winkler &amp; BOD</h2>
+  <h3>Winkler titration</h3>
+  <p>A classic chemistry method: you "fix" the oxygen in the bottle, then titrate with sodium thiosulfate.</p>
+  <div class="formula">200 mL sample + <b>0.025 N</b> thiosulfate → <b>1 mL titrant = 1 mg/L DO</b></div>
+  <details class="worked"><summary>Worked example: 7.2 mL used</summary>
+    <ol><li>Check the setup: 200 mL sample, 0.025 N titrant. ✔</li><li>So each mL equals 1 mg/L.</li><li>DO = <b>7.2 mg/L</b>. Healthy water!</li></ol></details>
+  <h3>BOD₅ (Biochemical Oxygen Demand)</h3>
+  <p>BOD tells you how much oxygen bacteria will <i>eat up</i> while breaking down organic stuff like sewage or dead algae. High BOD = trouble coming for fish.</p>
+  <p>Incubate the bottle <span class="hl">5 days, 20 °C, in the dark</span>. Dark, so algae can't photosynthesize and sneak extra oxygen in.</p>
+  <div class="formula"><b>BOD₅ = (D₁ − D₂) ÷ P</b><br>D₁ = DO at start · D₂ = DO after 5 days · P = fraction of the bottle that is sample</div>
+  <details class="worked"><summary>Worked example: diluted sample</summary>
+    <ol><li>You fill a 300 mL bottle with 30 mL sample + dilution water, so P = 30 ÷ 300 = <b>0.10</b>.</li><li>D₁ = 8.4 mg/L, D₂ = 5.1 mg/L. Drop = 3.3 mg/L.</li><li>BOD₅ = 3.3 ÷ 0.10 = <b>33 mg/L</b>.</li><li>Compare: clean water ≈ 1–2, treated sewage limit 30, raw sewage 100–400. This is a bit above the treatment limit.</li></ol></details>
+</section>
+
+<section class="pg" id="p-cp1" data-title="Checkpoint 1: Water chemistry" data-quizpage="chem">
+  <div class="eyebrow">Checkpoint 1</div>
+  <h2>Water chemistry check</h2>
+  <p class="muted">13 questions. Have a calculator ready for the number ones.</p>
+  <div class="quiz no-swipe" data-quiz="chem"></div>
+</section>
+
+<!-- ============ CHAPTER 2 ============ -->
+<section class="pg" id="p-nutrients" data-title="Nitrogen and phosphorus" data-chapter="Ch 2 · Nutrients &amp; Clarity">
+  <div class="eyebrow">Ch 2 · Nutrients, Clarity &amp; Bacteria</div>
+  <h2>Nitrogen &amp; phosphorus: plant food</h2>
+  <p>Algae need nutrients like we need food. A little is good. Too much makes a bloom.</p>
+  <div class="cols">
+    <div class="box"><h3>Nitrogen (N)</h3>
+      <ul><li>Forms: nitrate NO₃⁻, nitrite NO₂⁻, ammonium, N₂ gas</li>
+      <li>Test: cadmium reduction turns it <b>pink/magenta</b></li>
+      <li>Clean water: &lt; 1 mg/L as N</li>
+      <li>Drinking limit: 10 mg/L nitrate-N</li>
+      <li><span class="hl">Limits coastal/marine</span> growth</li></ul></div>
+    <div class="box"><h3>Phosphorus (P)</h3>
+      <ul><li>Tests detect orthophosphate</li>
+      <li>Ascorbic acid test turns it <b>blue</b> (molybdenum blue)</li>
+      <li>No gas form; it rides on eroded soil</li>
+      <li>EPA: ≤ 0.05 mg/L P into lakes</li>
+      <li><span class="hl">Limits freshwater</span> growth</li></ul></div>
+  </div>
+  <h3>"As N" vs. "as NO₃": the unit trap</h3>
+  <p>Labs report nitrate either as the whole ion (NO₃) or as just the nitrogen inside it (NO₃-N). Convert with:</p>
+  <div class="formula"><b>NO₃ = 4.43 × NO₃-N</b> &nbsp;·&nbsp; <b>PO₄ = 3.07 × PO₄-P</b></div>
+  <details class="worked"><summary>Why 4.43?</summary>
+    <ol><li>NO₃ mass = 14 + 3×16 = 62 g/mol. N alone = 14.</li><li>62 ÷ 14 = 4.43. Same idea for PO₄: 95 ÷ 31 = 3.07.</li></ol></details>
+  <p>Redfield ratio (what plankton are made of): <span class="hl">C : N : P = 106 : 16 : 1</span>.</p>
+  <p class="muted">Nitrifying bacteria turn ammonium → nitrite (<i>Nitrosomonas</i>) → nitrate (<i>Nitrobacter</i>). Denitrifiers in low-oxygen mud turn nitrate back into N₂ gas.</p>
+</section>
+
+<section class="pg" id="p-eutro" data-title="Eutrophication, step by step">
+  <div class="eyebrow">Ch 2 · Nutrients, Clarity &amp; Bacteria</div>
+  <h2>How a dead zone happens</h2>
+  <p>Eutrophication is a chain reaction. Tap <b>Next step</b> and watch the oxygen meter.</p>
+  <div class="widget no-swipe">
+    <div class="wlabel"><span>Eutrophication chain</span><span id="euStepNo">Step 1 / 7</span></div>
+    <div class="chips" id="euChips"></div>
+    <div class="readout" id="euTitle"></div>
+    <p id="euText" style="min-height:3.2em"></p>
+    <div class="wlabel"><span>Bottom DO</span><span id="euDo" class="num"></span></div>
+    <div class="meter"><i id="euBar"></i></div>
+    <div class="row" style="margin-top:.6em"><button class="btn small" id="euPrev">‹ Back</button><button class="btn small primary" id="euNext">Next step ›</button></div>
+  </div>
+  <div class="ollie"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M4 22c2-9 10-14 16-14s14 5 16 14c-5 7-11 9-16 9S9 29 4 22z" fill="#c9b7a6" stroke="#6b5847" stroke-width="2"/><path d="M8 22c4 3 8 4 12 4s8-1 12-4" fill="none" stroke="#6b5847" stroke-width="2"/></svg>
+  Tricky test fact: during a bloom, <b>daytime</b> DO and pH go <b>up</b> (so much photosynthesis!). The crash comes at night and after the algae die.</div>
+  <p>Low bottom oxygen also lets mud release phosphate, ammonium and H₂S, which feeds the next bloom. That's a <b>positive feedback loop</b>.</p>
+</section>
+
+<section class="pg" id="p-clarity" data-title="Turbidity and solids">
+  <div class="eyebrow">Ch 2 · Nutrients, Clarity &amp; Bacteria</div>
+  <h2>Turbidity: how cloudy is it?</h2>
+  <p>Turbidity is cloudiness from floating particles (mud, algae, sewage). Cloudy water blocks light, warms up, clogs gills and smothers the bottom.</p>
+  <div class="tw"><table class="t"><thead><tr><th>Tool</th><th>Unit</th></tr></thead><tbody>
+    <tr><td>Nephelometer (light scattered at 90°)</td><td class="num">NTU</td></tr>
+    <tr><td>Secchi disk (lowered until it vanishes)</td><td class="num">m</td></tr>
+    <tr><td>Transparency tube</td><td class="num">cm</td></tr>
+    <tr><td>Jackson candle (very muddy water)</td><td class="num">JTU</td></tr>
+  </tbody></table></div>
+  <p><b>Secchi depth</b> = average of where the disk <i>disappears</i> going down and <i>reappears</i> coming up.</p>
+  <div class="formula"><b>k ≈ 1.7 ÷ Secchi depth</b> (light attenuation, per m)<br>1% light depth ≈ <b>2.7 × Secchi depth</b></div>
+  <details class="worked"><summary>Worked example: Secchi = 3.4 m</summary>
+    <ol><li>k = 1.7 ÷ 3.4 = <b>0.5 m⁻¹</b></li><li>Light reaches 1% at about 2.7 × 3.4 ≈ <b>9.2 m</b>. Seagrass deeper than that is in trouble.</li></ol></details>
+  <h3>Solids</h3>
+  <div class="formula"><b>TS = TSS + TDS</b><br>TSS = caught on a filter · TDS = passes through<br>TDS (mg/L) ≈ 0.67 × conductivity (µS/cm)</div>
+  <p>Only <b>reverse osmosis, distillation or ion exchange</b> really remove TDS. Filtering and settling remove TSS. EPA's secondary drinking-water guideline for TDS is <span class="num">500 mg/L</span>.</p>
+</section>
+
+<section class="pg" id="p-bacteria" data-title="Fecal coliform bacteria">
+  <div class="eyebrow">Ch 2 · Nutrients, Clarity &amp; Bacteria</div>
+  <h2>Poop detectives: indicator bacteria</h2>
+  <p>We can't test for every germ, so we test for <b>indicator bacteria</b> that live in guts. If they're there, sewage or animal waste is too, and so might be germs that cause cholera, typhoid or hepatitis A.</p>
+  <ul>
+    <li><b>Fecal coliforms</b> grow at a hot <span class="num">44.5 °C</span>.</li>
+    <li><i>E. coli</i>: best indicator for <b>fresh</b> water.</li>
+    <li><span class="hl">Enterococci</span>: EPA's indicator for <b>marine</b> &amp; estuary water.</li>
+  </ul>
+  <h3>Membrane filtration count</h3>
+  <p>Pour water through a 0.45 µm filter, put it on m-FC medium at 44.5 °C for 24 h, then count the <b>blue colonies</b>. Ideal: 20–60 colonies. Over 200 = "too numerous to count" (TNTC).</p>
+  <div class="formula"><b>CFU/100 mL = colonies ÷ mL filtered × 100</b></div>
+  <details class="worked"><summary>Worked example: 42 colonies from 30 mL</summary>
+    <ol><li>42 ÷ 30 = 1.4 colonies per mL</li><li>× 100 = <b>140 CFU/100 mL</b></li><li>Above the old recreation guideline (200)? No. But way above the shellfish limit (14 MPN/100 mL median).</li></ol></details>
+  <h3>Guidelines</h3>
+  <div class="tw"><table class="t"><thead><tr><th>Use</th><th>Limit (per 100 mL)</th></tr></thead><tbody>
+    <tr><td>Marine beach, enterococci (geometric mean)</td><td class="num">35</td></tr>
+    <tr><td>Fresh water, <i>E. coli</i> (geometric mean)</td><td class="num">126</td></tr>
+    <tr><td>Shellfish harvest (median)</td><td class="num">14</td></tr>
+    <tr><td>Treated drinking water, total coliform</td><td class="num">0</td></tr>
+  </tbody></table></div>
+  <p class="muted">Sampling: sterile bottle, don't rinse it, keep it below 10 °C, start within 8 hours.</p>
+</section>
+
+<section class="pg" id="p-cp2" data-title="Checkpoint 2: Nutrients, clarity, bacteria">
+  <div class="eyebrow">Checkpoint 2</div>
+  <h2>Nutrients &amp; clarity check</h2>
+  <p class="muted">12 questions on Chapter 2.</p>
+  <div class="quiz no-swipe" data-quiz="nutr"></div>
+</section>
+
+<!-- ============ CHAPTER 3 ============ -->
+<section class="pg" id="p-estuary" data-title="Estuary habitats" data-chapter="Ch 3 · Marine &amp; Estuary Ecology">
+  <div class="eyebrow">Ch 3 · Marine &amp; Estuary Ecology</div>
+  <h2>Estuaries: where rivers meet the sea</h2>
+  <p>Estuaries are among the most productive places on Earth (about 1,500 g of plant matter per m² per year). Most energy flows through <b>detritus</b>, bits of dead plants.</p>
+  <div class="cols">
+    <div class="box"><h3>Salt marsh</h3><p><b>Low marsh</b>: flooded every tide, <i>Spartina alterniflora</i>, fiddler crabs, ribbed mussels. <b>High marsh</b>: flooded only by spring/storm tides, <i>Spartina patens</i>. Invader: <i>Phragmites</i>.</p></div>
+    <div class="box"><h3>Mangroves</h3><p><b>Red</b>: arching prop roots, babies sprout on the tree. <b>Black</b>: pneumatophores (snorkel roots) poke up, salt crystals on leaves. <b>White</b>: salt glands at leaf base.</p></div>
+    <div class="box"><h3>Seagrass</h3><p>Real <span class="hl">flowering plants</span>, not seaweed! Nursery for baby fish. Dies when water gets cloudy.</p></div>
+    <div class="box"><h3>Mudflats</h3><p>Black, rotten-egg-smelling mud = <b>iron sulfides</b> made by sulfate-reducing bacteria (they make H₂S).</p></div>
+    <div class="box"><h3>Oyster reefs</h3><p>One oyster filters up to <span class="num">190 L/day</span>. Chesapeake oysters are only about 1–2% of historic levels.</p></div>
+  </div>
+  <p>Summer estuaries can <b>stratify</b>: warm fresh water floats on cold salty water, so oxygen can't mix down and bottom water goes hypoxic. Fall storms mix it again.</p>
+  <div class="formula"><b>Flushing time = volume ÷ inflow</b></div>
+</section>
+
+<section class="pg" id="p-tides" data-title="Tides">
+  <div class="eyebrow">Ch 3 · Marine &amp; Estuary Ecology</div>
+  <h2>Tides: the Moon's tug-of-war</h2>
+  <p>The Moon's gravity (plus a smaller pull from the Sun) makes tides. A tidal day is <span class="num">24 h 50 min</span>.</p>
+  <div class="tw"><table class="t"><thead><tr><th>Pattern</th><th>Per day</th><th>Example</th></tr></thead><tbody>
+    <tr><td>Semidiurnal</td><td>2 highs, 2 lows, about equal</td><td>U.S. Atlantic coast</td></tr>
+    <tr><td>Diurnal</td><td>1 high, 1 low</td><td>Parts of the Gulf of Mexico</td></tr>
+    <tr><td>Mixed</td><td>2 highs, 2 lows, unequal</td><td>U.S. Pacific coast</td></tr>
+  </tbody></table></div>
+  <div class="widget">
+    <div class="wlabel"><span>Moon phase → tide range</span></div>
+    <svg viewBox="0 0 320 96" width="100%" role="img" aria-label="New and full moon cause spring tides; quarter moons cause neap tides">
+      <g font-family="JetBrains Mono, monospace" font-size="10" fill="currentColor" text-anchor="middle">
+        <circle cx="40" cy="34" r="18" fill="var(--ink)" opacity=".85"/><text x="40" y="70">New</text><text x="40" y="86" fill="var(--coral)" font-weight="700">SPRING</text>
+        <circle cx="120" cy="34" r="18" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.5"/><path d="M120 16 A18 18 0 0 1 120 52 Z" fill="var(--ink)" opacity=".85"/><text x="120" y="70">1st qtr</text><text x="120" y="86" fill="var(--accent)" font-weight="700">neap</text>
+        <circle cx="200" cy="34" r="18" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.5"/><text x="200" y="70">Full</text><text x="200" y="86" fill="var(--coral)" font-weight="700">SPRING</text>
+        <circle cx="280" cy="34" r="18" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.5"/><path d="M280 16 A18 18 0 0 0 280 52 Z" fill="var(--ink)" opacity=".85"/><text x="280" y="70">3rd qtr</text><text x="280" y="86" fill="var(--accent)" font-weight="700">neap</text>
+      </g>
+    </svg>
+  </div>
+  <ul>
+    <li><b>Spring tides</b> (biggest range): Sun, Earth, Moon in a line at <span class="hl">new and full moon</span>. Nothing to do with the season spring!</li>
+    <li><b>Neap tides</b> (smallest range): at first and third quarter.</li>
+    <li><b>Flood tide</b> = rising. <b>Ebb tide</b> = falling.</li>
+  </ul>
+  <h3>Rocky shore zones</h3>
+  <p>From top to bottom: spray zone → high → middle → low intertidal → subtidal. Animals higher up must survive drying out.</p>
+</section>
+
+<section class="pg" id="p-zones" data-title="Ocean zones">
+  <div class="eyebrow">Ch 3 · Marine &amp; Estuary Ecology</div>
+  <h2>Dive! Ocean zones</h2>
+  <p>Drag the slider to dive down. Watch light, pressure and creatures change.</p>
+  <div class="widget no-swipe">
+    <div class="row" style="align-items:stretch;flex-wrap:nowrap">
+      <div class="zonebar" style="width:34px;flex:none"><i id="zMark" style="top:0"></i></div>
+      <div style="flex:1;min-width:0">
+        <div class="wlabel"><span>Depth</span><span id="zDepth" class="num">0 m</span></div>
+        <input type="range" id="zSlider" min="0" max="100" step="0.5" value="8" aria-label="Depth">
+        <div class="readout" id="zName">Epipelagic</div>
+        <div id="zInfo" class="muted"></div>
+        <div style="margin-top:.3em"><span class="num" id="zPress"></span></div>
+      </div>
+    </div>
+  </div>
+  <div class="tw"><table class="t"><thead><tr><th>Zone</th><th>Depth (m)</th><th>Light</th></tr></thead><tbody>
+    <tr><td>Epipelagic</td><td class="num">0–200</td><td>Euphotic: nearly all photosynthesis</td></tr>
+    <tr><td>Mesopelagic</td><td class="num">200–1,000</td><td>Disphotic (twilight)</td></tr>
+    <tr><td>Bathypelagic</td><td class="num">1,000–4,000</td><td>Aphotic, about 4 °C</td></tr>
+    <tr><td>Abyssopelagic</td><td class="num">4,000–6,000</td><td>Aphotic, near freezing</td></tr>
+    <tr><td>Hadal</td><td class="num">&gt; 6,000</td><td>Trenches, Mariana ≈ 11,000</td></tr>
+  </tbody></table></div>
+  <p>Seafloor names: littoral (intertidal) → sublittoral (shelf) → bathyal (slope) → abyssal (plain) → hadal. Water over the shelf is <b>neritic</b>; beyond it is <b>oceanic</b>.</p>
+</section>
+
+<section class="pg" id="p-foodweb" data-title="Food webs, energy and plankton">
+  <div class="eyebrow">Ch 3 · Marine &amp; Estuary Ecology</div>
+  <h2>Who eats whom (and the 10% rule)</h2>
+  <div class="tw"><table class="t"><thead><tr><th>Level</th><th>Role</th><th>Ocean example</th></tr></thead><tbody>
+    <tr><td class="num">1</td><td>Producer</td><td>Phytoplankton, kelp, seagrass</td></tr>
+    <tr><td class="num">2</td><td>Primary consumer</td><td>Copepods, krill, urchins</td></tr>
+    <tr><td class="num">3</td><td>Secondary consumer</td><td>Herring, anchovies</td></tr>
+    <tr><td class="num">4</td><td>Tertiary consumer</td><td>Tuna, seals, seabirds</td></tr>
+    <tr><td class="num">5</td><td>Quaternary consumer</td><td>Orcas, big sharks</td></tr>
+  </tbody></table></div>
+  <div class="widget no-swipe">
+    <div class="wlabel"><span>Energy pyramid calculator</span><span>bar width on a log scale</span></div>
+    <div class="row"><label for="epIn">Producers (kJ)</label><input class="field" id="epIn" type="number" value="10000" min="1"><label for="epEff">Efficiency</label><select id="epEff" class="field" style="width:5.5em"><option>5</option><option selected>10</option><option>15</option><option>20</option></select>%</div>
+    <div id="epOut" style="margin-top:.6em;display:grid;gap:4px"></div>
+  </div>
+  <p>About <span class="hl">10%</span> of energy moves up each level (real range 5–20%). The rest is lost as heat. An <b>energy</b> pyramid can never be upside down; biomass and number pyramids sometimes are in the ocean.</p>
+  <h3>Plankton</h3>
+  <ul>
+    <li><b>Phytoplankton</b> (producers): diatoms (glass/silica shells), dinoflagellates, coccolithophores (CaCO₃ plates), cyanobacteria.</li>
+    <li><b>Zooplankton</b> (consumers): copepods, krill.</li>
+    <li><b>Holoplankton</b> drift their whole life; <b>meroplankton</b> are just babies (crab, fish larvae).</li>
+    <li>Diel vertical migration: zooplankton go <b>down by day, up at night</b>.</li>
+  </ul>
+</section>
+
+<section class="pg" id="p-pop" data-title="Populations">
+  <div class="eyebrow">Ch 3 · Marine &amp; Estuary Ecology</div>
+  <h2>Counting critters: populations</h2>
+  <h3>Mark and recapture</h3>
+  <p>Catch and tag some animals, let them go, catch again later and count how many have tags.</p>
+  <div class="formula"><b>N = (M × C) ÷ R</b><br>M = marked first time · C = caught second time · R = recaptured with marks</div>
+  <div class="widget no-swipe">
+    <div class="wlabel"><span>Mark–recapture calculator</span></div>
+    <div class="row"><label for="mrM">M</label><input class="field" id="mrM" type="number" value="60"><label for="mrC">C</label><input class="field" id="mrC" type="number" value="45"><label for="mrR">R</label><input class="field" id="mrR" type="number" value="9"></div>
+    <div class="readout" style="margin-top:.4em">N ≈ <span id="mrOut">300</span></div>
+  </div>
+  <h3>Growth curves</h3>
+  <ul>
+    <li><b>Exponential</b> (J-curve): no limits. Doubling time ≈ 70 ÷ growth rate (%).</li>
+    <li><b>Logistic</b> (S-curve): levels off at carrying capacity <b>K</b>. Fastest growth at K/2.</li>
+    <li><b>Density-dependent</b> limits (competition, disease) get stronger with crowding. <b>Density-independent</b> ones (storms, oil spills) don't care.</li>
+  </ul>
+  <h3>Life strategies <span class="divc">Div C State/Nat</span></h3>
+  <p class="muted">r-selected: tons of tiny babies (oysters, copepods). K-selected: few big babies, long lives (whales). Survivorship Type I (humans, whales), II (constant), III (most die young: oysters, most fish). Nice to know, but Division B tests focus elsewhere.</p>
+</section>
+
+<section class="pg" id="p-pollution" data-title="Pollution and the laws">
+  <div class="eyebrow">Ch 3 · Marine &amp; Estuary Ecology</div>
+  <h2>Pollution &amp; the laws that fight it</h2>
+  <div class="cols">
+    <div class="box"><h3>Point source</h3><p>One pipe you can point at: a factory outfall, a sewage plant.</p></div>
+    <div class="box"><h3>Non-point source</h3><p>Spread out: runoff from farms, lawns, streets. Now the <span class="hl">bigger problem</span> in the U.S.</p></div>
+  </div>
+  <h3>Biomagnification</h3>
+  <p>Some poisons stick in fat and never leave: <b>methylmercury, DDT, PCBs</b>. Each predator eats lots of prey, so the dose climbs up the food chain.</p>
+  <div class="formula">phytoplankton 0.01 ppm Hg → … → orca ≈ <b>100 ppm</b> (10,000× more)</div>
+  <h3>Other pollutants</h3>
+  <ul>
+    <li><b>Oil</b>: natural seeps are the largest source worldwide. Spills: <i>Exxon Valdez</i> 1989 (~11 million gal), <i>Deepwater Horizon</i> 2010 (~134–206 million gal).</li>
+    <li><b>Metals</b>: lead has no safe level; arsenic limit 10 µg/L.</li>
+    <li><b>Plastics</b>: entangle, get eaten, carry other toxins.</li>
+    <li><b>Invasive species</b>: often arrive in ships' ballast water and leave their predators behind.</li>
+  </ul>
+  <div class="formula"><b>Load = concentration × flow</b> (mg/L × m³/s = g/s)</div>
+  <h3>Laws timeline</h3>
+  <div class="tw"><table class="t"><tbody>
+    <tr><td class="num">1972</td><td><b>Clean Water Act</b> (discharges into rivers, lakes, coasts); DDT banned in U.S.</td></tr>
+    <tr><td class="num">1974</td><td><b>Safe Drinking Water Act</b> (tap water)</td></tr>
+    <tr><td class="num">1979</td><td>PCBs banned</td></tr>
+    <tr><td class="num">1990</td><td><b>Oil Pollution Act</b> → double-hulled tankers</td></tr>
+  </tbody></table></div>
+</section>
+
+<section class="pg" id="p-cp3" data-title="Checkpoint 3: Ecology">
+  <div class="eyebrow">Checkpoint 3</div>
+  <h2>Ecology check</h2>
+  <p class="muted">15 questions on Chapter 3. This is Part I of the test, worth 30%!</p>
+  <div class="quiz no-swipe" data-quiz="eco"></div>
+</section>
+
+<!-- ============ CHAPTER 4 ============ -->
+<section class="pg" id="p-coral" data-title="Coral reef biology" data-chapter="Ch 4 · Coral Reefs">
+  <div class="eyebrow">Ch 4 · Coral Reefs</div>
+  <h2>Corals are animals with roommates</h2>
+  <p>A coral is a colony of tiny animals called <b>polyps</b> (phylum Cnidaria, class Anthozoa, cousins of jellyfish). They build skeletons out of aragonite.</p>
+  <p>Inside their tissue live algae called <span class="hl">zooxanthellae</span>. The algae photosynthesize and give the coral up to <span class="num">~90%</span> of its food energy. In return they get a safe home and the coral's CO₂ and nutrients.</p>
+  <h3>Bleaching</h3>
+  <p>Too-hot water stresses the coral and it kicks the algae out. The tissue turns see-through, so you see the white skeleton. A bleached coral is <span class="hl">alive but starving</span>. A coral eaten by crown-of-thorns has bare, dead skeleton.</p>
+  <h3>What reefs need</h3>
+  <div class="chips"><span class="chip">18–30 °C</span><span class="chip">Clear, shallow water</span><span class="chip">32–40 ppt salinity</span><span class="chip">Low nutrients</span><span class="chip">Hard surface</span><span class="chip">Ω above ~3</span></div>
+  <h3>Reef types (Darwin's order)</h3>
+  <p><b>Fringing</b> (hugs the shore, most common) → <b>barrier</b> (lagoon between it and shore) → <b>atoll</b> (ring around a sunken volcano).</p>
+  <h3>Reef zones</h3>
+  <p>Back reef/lagoon (closest to shore) → <b>reef crest</b> (waves break) → <b>fore reef</b> (most diverse).</p>
+  <p>Reefs cover <b>less than 1%</b> of the ocean floor but hold about <b>25%</b> of marine species. Biggest threats: warming and acidification, plus overfishing, runoff, sediment and crown-of-thorns outbreaks.</p>
+</section>
+
+<section class="pg" id="p-id1" data-title="Reef ID cards: Global">
+  <div class="eyebrow">Ch 4 · Coral Reefs</div>
+  <h2>ID flashcards: the Global 15</h2>
+  <p>Read the clue, guess the organism, tap to flip. <button class="btn small" data-cardmode>Show names first</button></p>
+  <div class="cards no-swipe" data-cards="g"></div>
+</section>
+
+<section class="pg" id="p-id2" data-title="Reef ID cards: Indo-Pacific &amp; Atlantic">
+  <div class="eyebrow">Ch 4 · Coral Reefs</div>
+  <h2>Indo-Pacific vs. Atlantic</h2>
+  <p>Know which ocean each one lives in. Tests love to ask "which is <i>Atlantic only</i>?" <button class="btn small" data-cardmode>Show names first</button></p>
+  <h3><span class="tag ip">Indo-Pacific only</span></h3>
+  <div class="cards no-swipe" data-cards="ip"></div>
+  <h3><span class="tag atl">Atlantic only</span></h3>
+  <div class="cards no-swipe" data-cards="atl"></div>
+  <div class="ollie"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M4 22c2-9 10-14 16-14s14 5 16 14c-5 7-11 9-16 9S9 29 4 22z" fill="#c9b7a6" stroke="#6b5847" stroke-width="2"/><path d="M8 22c4 3 8 4 12 4s8-1 12-4" fill="none" stroke="#6b5847" stroke-width="2"/></svg>
+  These cards use word clues. The real test shows <b>photos</b>, so also practice with pictures from the scio.ly guide and reef ID books!</div>
+</section>
+
+<section class="pg" id="p-cp4" data-title="Checkpoint 4: Coral reefs">
+  <div class="eyebrow">Checkpoint 4</div>
+  <h2>Reef check</h2>
+  <p class="muted">12 questions on Chapter 4.</p>
+  <div class="quiz no-swipe" data-quiz="reef"></div>
+</section>
+
+<!-- ============ CHAPTER 5 ============ -->
+<section class="pg" id="p-salinometer" data-title="Build your salinometer" data-chapter="Ch 5 · Salinometer">
+  <div class="eyebrow">Ch 5 · Salinometer (Part IV)</div>
+  <h2>Build a salt-meter</h2>
+  <p>At the event you'll get salt water between <b>1% and 10% (mass/volume)</b> and must report its salinity to <b>0.1%</b>. Your device must work in a 400–600 mL beaker.</p>
+  <div class="cols">
+    <div class="box"><h3>Option A: Hydrometer</h3><p>A sealed straw weighted at the bottom (clay, a BB). It <span class="hl">floats higher in saltier water</span> because salty water is denser. Mark a scale on the straw.</p></div>
+    <div class="box"><h3>Option B: Conductivity</h3><p>Battery + two electrodes + a meter. More salt = more ions = more current. Changes about 2% per °C, so watch temperature.</p></div>
+  </div>
+  <p><b>Banned:</b> anything programmable or WiFi-capable, laptops, tablets.</p>
+  <h3>Calibrate at home</h3>
+  <ol>
+    <li>Make standards: <b>% m/v = grams of salt per 100 mL</b>. 50.0 g NaCl topped up to 500 mL = 10%.</li>
+    <li>Dilute with <span class="hl">C₁V₁ = C₂V₂</span>. For 500 mL of 2% from 10% stock: V₁ = 2 × 500 ÷ 10 = 100 mL.</li>
+    <li>Use at least <b>5 standards</b> (like 1, 3, 5, 7, 10%).</li>
+    <li>Graph reading vs. salinity, draw a best-fit line, read unknowns off it.</li>
+  </ol>
+  <h3>Error detective</h3>
+  <div class="tw"><table class="t"><thead><tr><th>Problem</th><th>Hydrometer</th><th>Conductivity</th></tr></thead><tbody>
+    <tr><td>Sample warmer than calibration</td><td>reads <b>low</b></td><td>reads <b>high</b></td></tr>
+    <tr><td>Sample colder</td><td>reads high</td><td>reads low</td></tr>
+    <tr><td>Air bubble stuck on it</td><td>reads high</td><td>reads low</td></tr>
+    <tr><td>Float soaked up water / salt crust</td><td>reads low</td><td>–</td></tr>
+  </tbody></table></div>
+  <p>Accuracy target: <span class="hl">±1% at Regionals, ±0.5% at State &amp; Nationals</span>. Read a hydrometer at eye level, bottom of the meniscus.</p>
+</section>
+
+<section class="pg" id="p-hydro" data-title="Hydrometer lab">
+  <div class="eyebrow">Ch 5 · Salinometer (Part IV)</div>
+  <h2>Hydrometer lab</h2>
+  <p>Practice mode: move the slider and watch the straw rise. Mystery mode: read the scale like you will at the event.</p>
+  <div class="widget no-swipe hydro">
+    <div class="wlabel"><span id="hyMode">Practice mode</span><span id="hyRead" class="num"></span></div>
+    <svg id="hySvg" viewBox="0 0 220 340" role="img" aria-label="Straw hydrometer floating in a beaker"></svg>
+    <div id="hyPractice">
+      <input type="range" id="hySlider" min="0" max="10" step="0.1" value="3.5" aria-label="Salinity percent">
+    </div>
+    <div id="hyMystery" hidden>
+      <div class="row"><label for="hyGuess">Your reading (%)</label><input class="field" id="hyGuess" type="number" step="0.1" inputmode="decimal"><button class="btn small primary" id="hyCheck">Check</button></div>
+      <div id="hyFb" class="fb" hidden></div>
+    </div>
+    <div class="row" style="margin-top:.6em"><button class="btn small" id="hyToggle">Try a mystery sample</button><button class="btn small" id="hyNew" hidden>New sample</button></div>
+    <p class="muted" style="font-size:.8em;margin-bottom:0">Float movement is exaggerated so you can see it. Long marks are whole percents, short marks are halves. Read where the water line crosses the straw.</p>
+  </div>
+  <h3>Density → salinity table (NaCl, 20 °C)</h3>
+  <div class="tw"><table class="t"><thead><tr><th>Density g/mL</th><th>% m/v</th></tr></thead><tbody>
+    <tr><td class="num">0.998</td><td class="num">0</td></tr><tr><td class="num">1.005</td><td class="num">1.01</td></tr><tr><td class="num">1.013</td><td class="num">2.03</td></tr><tr><td class="num">1.027</td><td class="num">4.11</td></tr><tr><td class="num">1.041</td><td class="num">6.25</td></tr><tr><td class="num">1.056</td><td class="num">8.45</td></tr><tr><td class="num">1.071</td><td class="num">10.7</td></tr>
+  </tbody></table></div>
+  <details class="worked"><summary>Worked example: reading 1.048 g/mL</summary>
+    <ol><li>1.048 is between 1.041 (6.25%) and 1.056 (8.45%).</li><li>How far along? (1.048 − 1.041) ÷ (1.056 − 1.041) = 0.007 ÷ 0.015 = 0.467</li><li>6.25 + 0.467 × (8.45 − 6.25) = 6.25 + 1.03 ≈ <b>7.3% m/v</b></li></ol></details>
+</section>
+
+<section class="pg" id="p-cp5" data-title="Checkpoint 5: Salinometer">
+  <div class="eyebrow">Checkpoint 5</div>
+  <h2>Salinometer check</h2>
+  <p class="muted">10 questions on Chapter 5.</p>
+  <div class="quiz no-swipe" data-quiz="sal"></div>
+</section>
+
+<section class="pg" id="p-formulas" data-title="Formula cheat sheet" data-chapter="Review">
+  <div class="eyebrow">Review</div>
+  <h2>Cheat sheet</h2>
+  <p>Ideas for your 8.5 × 11 note sheet. Write it by hand; making it is studying!</p>
+  <div class="tw"><table class="t"><thead><tr><th>What</th><th>Formula</th></tr></thead><tbody>
+    <tr><td>Winkler (200 mL, 0.025 N)</td><td class="num">1 mL = 1 mg/L DO</td></tr>
+    <tr><td>BOD₅</td><td class="num">(D₁ − D₂) ÷ P</td></tr>
+    <tr><td>Nitrate units</td><td class="num">NO₃ = 4.43 × NO₃-N</td></tr>
+    <tr><td>Phosphate units</td><td class="num">PO₄ = 3.07 × PO₄-P</td></tr>
+    <tr><td>Light attenuation</td><td class="num">k ≈ 1.7 ÷ Secchi</td></tr>
+    <tr><td>Solids</td><td class="num">TS = TSS + TDS</td></tr>
+    <tr><td>Bacteria count</td><td class="num">colonies ÷ mL × 100</td></tr>
+    <tr><td>Pollutant load</td><td class="num">L = C × Q</td></tr>
+    <tr><td>Flushing time</td><td class="num">V ÷ Q</td></tr>
+    <tr><td>Mark–recapture</td><td class="num">N = M × C ÷ R</td></tr>
+    <tr><td>Energy</td><td class="num">× 0.10 per level</td></tr>
+    <tr><td>Dilution</td><td class="num">C₁V₁ = C₂V₂</td></tr>
+    <tr><td>Pressure</td><td class="num">1 atm + 1 atm / 10 m</td></tr>
+    <tr><td>pH</td><td class="num">1 unit = 10× H⁺</td></tr>
+  </tbody></table></div>
+  <h3>Numbers to know cold</h3>
+  <div class="tw"><table class="t"><tbody>
+    <tr><td>Ocean salinity</td><td class="num">35 ppt</td></tr>
+    <tr><td>Ocean pH</td><td class="num">≈ 8.1</td></tr>
+    <tr><td>Hypoxia</td><td class="num">DO &lt; 2 mg/L</td></tr>
+    <tr><td>Healthy DO</td><td class="num">≥ 5 mg/L</td></tr>
+    <tr><td>Reef temperature</td><td class="num">18–30 °C</td></tr>
+    <tr><td>Reef-friendly Ω</td><td class="num">&gt; 3 (corrosive &lt; 1)</td></tr>
+    <tr><td>Redfield</td><td class="num">106 : 16 : 1</td></tr>
+    <tr><td>Marine beach enterococci</td><td class="num">35 / 100 mL</td></tr>
+    <tr><td>Salinometer accuracy</td><td class="num">±1% Reg · ±0.5% State</td></tr>
+  </tbody></table></div>
+</section>
+
+<section class="pg" id="p-mock" data-title="Mock test">
+  <div class="eyebrow">Review</div>
+  <h2>Mock test</h2>
+  <p>20 random questions from every chapter. A new mix each time you retry. Time yourself: aim for under 15 minutes.</p>
+  <div class="quiz no-swipe" data-quiz="mock"></div>
+</section>
+
+<section class="pg" id="p-back" data-title="Back cover">
+  <div class="backcover">
+    <div class="k" style="font:700 .7em var(--f-mono);letter-spacing:.2em;text-transform:uppercase;color:var(--cover-gold)">Your progress</div>
+    <h2 id="backRank">Plankton</h2>
+    <p id="backXp" style="font-size:1.1em"></p>
+    <div class="meter" style="background:rgba(255,255,255,.18)"><i id="backBar" style="width:0;background:var(--cover-gold)"></i></div>
+    <p>Keep going: retake checkpoints until each one shows 3 stars, then try the mock test again. Good luck at Regionals!</p>
+    <button class="btn" data-goto="p-toc">Back to contents</button>
+  </div>
+</section>
+</div>
+
+<script>
+(() => {
+"use strict";
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+const store = {
+  get(k, d) { try { const v = localStorage.getItem("wqb_" + k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem("wqb_" + k, JSON.stringify(v)); } catch (e) {} }
+};
+const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* ================= QUESTION BANK ================= */
+const BANK = {
+chem: [
+ {q:"What is the average salinity of the open ocean?", c:["3.5 ppt","15 ppt","35 ppt","350 ppt"], a:2, e:"About 35 ppt: 35 g of salt per kg of water, which is 3.5%."},
+ {q:"An estuary sample reads 12 ppt. In the Venice system it is…", c:["Oligohaline","Mesohaline","Polyhaline","Euhaline"], a:1, e:"Mesohaline covers 5–18 ppt."},
+ {q:"What attraction holds neighboring water molecules together and gives water its high heat capacity?", c:["Ionic bonds","Hydrogen bonds","Metallic bonds","Peptide bonds"], a:1, e:"The δ− oxygen of one molecule attracts the δ+ hydrogens of another: hydrogen bonds."},
+ {q:"Today's average surface-ocean pH is about…", c:["5.6","7.0","8.1","9.5"], a:2, e:"About 8.1, down roughly 0.1 since pre-industrial times. 5.6 is natural rain."},
+ {q:"Ocean pH dropped by 0.1 unit. By about what percent did the H⁺ concentration increase?", n:26, tol:2, u:"%", e:"10^0.1 ≈ 1.26, so H⁺ rose about 26%. pH is a log scale."},
+ {q:"A reef site has aragonite saturation Ω = 2.6. That is…", c:["Optimal","Adequate","Low","Corrosive"], a:2, e:"Below 3.0 is low. Corrosive (shells dissolve) only below 1.0."},
+ {q:"What is the total pressure on a diver at 30 m depth, in atm?", n:4, tol:0.01, u:"atm", e:"1 atm of air + 1 atm per 10 m × 3 = 4 atm."},
+ {q:"Dissolved oxygen below which level is called hypoxia?", c:["8 mg/L","5 mg/L","2 mg/L","0.1 mg/L"], a:2, e:"Hypoxia is below 2 mg/L. Near 0 is anoxia."},
+ {q:"Which water can hold the MOST dissolved oxygen?", c:["Warm and salty","Warm and fresh","Cold and salty","Cold and fresh"], a:3, e:"Gases dissolve best in cold water, and salt lowers solubility."},
+ {q:"Winkler titration: 200 mL sample, 0.025 N thiosulfate, you used 6.4 mL. What is the DO in mg/L?", n:6.4, tol:0.05, u:"mg/L", e:"With this setup 1 mL of titrant = 1 mg/L, so DO = 6.4 mg/L."},
+ {q:"BOD₅: initial DO 8.6 mg/L, after 5 days 3.8 mg/L, sample fraction P = 0.5. What is BOD₅ in mg/L?", n:9.6, tol:0.05, u:"mg/L", e:"(8.6 − 3.8) ÷ 0.5 = 9.6 mg/L."},
+ {q:"Why is a BOD bottle incubated in the dark?", c:["To keep it cold","So algae can't photosynthesize and add oxygen","So the bacteria die","To stop evaporation"], a:1, e:"Light would let algae add O₂ and hide the oxygen demand."},
+ {q:"In a eutrophic estuary, when is dissolved oxygen usually lowest?", c:["Noon","Late afternoon","Just before dawn","It stays the same all day"], a:2, e:"All night everything respires and nothing photosynthesizes, so DO bottoms out right before sunrise."}
+],
+nutr: [
+ {q:"Coastal marine waters are usually limited by which nutrient?", c:["Phosphorus","Nitrogen","Iron","Silica"], a:1, e:"Coastal and marine waters are usually N-limited. Fresh water is usually P-limited. Estuaries can switch with the seasons."},
+ {q:"A test reads 2.0 mg/L nitrate-N (NO₃-N). Convert to mg/L as NO₃.", n:8.86, tol:0.05, u:"mg/L", e:"2.0 × 4.43 = 8.86 mg/L as NO₃."},
+ {q:"Convert 0.50 mg/L PO₄-P to mg/L as PO₄.", n:1.535, tol:0.02, u:"mg/L", e:"0.50 × 3.07 = 1.535 ≈ 1.54 mg/L as PO₄."},
+ {q:"The ascorbic acid phosphate test turns the sample…", c:["Pink","Blue","Yellow","Green"], a:1, e:"It forms molybdenum blue. The cadmium-reduction nitrate test turns pink/magenta."},
+ {q:"In eutrophication, what happens right after the algal bloom dies?", c:["More sunlight reaches the bottom","Bacteria decompose it and use up oxygen","Nitrate levels drop to zero","Fish populations boom"], a:1, e:"Decomposers eat the dead algae, BOD rises and DO falls."},
+ {q:"A Secchi disk disappears at 2.2 m and reappears at 1.8 m. What is the Secchi depth in m?", n:2.0, tol:0.01, u:"m", e:"Average the two: (2.2 + 1.8) ÷ 2 = 2.0 m."},
+ {q:"Secchi depth is 2.0 m. Estimate the light attenuation coefficient k (per m).", n:0.85, tol:0.02, u:"m⁻¹", e:"k ≈ 1.7 ÷ 2.0 = 0.85 m⁻¹."},
+ {q:"Which treatment actually lowers total dissolved solids (TDS)?", c:["Sand filtration","Settling","Reverse osmosis","Chlorination"], a:2, e:"Only reverse osmosis, distillation or ion exchange remove dissolved solids."},
+ {q:"Membrane filtration: 36 blue colonies grew from 25 mL of sample. How many fecal coliforms per 100 mL?", n:144, tol:0.5, u:"CFU/100 mL", e:"36 ÷ 25 × 100 = 144 CFU/100 mL."},
+ {q:"EPA's preferred indicator bacteria for marine beaches:", c:["E. coli","Enterococci","Salmonella","Cyanobacteria"], a:1, e:"Enterococci for marine and estuarine water; E. coli for fresh water."},
+ {q:"The Redfield ratio C : N : P is…", c:["106 : 16 : 1","16 : 106 : 1","1 : 16 : 106","50 : 10 : 1"], a:0, e:"Plankton contain roughly 106 C : 16 N : 1 P."},
+ {q:"TSS = 40 mg/L and TDS = 310 mg/L. What are the total solids in mg/L?", n:350, tol:0.5, u:"mg/L", e:"TS = TSS + TDS = 40 + 310 = 350 mg/L."}
+],
+eco: [
+ {q:"Spring tides (the biggest tidal range) happen at…", c:["First and third quarter moons","New and full moons","Only in springtime","Only at the equinoxes"], a:1, e:"Sun, Earth and Moon line up at new and full moon."},
+ {q:"Two unequal high tides per day (like the U.S. Pacific coast) is called a…", c:["Diurnal tide","Semidiurnal tide","Mixed tide","Neap tide"], a:2, e:"Mixed tides have two highs and two lows of different heights."},
+ {q:"Red mangroves are recognized by…", c:["Pneumatophores poking up from the mud","Arching prop roots","Floating leaves","Needle-like leaves"], a:1, e:"Red = prop roots and propagules that sprout on the tree. Black mangroves have pneumatophores."},
+ {q:"Seagrasses are…", c:["Algae","Flowering plants","Soft corals","Fungi"], a:1, e:"Seagrasses are angiosperms (flowering plants), not seaweeds."},
+ {q:"Black, rotten-egg-smelling mudflat sediment gets its color from…", c:["Oil","Iron sulfides made by sulfate-reducing bacteria","Charcoal","Squid ink"], a:1, e:"Sulfate-reducing bacteria make H₂S, which forms black iron sulfides."},
+ {q:"The sunlit epipelagic zone extends from 0 down to about…", c:["20 m","200 m","1,000 m","4,000 m"], a:1, e:"Epipelagic = 0–200 m, where nearly all photosynthesis happens."},
+ {q:"Producers capture 50,000 kJ. Using the 10% rule, how many kJ reach tertiary consumers (level 4)?", n:50, tol:0.5, u:"kJ", e:"50,000 → 5,000 → 500 → 50 kJ."},
+ {q:"Which ecological pyramid can NEVER be upside-down?", c:["Numbers","Biomass","Energy","All of them can"], a:2, e:"Energy is always lost going up, so the energy pyramid never inverts."},
+ {q:"Mark–recapture: 40 crabs were marked. Later 50 were caught, and 8 had marks. Estimate the population.", n:250, tol:0.5, u:"crabs", e:"N = M × C ÷ R = 40 × 50 ÷ 8 = 250."},
+ {q:"Which pollutant biomagnifies up the food chain?", c:["Methylmercury","Table salt","Sand","Nitrogen gas"], a:0, e:"Methylmercury, DDT and PCBs are fat-soluble and persistent, so they build up in predators."},
+ {q:"An estuary holds 1.0 × 10⁹ m³ and its river inflow is 100 m³/s. What is the flushing time in days (rounded)?", n:116, tol:1.5, u:"days", e:"1.0×10⁹ ÷ 100 = 1.0×10⁷ s. ÷ 86,400 s/day ≈ 116 days."},
+ {q:"A river carries 4 mg/L of nitrate at a flow of 10 m³/s. What is the load in g/s?", n:40, tol:0.5, u:"g/s", e:"mg/L = g/m³, so 4 × 10 = 40 g/s."},
+ {q:"Most U.S. water pollution today comes from…", c:["Point sources","Non-point sources like runoff","Volcanoes","Only ships"], a:1, e:"Diffuse runoff (non-point) is now the larger problem."},
+ {q:"Which 1972 law regulates discharges into U.S. surface waters?", c:["Safe Drinking Water Act","Clean Water Act","Oil Pollution Act","Endangered Species Act"], a:1, e:"The Clean Water Act (1972). The Safe Drinking Water Act (1974) covers tap water."},
+ {q:"A crab larva drifting in the plankton is…", c:["Holoplankton","Meroplankton","Nekton","Phytoplankton"], a:1, e:"Meroplankton are only plankton for part of their life (larvae)."}
+],
+reef: [
+ {q:"Corals are…", c:["Plants","Rocks","Animals (Cnidaria)","Algae"], a:2, e:"Corals are animals: phylum Cnidaria, class Anthozoa."},
+ {q:"Up to how much of a reef-building coral's energy comes from zooxanthellae?", c:["10%","50%","90%","100%"], a:2, e:"Up to about 90%."},
+ {q:"A bleached coral is…", c:["Already dead","Alive but starving","Covered in sand","Healthier than normal"], a:1, e:"It lost its algae, so the tissue is clear and the skeleton shows, but it's still alive."},
+ {q:"Darwin's reef sequence is…", c:["Atoll → barrier → fringing","Fringing → barrier → atoll","Barrier → fringing → atoll","Fringing → atoll → barrier"], a:1, e:"Fringing → barrier → atoll as the island sinks."},
+ {q:"The flamingo tongue snail lives and feeds on…", c:["Giant clams","Gorgonian sea fans","Long-spined urchins","Seagrass"], a:1, e:"It grazes gorgonian tissue and lays eggs on the fan. Both are Atlantic."},
+ {q:"Which organism on the 2027 list is Indo-Pacific ONLY?", c:["Nassau grouper","Gorgonian sea fan","Humphead wrasse","Moray eel"], a:2, e:"Humphead wrasse is Indo-Pacific. Nassau grouper and sea fans are Atlantic; moray eels are Global."},
+ {q:"Teeth fused into a beak belong to the…", c:["Snapper","Parrotfish","Grouper","Sweetlips"], a:1, e:"Parrotfish scrape algae with their beak (and poop out sand)."},
+ {q:"Very long, thin, brittle black spines belong to the…", c:["Pencil urchin","Diadema (long-spined black urchin)","Crown-of-thorns starfish","Pineapple sea cucumber"], a:1, e:"Diadema. Pencil urchins have a few thick, blunt spines."},
+ {q:"Which animal on the list eats crown-of-thorns starfish?", c:["Triton","Butterflyfish","Banded coral shrimp","Sponge"], a:0, e:"The giant triton snail (and the humphead wrasse) eat crown-of-thorns."},
+ {q:"Reef-building corals grow best between about…", c:["0–10 °C","10–18 °C","18–30 °C","30–40 °C"], a:2, e:"About 18–30 °C."},
+ {q:"The most diverse reef zone is the…", c:["Back reef / lagoon","Reef crest","Fore reef","Beach"], a:2, e:"The fore reef has the most species."},
+ {q:"Lots of fleshy algae and few grazers on a reef suggests…", c:["A healthy reef","Nutrient pollution or overfishing of grazers","Very cold water","High aragonite saturation"], a:1, e:"Fleshy algae take over when nutrients rise or grazers (parrotfish, urchins) disappear."}
+],
+sal: [
+ {q:"How many grams of NaCl do you need to make 250 mL of a 10% m/v solution?", n:25, tol:0.05, u:"g", e:"10% m/v = 10 g per 100 mL, so 250 mL needs 25 g."},
+ {q:"How many mL of 10% stock do you need to make 400 mL of 3% solution?", n:120, tol:0.5, u:"mL", e:"C₁V₁ = C₂V₂ → V₁ = 3 × 400 ÷ 10 = 120 mL."},
+ {q:"A hydrometer floats ___ in saltier water.", c:["Lower","Higher","At the same level","Sideways"], a:1, e:"Saltier water is denser, so it displaces its weight with less volume and rides higher."},
+ {q:"Your sample is warmer than your calibration water. A hydrometer will read…", c:["Too high","Too low","Exactly right"], a:1, e:"Warm water is less dense, so the float sinks deeper and looks less salty."},
+ {q:"At State and Nationals, full accuracy credit needs your reading within…", c:["±0.1%","±0.5%","±1%","±2%"], a:1, e:"±0.5% at State/Nationals; ±1% at Regionals."},
+ {q:"A hydrometer reads 1.034 g/mL. Using 1.027 g/mL = 4.11% m/v and 1.041 g/mL = 6.25% m/v, estimate the % m/v.", n:5.18, tol:0.1, u:"%", e:"1.034 is halfway, so 4.11 + 0.5 × 2.14 = 5.18%."},
+ {q:"An air bubble stuck on a hydrometer float makes it read…", c:["Too high","Too low","No change"], a:0, e:"The bubble adds buoyancy, so it floats higher and looks saltier."},
+ {q:"Which device is NOT allowed?", c:["Sealed straw hydrometer","Battery conductivity meter with an analog needle","WiFi-enabled salinity meter","Glass float hydrometer"], a:2, e:"Programmable or WiFi-capable devices are banned."},
+ {q:"Part IV is worth 10%. How do you earn the first 5%?", c:["Bring a device","Read within ±0.1%","Draw a calibration graph","Finish first"], a:0, e:"5% for bringing a salinometer, 5% for an accurate reading. Wear your goggles!"},
+ {q:"How many calibration standards should you use, at minimum?", c:["1","2","5","20"], a:2, e:"At least five spread across 1–10%, then read unknowns off the best-fit curve."}
+]
+};
+const QUIZ_NAMES = {chem:"Checkpoint 1", nutr:"Checkpoint 2", eco:"Checkpoint 3", reef:"Checkpoint 4", sal:"Checkpoint 5", mock:"Mock test"};
+const RANKS = [[0,"Plankton"],[100,"Seahorse"],[250,"Sea Turtle"],[450,"Reef Ranger"],[650,"Ocean Legend"]];
+const MAX_XP = Object.values(BANK).reduce((s,b)=>s+b.length,0)*10 + 200;
+
+function totalXP(){ let t=0; for (const k of Object.keys(QUIZ_NAMES)) t += (store.get("best_"+k,0))*10; return t; }
+function rankFor(xp){ let r=RANKS[0], next=null; for (let i=0;i<RANKS.length;i++){ if (xp>=RANKS[i][0]) { r=RANKS[i]; next=RANKS[i+1]||null; } } return {name:r[1], next}; }
+function renderXP(){
+  const xp = totalXP(), r = rankFor(xp);
+  const frac = r.next ? (xp - RANKS.find(x=>x[1]===r.name)[0]) / (r.next[0] - RANKS.find(x=>x[1]===r.name)[0]) : 1;
+  const C = 2*Math.PI*10;
+  $("#xpChip").innerHTML = `<svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="10" fill="none" stroke="var(--rule)" stroke-width="4"/><circle cx="13" cy="13" r="10" fill="none" stroke="var(--accent)" stroke-width="4" stroke-dasharray="${C*frac} ${C}" transform="rotate(-90 13 13)" stroke-linecap="round"/></svg><span>${r.name} · ${xp} XP</span>`;
+  $("#backRank").textContent = r.name;
+  $("#backXp").textContent = `${xp} of ${MAX_XP} XP` + (r.next ? ` · ${r.next[0]-xp} XP to ${r.next[1]}` : " · top rank reached!");
+  $("#backBar").style.width = Math.min(100, xp/MAX_XP*100) + "%";
+  $$("[data-best]").forEach(el => { const b = store.get("best_"+el.dataset.best, null); el.textContent = b==null ? "" : `best ${b}/${el.dataset.n}`; });
+}
+$("#rankTable tbody").innerHTML = RANKS.map(r=>`<tr><td><b>${r[1]}</b></td><td class="num">${r[0]}</td></tr>`).join("");
+
+/* ================= QUIZ ENGINE ================= */
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; }
+function esc(s){ return String(s).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+function fmtAns(q){ return q.n!=null ? `${q.n} ${q.u||""}` : q.c[q.a]; }
+
+function mountQuiz(el){
+  const id = el.dataset.quiz;
+  let qs, i, score, results;
+  function start(){
+    qs = id==="mock" ? shuffle(Object.values(BANK).flat()).slice(0,20) : BANK[id];
+    i = 0; score = 0; results = [];
+    render();
+  }
+  function dots(){ return qs.map((_,k)=>`<i class="${results[k]===true?"r":results[k]===false?"w":""}${k===i?" c":""}"></i>`).join(""); }
+  function render(){
+    const q = qs[i];
+    const body = q.n!=null
+      ? `<div class="row"><input class="field" id="qin-${id}" type="number" step="any" inputmode="decimal" aria-label="Your answer"><span class="muted">${esc(q.u||"")}</span><button class="btn small primary" data-check>Check</button></div>`
+      : q.c.map((c,k)=>`<button class="ch" data-k="${k}">${esc(c)}</button>`).join("");
+    el.innerHTML = `<div class="qhead"><span>Q ${i+1} / ${qs.length}</span><span class="qdots">${dots()}</span><span>Score ${score}</span></div>
+      <p class="qtext">${esc(q.q)}</p>${body}<div class="fb" hidden></div><div class="qfoot" hidden><button class="btn primary" data-next-q>${i+1<qs.length?"Next question ›":"See my score ›"}</button></div>`;
+    if (q.n!=null){
+      const inp = $("input", el);
+      inp.addEventListener("keydown", e=>{ if(e.key==="Enter"){ e.preventDefault(); check(); }});
+      $("[data-check]", el).onclick = check;
+    } else {
+      $$(".ch", el).forEach(b => b.onclick = () => answer(+b.dataset.k));
+    }
+    $("[data-next-q]", el).onclick = () => { i++; i<qs.length ? render() : finish(); };
+  }
+  function show(ok, q){
+    results[i] = ok; if (ok) score++;
+    const fb = $(".fb", el);
+    fb.hidden = false; fb.className = "fb " + (ok?"r":"w");
+    fb.innerHTML = `<strong>${ok?"Correct! +10 XP":"Not quite. Answer: "+esc(fmtAns(q))}</strong>${esc(q.e)}`;
+    $(".qfoot", el).hidden = false;
+    $(".qhead", el).innerHTML = `<span>Q ${i+1} / ${qs.length}</span><span class="qdots">${dots()}</span><span>Score ${score}</span>`;
+    $("[data-next-q]", el).focus({preventScroll:true});
+  }
+  function answer(k){
+    const q = qs[i];
+    $$(".ch", el).forEach((b,j)=>{ b.disabled = true; if (j===q.a) b.classList.add("right"); else if (j===k) b.classList.add("wrong"); });
+    show(k===q.a, q);
+  }
+  function check(){
+    const q = qs[i], inp = $("input", el), v = parseFloat(inp.value);
+    if (isNaN(v)) { inp.focus(); inp.placeholder = "number"; return; }
+    inp.disabled = true; $("[data-check]", el).disabled = true;
+    show(Math.abs(v - q.n) <= (q.tol||0) + 1e-9, q);
+  }
+  function finish(){
+    const prev = store.get("best_"+id, 0);
+    const best = Math.max(prev, score);
+    store.set("best_"+id, best);
+    renderXP();
+    const pct = score/qs.length;
+    const stars = pct>=0.9 ? 3 : pct>=0.7 ? 2 : pct>=0.4 ? 1 : 0;
+    const missed = qs.map((q,k)=>[q,results[k]]).filter(x=>!x[1]);
+    el.innerHTML = `<div class="qhead"><span>${QUIZ_NAMES[id]} done</span><span>Best ${best}/${qs.length}</span></div>
+      <div class="stars" aria-label="${stars} of 3 stars">${"★".repeat(stars)}<span style="opacity:.25">${"★".repeat(3-stars)}</span></div>
+      <p class="readout">${score} / ${qs.length} correct</p>
+      <p>${stars===3?"Amazing! You're ready for this section.":stars===2?"Nice work. Review the misses below and try again for 3 stars.":"Good start. Reread the chapter pages, then try again."}</p>
+      ${missed.length?`<details class="worked" ${missed.length<=4?"open":""}><summary>Review ${missed.length} missed</summary><ol class="review">${missed.map(([q])=>`<li>${esc(q.q)}<br><b>${esc(fmtAns(q))}</b> · <span class="muted">${esc(q.e)}</span></li>`).join("")}</ol></details>`:""}
+      <div class="qfoot"><button class="btn primary" data-retry>${id==="mock"?"New mock test":"Try again"}</button></div>`;
+    $("[data-retry]", el).onclick = start;
+  }
+  start();
+}
+
+/* ================= ID CARDS ================= */
+const ORGS = [
+ ["g","Banded coral shrimp","Small body with red-and-white bands; big banded claws; very long white antennae.","A cleaner shrimp: it picks parasites off fish at 'cleaning stations'."],
+ ["g","Butterflyfish","Thin, disc-shaped body; tiny pointed snout; dark bar through the eye.","Many eat coral polyps, so lots of butterflyfish usually means lots of live coral."],
+ ["g","Crown-of-thorns starfish","Many arms (7–23) covered in long venomous spines.","Eats coral. Outbreaks can strip a reef. Listed Global on the handout, though really Indo-Pacific."],
+ ["g","Fleshy algae","Soft, upright seaweed taller than turf; not hard or calcified.","Lots of it = too many nutrients or too few grazers. A warning sign."],
+ ["g","Grouper (>30 cm)","Heavy body, huge mouth, often spotted or barred.","Big predator. Fishing removes the big ones first, so size matters."],
+ ["g","Hard / stony corals","Rigid stony cups; branching, boulder (massive) or plate shapes.","The reef builders. Branching types grow faster than massive ones."],
+ ["g","Lobsters","Either big pincer claws, or spiny with long antennae and no big claws.","Clawed = Nephropidae; spiny = Palinuridae. Few lobsters suggests overfishing."],
+ ["g","Long-spined black sea urchin","Black ball with very long, thin, brittle spines.","Diadema: a key algae grazer. Don't mix it up with the pencil urchin."],
+ ["g","Moray eel","Snake-like, scaleless body; no pectoral fins; mouth often open.","Opening and closing its mouth is how it breathes, not a threat."],
+ ["g","Parrotfish (>20 cm)","Teeth fused into a beak; bright colors on big males.","Scrapes algae off reefs and poops out fine sand."],
+ ["g","Pencil urchin","A few thick, blunt spines like stubby pencils.","Eucidaris. Compare: Diadema has long, thin spines."],
+ ["g","Snapper","Visible canine teeth; slightly forked tail.","A popular food fish, so it shows fishing pressure."],
+ ["g","Sponges","Lots of tiny pores plus a few big openings; no true tissues.","Demosponges are the largest class. Filter feeders."],
+ ["g","Sweetlips","Thick, fleshy lips; babies look completely different from adults.","Juveniles wiggle like toxic flatworms to fool predators."],
+ ["g","Triton","Very large spiral shell with a crescent pattern.","Eats crown-of-thorns starfish. Shell collecting removes this helper."],
+ ["ip","Barramundi cod","Pale body with widely spaced round black spots; humped head.","Overfished for the live reef food fish trade."],
+ ["ip","Bumphead parrotfish","The biggest parrotfish; bulging forehead.","Rams and eats coral. Sleeps in groups, which made it easy to overfish."],
+ ["ip","Giant clams","Wavy-edged shell; bright, colorful mantle.","Tridacna. Has zooxanthellae in its mantle, like coral does."],
+ ["ip","Humphead wrasse","Huge wrasse, thick lips, forehead hump, wavy lines on the face.","Eats crown-of-thorns starfish. Endangered (EN)."],
+ ["ip","Sea cucumbers","Pineapple: big, orange-red, star-shaped bumps. Greenfish: dark green, square in cross-section.","Deposit feeders that clean sand. Indo-Pacific only on the list: a classic trap!"],
+ ["atl","Gorgonian sea fans","Flat, lacy, bendy fans, purple or yellowish; polyps with 8 feathery tentacles.","Soft coral, not a reef builder. Home of the flamingo tongue."],
+ ["atl","Flamingo tongue snail","Small; living mantle is cream with orange spots ringed in black.","Grazes on sea fans. The empty shell is plain cream-orange."],
+ ["atl","Nassau grouper","Dark vertical bars, tuning-fork mark on forehead, black saddle spot near the tail.","Critically Endangered (CR). Gathers to spawn at winter full moons."]
+];
+const REGION = {g:["g","Global"], ip:["ip","Indo-Pacific"], atl:["atl","Atlantic"]};
+let namesFirst = false;
+function renderCards(){
+  $$("[data-cards]").forEach(box => {
+    const reg = box.dataset.cards;
+    box.innerHTML = ORGS.filter(o=>o[0]===reg).map((o,k)=>{
+      const tag = `<span class="tag ${REGION[o[0]][0]}">${REGION[o[0]][1]}</span>`;
+      const clue = `<div>${tag}</div><div>${esc(o[2])}</div><div class="tap">tap to reveal</div>`;
+      const ans = `<div>${tag}</div><div class="big">${esc(o[1])}</div><div class="muted">${esc(o[3])}</div>`;
+      return `<button class="card" aria-label="Flashcard ${k+1}"><div class="card-in"><div class="cf">${namesFirst?ans:clue}</div><div class="cb">${namesFirst?`<div>${tag}</div><div>${esc(o[2])}</div>`:ans}</div></div></button>`;
+    }).join("");
+    $$(".card", box).forEach(c => c.onclick = () => c.classList.toggle("flipped"));
+  });
+  $$("[data-cardmode]").forEach(b => b.textContent = namesFirst ? "Show clues first" : "Show names first");
+}
+$$("[data-cardmode]").forEach(b => b.addEventListener("click", () => { namesFirst = !namesFirst; renderCards(); }));
+
+/* ================= WIDGETS ================= */
+// Venice salinity slider
+(() => {
+  const s = $("#venSlider");
+  const classes = [[0.5,"Tidal freshwater","< 0.5 ppt · head of the estuary, river side"],[5,"Oligohaline","0.5–5 ppt · upper estuary, barely salty"],[18,"Mesohaline","5–18 ppt · middle of the estuary"],[30,"Polyhaline","18–30 ppt · lower estuary near the mouth"],[40,"Euhaline","30–40 ppt · full seawater (open ocean ≈ 35)"],[99,"Hyperhaline","> 40 ppt · saltier than the sea, from evaporation (salt ponds, hot lagoons)"]];
+  const upd = () => { const v=+s.value; const c=classes.find(x=>v<x[0]); $("#venVal").textContent=v+" ppt"; $("#venName").textContent=c[1]; $("#venInfo").textContent=c[2]; };
+  s.addEventListener("input", upd); upd();
+})();
+
+// DO vs temperature
+(() => {
+  const T=[0,5,10,15,20,25,30], FRESH=[14.6,12.8,11.3,10.1,9.1,8.3,7.6], SEA=[11.2,10.0,9.0,8.1,7.4,6.7,6.2];
+  let sea = true;
+  const interp = (arr,t)=>{ const i=Math.min(5,Math.floor(t/5)); const f=(t-T[i])/5; return arr[i]+(arr[i+1]-arr[i])*f; };
+  const upd = () => {
+    const t=+$("#doTemp").value, v=interp(sea?SEA:FRESH,t);
+    $("#doTempVal").textContent=t+" °C"; $("#doOut").textContent=v.toFixed(1);
+    $("#doBar").style.width=(v/15*100)+"%";
+    $("#doMsg").textContent = v>=7 ? "Plenty, even for cold-water fish that need 7–11 mg/L." : v>=5 ? "Enough for most marine life, but cold-water fish would struggle." : "Low ceiling. Any extra oxygen demand could push this toward hypoxia.";
+    $("#doFresh").classList.toggle("primary",!sea); $("#doSea").classList.toggle("primary",sea);
+    $("#doFresh").setAttribute("aria-pressed",String(!sea)); $("#doSea").setAttribute("aria-pressed",String(sea));
+  };
+  $("#doTemp").addEventListener("input",upd);
+  $("#doFresh").onclick=()=>{sea=false;upd();}; $("#doSea").onclick=()=>{sea=true;upd();};
+  upd();
+})();
+
+// Eutrophication chain
+(() => {
+  const steps = [
+    ["Nutrients pour in","Fertilizer, sewage and lawn runoff wash nitrogen and phosphorus into the estuary.",8.0],
+    ["Algae bloom","Algae explode. Water turns green and cloudy. Daytime DO and pH actually go UP from all the photosynthesis.",9.5],
+    ["Shade","Cloudy water blocks sunlight, so seagrass on the bottom starts to die.",8.0],
+    ["Die-off","Algae run out of nutrients, die and sink to the bottom.",6.8],
+    ["Decomposers feast","Bacteria break down the dead algae and use up oxygen. BOD shoots up.",4.5],
+    ["Hypoxia","Bottom DO falls below 2 mg/L, worst at night and near the bottom.",1.6],
+    ["Dead zone","Fish and crabs die or flee. Anoxic mud releases more phosphate and H₂S, feeding the next bloom.",0.4]
+  ];
+  let k = 0;
+  $("#euChips").innerHTML = steps.map((s,i)=>`<span class="chip" data-i="${i}">${i+1}. ${s[0]}</span>`).join("");
+  const upd = () => {
+    $("#euStepNo").textContent = `Step ${k+1} / ${steps.length}`;
+    $("#euTitle").textContent = steps[k][0]; $("#euText").textContent = steps[k][1];
+    $("#euDo").textContent = steps[k][2].toFixed(1)+" mg/L";
+    const bar = $("#euBar"); bar.style.width = (steps[k][2]/10*100)+"%"; bar.style.background = steps[k][2]<2 ? "var(--bad)" : "var(--accent)";
+    $$("#euChips .chip").forEach((c,i)=>{ c.classList.toggle("on", i===k); c.classList.toggle("done", i<k); });
+    $("#euPrev").disabled = k===0; $("#euNext").textContent = k===steps.length-1 ? "Start over" : "Next step ›";
+  };
+  $("#euNext").onclick = () => { k = k===steps.length-1 ? 0 : k+1; upd(); };
+  $("#euPrev").onclick = () => { if (k>0) { k--; upd(); } };
+  upd();
+})();
+
+// Ocean zones
+(() => {
+  const s = $("#zSlider");
+  const segs = [[0,20,0,200],[20,40,200,1000],[40,70,1000,4000],[70,85,4000,6000],[85,100,6000,11000]];
+  const zones = [
+    [200,"Epipelagic (sunlight zone)","Euphotic. Nearly all photosynthesis. Phytoplankton, tuna, dolphins, sea turtles."],
+    [1000,"Mesopelagic (twilight zone)","Disphotic: dim blue light, no photosynthesis. Lanternfish migrate up at night. Main thermocline."],
+    [4000,"Bathypelagic (midnight zone)","Aphotic. About 4 °C. Anglerfish and bioluminescent animals."],
+    [6000,"Abyssopelagic (the abyss)","Aphotic, near freezing, crushing pressure. Sparse life like tripod fish."],
+    [99999,"Hadal (the trenches)","Deep ocean trenches. Mariana Trench ≈ 11,000 m. Snailfish and amphipods."]
+  ];
+  const upd = () => {
+    const v=+s.value, g=segs.find(x=>v<=x[1]);
+    const d = Math.round(g[2] + (v-g[0])/(g[1]-g[0])*(g[3]-g[2]));
+    const z = zones.find(x=>d<x[0]) || zones[4];
+    $("#zDepth").textContent = d.toLocaleString()+" m";
+    $("#zName").textContent = z[1]; $("#zInfo").textContent = z[2];
+    $("#zPress").textContent = `Pressure ≈ ${(1+d/10).toLocaleString(undefined,{maximumFractionDigits:0})} atm`;
+    $("#zMark").style.top = `calc(${v}% - 1.5px)`;
+  };
+  s.addEventListener("input",upd); upd();
+})();
+
+// Energy pyramid
+(() => {
+  const names=["Producers","Primary consumers","Secondary consumers","Tertiary consumers","Quaternary consumers"];
+  const upd = () => {
+    const p = Math.max(1, +$("#epIn").value || 1), eff = +$("#epEff").value/100;
+    const max = Math.log10(p)+1;
+    $("#epOut").innerHTML = names.map((n,i)=>{ const v=p*Math.pow(eff,i); const w=Math.max(4,(Math.log10(Math.max(v,0.1))+1)/max*100);
+      return `<div style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px;align-items:center;font-size:.85em"><div style="height:16px;width:${w}%;background:var(--accent);opacity:${1-i*.15};border-radius:4px"></div><span class="num">${+v.toPrecision(3)} kJ</span><div class="muted" style="grid-column:1/-1;margin:-2px 0 2px">${n}</div></div>`; }).join("");
+  };
+  $("#epIn").addEventListener("input",upd); $("#epEff").addEventListener("change",upd); upd();
+})();
+
+// Mark-recapture
+(() => {
+  const upd = () => { const M=+$("#mrM").value, C=+$("#mrC").value, R=+$("#mrR").value; $("#mrOut").textContent = R>0 ? Math.round(M*C/R).toLocaleString() : "need R > 0"; };
+  ["#mrM","#mrC","#mrR"].forEach(s=>$(s).addEventListener("input",upd)); upd();
+})();
+
+// Hydrometer
+(() => {
+  const TAB=[[0,0.998],[1.01,1.005],[2.03,1.013],[4.11,1.027],[6.25,1.041],[8.45,1.056],[10.7,1.071]];
+  const dens = s => { for (let i=0;i<TAB.length-1;i++){ if (s<=TAB[i+1][0]) { const f=(s-TAB[i][0])/(TAB[i+1][0]-TAB[i][0]); return TAB[i][1]+f*(TAB[i+1][1]-TAB[i][1]); } } return TAB[6][1]; };
+  const exposed = s => 18 + 12*s;  // px of straw above water, exaggerated
+  const SURF = 170, LEN = 170;
+  let mystery = false, target = 0, sal = 3.5;
+  function draw(s){
+    const top = SURF - exposed(s);
+    let ticks = "";
+    for (let v=0; v<=10.001; v+=0.5){
+      const y = exposed(v), major = Math.abs(v - Math.round(v)) < 0.01;
+      ticks += `<line x1="${major?7:11}" x2="16" y1="${y}" y2="${y}" stroke="var(--ink)" stroke-width="${major?1.4:1}"/>`;
+      if (major) ticks += `<text x="21" y="${y+3.5}" font-size="10" font-weight="${v%2===0?700:500}" font-family="JetBrains Mono, monospace" fill="var(--ink)">${v}</text>`;
+    }
+    $("#hySvg").innerHTML = `
+      <rect x="50" y="70" width="130" height="262" rx="6" fill="none" stroke="var(--ink)" stroke-width="2"/>
+      <g transform="translate(108 ${top})">
+        <rect x="0" y="0" width="16" height="${LEN}" rx="3" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.5"/>
+        <g>${ticks}</g>
+        <rect x="-1" y="${LEN-22}" width="18" height="22" rx="6" fill="var(--coral)" stroke="var(--ink)" stroke-width="1.2"/>
+      </g>
+      <rect x="51" y="${SURF}" width="128" height="${331-SURF}" fill="var(--accent)" opacity=".28"/>
+      <line x1="51" x2="179" y1="${SURF}" y2="${SURF}" stroke="var(--accent)" stroke-width="2"/>
+      <text x="58" y="${SURF+14}" font-size="9" font-family="JetBrains Mono, monospace" fill="var(--muted)">water line</text>`;
+  }
+  function upd(){
+    if (mystery) { draw(target); $("#hyRead").textContent = "salinity = ?"; return; }
+    sal = +$("#hySlider").value; draw(sal);
+    $("#hyRead").textContent = `${sal.toFixed(1)}% · ${dens(sal).toFixed(3)} g/mL`;
+  }
+  function newSample(){ target = Math.round((1 + Math.random()*9)*10)/10; $("#hyGuess").value=""; $("#hyFb").hidden=true; upd(); }
+  $("#hySlider").addEventListener("input", upd);
+  $("#hyToggle").onclick = () => { mystery=!mystery; $("#hyPractice").hidden=mystery; $("#hyMystery").hidden=!mystery; $("#hyNew").hidden=!mystery;
+    $("#hyToggle").textContent = mystery ? "Back to practice" : "Try a mystery sample"; $("#hyMode").textContent = mystery ? "Mystery mode" : "Practice mode";
+    if (mystery) newSample(); else upd(); };
+  $("#hyNew").onclick = newSample;
+  const check = () => { const g=parseFloat($("#hyGuess").value); if (isNaN(g)) return; const err=Math.abs(g-target), fb=$("#hyFb"); fb.hidden=false;
+    if (err<=0.5){ fb.className="fb r"; fb.innerHTML=`<strong>State-level accurate!</strong>Actual: ${target.toFixed(1)}%. You were off by ${err.toFixed(1)}%.`; }
+    else if (err<=1){ fb.className="fb r"; fb.innerHTML=`<strong>Good enough for Regionals</strong>Actual: ${target.toFixed(1)}%. Off by ${err.toFixed(1)}%. State needs ±0.5%.`; }
+    else { fb.className="fb w"; fb.innerHTML=`<strong>Missed</strong>Actual: ${target.toFixed(1)}%. Find where the water line crosses the scale and count the half-marks.`; } };
+  $("#hyCheck").onclick = check; $("#hyGuess").addEventListener("keydown", e=>{ if(e.key==="Enter") check(); });
+  upd();
+})();
+
+// 3D water molecule
+(() => {
+  const cv = $("#molCanvas"), ctx = cv.getContext("2d");
+  const half = 104.5/2*Math.PI/180, L = 1;
+  const atoms = [{p:[0,-0.25,0], r:30, el:"O"}, {p:[ Math.sin(half)*L, -0.25+Math.cos(half)*L, 0], r:19, el:"H"}, {p:[-Math.sin(half)*L, -0.25+Math.cos(half)*L, 0], r:19, el:"H"}];
+  let ay = 0.6, ax = 0.35, drag = null, last = performance.now();
+  function rot([x,y,z]){ let c=Math.cos(ay), s=Math.sin(ay); [x,z]=[x*c+z*s, -x*s+z*c]; c=Math.cos(ax); s=Math.sin(ax); [y,z]=[y*c-z*s, y*s+z*c]; return [x,y,z]; }
+  function frame(t){
+    const dpr = Math.min(2, devicePixelRatio||1), w = cv.clientWidth, h = cv.clientHeight;
+    if (w && h) {
+      if (cv.width !== Math.round(w*dpr)) { cv.width = Math.round(w*dpr); cv.height = Math.round(h*dpr); }
+      ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,w,h);
+      if (!drag && !reduceMotion) ay += (t-last)*0.0006;
+      const cs = getComputedStyle(document.documentElement), ink = cs.getPropertyValue("--ink").trim(), coral = cs.getPropertyValue("--coral").trim(), muted = cs.getPropertyValue("--muted").trim();
+      const S = Math.min(w, h)*0.42, cx = w/2, cy = h/2 - 4;
+      const P = atoms.map(a => { const [x,y,z] = rot(a.p); const k = 1/(1 - z*0.18); return {a, x:cx+x*S*k, y:cy+y*S*k, z, k}; });
+      ctx.lineCap = "round";
+      for (const h of [P[1],P[2]]) { ctx.strokeStyle = muted; ctx.lineWidth = 9; ctx.beginPath(); ctx.moveTo(P[0].x,P[0].y); ctx.lineTo(h.x,h.y); ctx.stroke(); }
+      for (const p of P.slice().sort((a,b)=>a.z-b.z)) {
+        const r = p.a.r*p.k*(Math.min(w,h)/190);
+        const g = ctx.createRadialGradient(p.x-r*.35, p.y-r*.4, r*.1, p.x, p.y, r);
+        if (p.a.el==="O") { g.addColorStop(0,"#ffd1d3"); g.addColorStop(.35,coral); g.addColorStop(1,"#7a1a20"); }
+        else { g.addColorStop(0,"#ffffff"); g.addColorStop(.5,"#dfe9e8"); g.addColorStop(1,"#8aa3a1"); }
+        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(p.x,p.y,r,0,Math.PI*2); ctx.fill();
+        ctx.fillStyle = p.a.el==="O" ? "#fff" : "#10312f"; ctx.font = `700 ${Math.round(r*.7)}px "Bricolage Grotesque", sans-serif`; ctx.textAlign="center"; ctx.textBaseline="middle"; ctx.fillText(p.a.el, p.x, p.y+1);
+        ctx.fillStyle = ink; ctx.font = `700 13px "JetBrains Mono", monospace`;
+        ctx.fillText(p.a.el==="O" ? "δ−" : "δ+", p.x + (p.a.el==="O" ? 0 : (p.x>cx? r+12 : -r-12)), p.a.el==="O" ? p.y - r - 10 : p.y + r*.2);
+      }
+      ctx.fillStyle = muted; ctx.font = `500 11px "JetBrains Mono", monospace`; ctx.textAlign = "left"; ctx.fillText("bond angle 104.5°", 8, h-10);
+    }
+    last = t; requestAnimationFrame(frame);
+  }
+  cv.addEventListener("pointerdown", e => { drag = {x:e.clientX, y:e.clientY}; cv.setPointerCapture(e.pointerId); });
+  cv.addEventListener("pointermove", e => { if (!drag) return; ay += (e.clientX-drag.x)*0.012; ax += (e.clientY-drag.y)*0.012; drag = {x:e.clientX, y:e.clientY}; });
+  const end = () => drag = null; cv.addEventListener("pointerup", end); cv.addEventListener("pointercancel", end);
+  requestAnimationFrame(frame);
+})();
+
+/* ================= BOOK ================= */
+const pages = $$("#src > .pg");
+const N = pages.length;
+const idIndex = Object.fromEntries(pages.map((p,i)=>[p.id,i]));
+const book = $("#book"), stage = $("#stage");
+let mode = null, sheets = [], s = 0, curPage = 0;
+
+// Contents + chapter jump
+(() => {
+  const items = [];
+  pages.forEach((p,i) => { if (i>2 && i<N-1) items.push([p, i]); });
+  const quizOf = p => { const q = $("[data-quiz]", p); return q ? q.dataset.quiz : null; };
+  $("#tocList").innerHTML = items.map(([p,i]) => {
+    const q = quizOf(p); const cn = p.dataset.chapter ? p.dataset.chapter.split("·")[0].trim() : "";
+    return `<li><button data-goto="${p.id}"><span class="cn">${esc(cn)}</span><span class="tt">${p.dataset.title}</span>${q?`<span class="best" data-best="${q}" data-n="${q==="mock"?20:BANK[q].length}"></span>`:""}<span class="pp">${i+1}</span></button></li>`;
+  }).join("");
+  const sel = $("#chapterJump");
+  sel.innerHTML = `<option value="p-toc">Contents</option>` + pages.filter(p=>p.dataset.chapter).map(p=>`<option value="${p.id}">${p.dataset.chapter}</option>`).join("") + `<option value="p-mock">Mock test</option>`;
+  sel.addEventListener("change", () => goto(idIndex[sel.value]));
+})();
+
+function chapterOf(i){ for (let k=i;k>=0;k--) if (pages[k].dataset.chapter) return pages[k].id; return "p-toc"; }
+
+function face(page, side, num){
+  const f = document.createElement("div");
+  f.className = "face " + side;
+  if (!page) { f.classList.add("blank"); return f; }
+  if (page.classList.contains("cover") || page.id === "p-back") f.classList.add("is-cover");
+  const sc = document.createElement("div"); sc.className = "scroll"; sc.appendChild(page); f.appendChild(sc);
+  const fo = document.createElement("div"); fo.className = "folio";
+  const label = (page.dataset.chapter || "").replace(/&amp;/g,"&");
+  if (side === "back") fo.innerHTML = `<button data-prev aria-label="Previous page">‹ ${num}</button><span>${esc(page.dataset.title||"")}</span>`;
+  else fo.innerHTML = `<span>${esc(page.dataset.title||"")}</span><button data-next aria-label="Next page">${num} ›</button>`;
+  f.appendChild(fo);
+  return f;
+}
+
+function layout(){
+  const W = stage.clientWidth - 32, H = stage.clientHeight - 20;
+  const m = W >= 860 ? "spread" : "single";
+  let pw, ph;
+  if (m === "spread") { pw = Math.min((W-40)/2, H*0.76, 580); ph = Math.min(H, pw/0.7); }
+  else { pw = Math.min(W, 560); ph = Math.min(H, pw*1.7); }
+  book.style.setProperty("--pw", pw+"px"); book.style.setProperty("--ph", ph+"px");
+  book.style.setProperty("--fs", Math.max(13, Math.min(16, pw/33)).toFixed(1)+"px");
+  if (m !== mode) build(m);
+}
+
+function build(m){
+  mode = m; book.classList.toggle("single", m==="single");
+  book.innerHTML = ""; sheets = [];
+  const count = m==="spread" ? Math.ceil(N/2) : N;
+  for (let k=0;k<count;k++){
+    const sh = document.createElement("div"); sh.className = "sheet";
+    if (m==="spread") { sh.appendChild(face(pages[2*k], "front", 2*k+1)); sh.appendChild(face(pages[2*k+1], "back", 2*k+2)); }
+    else { sh.appendChild(face(pages[k], "front", k+1)); sh.appendChild(face(null, "back")); }
+    book.appendChild(sh); sheets.push(sh);
+  }
+  s = m==="spread" ? Math.ceil(curPage/2) : curPage;
+  sheets.forEach((sh,k)=>{ sh.style.transition="none"; sh.classList.toggle("flipped", k<s); });
+  void book.offsetWidth;
+  sheets.forEach(sh=>sh.style.transition="");
+  finalize();
+}
+
+function zFor(k){ return k < s ? k+1 : sheets.length - k; }
+function finalize(){
+  sheets.forEach((sh,k)=>{ sh.style.zIndex = zFor(k); sh.style.visibility = (k>=s-1 && k<=s) ? "visible" : "hidden"; sh.setAttribute("aria-hidden", (k>=s-1 && k<=s) ? "false" : "true"); });
+  if (mode==="single") sheets.forEach((sh,k)=>{ if (k===s-1) sh.style.visibility="hidden"; });
+  book.classList.toggle("at-start", s===0);
+  book.classList.toggle("at-end", mode==="spread" && s===sheets.length);
+  curPage = mode==="spread" ? Math.max(0, Math.min(N-1, s===0 ? 0 : 2*s-1)) : s;
+  const last = mode==="spread" ? sheets.length : N-1;
+  $("#prevBtn").disabled = s===0; $("#nextBtn").disabled = s>=last;
+  let info;
+  if (curPage===0) info = "Cover";
+  else if (mode==="spread" && 2*s < N) info = `Pages ${2*s}–${2*s+1} of ${N}`;
+  else info = `Page ${curPage+1} of ${N}`;
+  $("#pageInfo").textContent = info;
+  $("#chapterJump").value = chapterOf(mode==="spread" && 2*s<N ? 2*s : curPage);
+  store.set("page", curPage);
+}
+
+let busy = 0;
+function setS(target){
+  const last = mode==="spread" ? sheets.length : N-1;
+  target = Math.max(0, Math.min(last, target));
+  if (target === s) return;
+  const from = s, dir = target > from ? 1 : -1;
+  const order = []; for (let k = dir>0 ? from : from-1; dir>0 ? k<target : k>=target; k+=dir) order.push(k);
+  const step = order.length>1 ? Math.min(90, 700/order.length) : 0;
+  sheets.forEach((sh,k)=>{ if (k >= Math.min(from,target)-1 && k <= Math.max(from,target)) sh.style.visibility = "visible"; });
+  order.forEach((k,j)=>{
+    const sh = sheets[k];
+    sh.style.zIndex = 1000 + j;
+    setTimeout(()=>{ sh.classList.toggle("flipped", dir>0); }, j*step);
+  });
+  s = target;
+  const id = ++busy;
+  setTimeout(()=>{ if (id===busy) finalize(); }, order.length*step + (reduceMotion?50:900));
+  book.classList.toggle("at-start", s===0);
+  book.classList.toggle("at-end", mode==="spread" && s===sheets.length);
+}
+function next(){ setS(s+1); }
+function prev(){ setS(s-1); }
+function goto(i){ if (i==null) return; setS(mode==="spread" ? Math.ceil(i/2) : i); }
+
+$("#nextBtn").onclick = next; $("#prevBtn").onclick = prev;
+book.addEventListener("click", e => {
+  const t = e.target.closest("[data-next],[data-prev],[data-goto]"); if (!t) return;
+  if (t.hasAttribute("data-next")) next(); else if (t.hasAttribute("data-prev")) prev(); else goto(idIndex[t.dataset.goto]);
+});
+document.addEventListener("keydown", e => {
+  if (e.target.closest("input,select,textarea")) return;
+  if (e.key==="ArrowRight") next(); else if (e.key==="ArrowLeft") prev();
+});
+let tx=null, ty=0;
+stage.addEventListener("touchstart", e => { if (e.target.closest(".no-swipe,input,canvas")) { tx=null; return; } tx=e.touches[0].clientX; ty=e.touches[0].clientY; }, {passive:true});
+stage.addEventListener("touchend", e => { if (tx==null) return; const dx=e.changedTouches[0].clientX-tx, dy=e.changedTouches[0].clientY-ty; tx=null; if (Math.abs(dx)>55 && Math.abs(dx)>2*Math.abs(dy)) dx<0 ? next() : prev(); }, {passive:true});
+
+// anchor jumps and focus can scroll overflow:hidden boxes sideways; pin them
+document.addEventListener("scroll", e => { const t = e.target; if (!t.classList) return;
+  if (t.classList.contains("stage") || t.classList.contains("face")) { t.scrollLeft = 0; t.scrollTop = 0; }
+  else if (t.classList.contains("scroll") && t.scrollLeft) t.scrollLeft = 0; }, true);
+let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(layout, 120); });
+
+// boot
+$$("[data-quiz]").forEach(mountQuiz);
+renderCards(); renderXP();
+const hash = location.hash.slice(1);
+curPage = idIndex[hash] != null ? idIndex[hash] : Math.max(0, Math.min(N-1, +store.get("page", 0) || 0));
+layout();
+stage.scrollLeft = 0; stage.scrollTop = 0;
+})();
+</script>
+
+</body>
+</html>
