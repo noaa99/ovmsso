@@ -1,0 +1,118 @@
+history | mc | Which scientist's name is used for the SI unit of electric current?
+history | mc | Alessandro Volta is best known for inventing which device?
+history | mc | Coulomb's law describes the force between charges. Which statement about Charles-Augustin de Coulomb is correct?
+history | mc | Who published the two circuit rules known as the current law and the voltage law?
+history | mc | The SI unit of frequency, the hertz, honors a scientist who did what?
+history | mc | George Boole's main contribution to circuit lab topics is:
+history | mc | Georg Ohm is remembered for:
+history | mc | Match the unit to the scientist: which pair is INCORRECT?
+history | mc | Which of these scientists was NOT primarily a physicist working with electricity?
+history | mc | Put these discoveries in chronological order: (1) Coulomb's torsion-balance experiments, (2) Ohm's law published, (3) Hertz detects radio waves, (4) Volta's pile.
+charges | mc | Two objects carry charges of +3 μC and −5 μC. The force between them is:
+charges | mc | A neutral metal sphere is touched by a negatively charged rod and the rod is removed. The sphere is now:
+charges | mc | A negatively charged rod is brought near (but not touching) a neutral metal sphere on an insulating stand. The side of the sphere nearest the rod becomes:
+charges | num | Two point charges of +2.0 μC and +3.0 μC are 0.30 m apart. Find the magnitude of the force between them, in newtons. (k = 8.99×10⁹ N·m²/C²)
+charges | mc | If the distance between two point charges is tripled, the electric force between them becomes:
+charges | num | What is the magnitude of the electric field 0.50 m from a point charge of +4.0 μC, in N/C? (k = 8.99×10⁹)
+charges | num | Two parallel plates are 0.020 m apart with 12 V across them. What is the electric field between them, in V/m?
+charges | num | How much work, in joules, is done moving a charge of 5.0 μC through a potential difference of 9.0 V?
+charges | mc | Charge is quantized. This means:
+charges | mc | Why does rubbing a balloon on hair make the balloon stick to a wall?
+charges | num | Two identical conducting spheres carry +8.0 nC and −2.0 nC. They are touched together and separated. What charge, in nC, is on each sphere afterward?
+charges | mc | Grounding a charged conductor does what?
+charges | num | A point charge produces an electric field of 2000 N/C at a distance of 1.5 m. What is the magnitude of the charge, in μC? (k = 8.99×10⁹)
+charges | mc | An electrostatic discharge (ESD) wrist strap protects circuit boards because it:
+acdc | mc | Which is a typical source of direct current (DC)?
+acdc | mc | The main reason electric power is distributed as AC rather than DC is:
+acdc | num | A sinusoidal AC voltage has a peak value of 170 V. What is its RMS value, in volts?
+acdc | num | A sine wave has a peak-to-peak voltage of 24 V. What is its peak voltage, in volts?
+acdc | num | A waveform has a period of 0.025 s. What is its frequency, in hertz?
+acdc | num | US mains power runs at 60 Hz. What is the period of one cycle, in milliseconds?
+acdc | mc | Which statement about RMS voltage is correct?
+acdc | num | An AC sine wave measures 9.0 V RMS. What is its peak-to-peak voltage, in volts?
+acdc | mc | Why is a 120 V AC shock generally considered dangerous?
+acdc | mc | A device is labeled '5 V DC, 2 A' and is powered from a wall adapter. The adapter must:
+ohm | num | A 12 V battery drives current through a 4.0 Ω resistor. What is the current, in amperes?
+ohm | num | A current of 0.25 A flows through a resistor with 5.0 V across it. What is its resistance, in ohms?
+ohm | num | How much charge, in coulombs, passes a point in 30 s when the current is 1.5 A?
+ohm | num | A 9.0 V source delivers 0.50 A to a lamp. What power, in watts, does the lamp dissipate?
+ohm | num | A 220 Ω resistor carries 0.040 A. How much power, in watts, does it dissipate?
+ohm | num | What power, in watts, is dissipated by a 100 Ω resistor with 5.0 V across it?
+ohm | mc | A conductor is called 'ohmic' when:
+ohm | mc | The V-vs-I graph of an incandescent lamp filament curves upward (slope increases). Why?
+ohm | num | A copper wire has resistivity 1.68×10⁻⁸ Ω·m, length 20 m, and cross-sectional area 1.0×10⁻⁶ m². Find its resistance, in ohms.
+ohm | mc | If you double the length of a wire and keep everything else the same, its resistance:
+ohm | mc | Wire A and wire B are the same material and length, but A's diameter is twice B's. How do their resistances compare?
+ohm | num | A 1500 W space heater runs for 4.0 hours. How much energy does it use, in kilowatt-hours?
+ohm | num | Electricity costs $0.18 per kWh. What does it cost, in dollars, to run a 60 W bulb for 50 hours?
+ohm | num | A motor draws 200 W and delivers 150 W of mechanical power. What is its efficiency, as a percent?
+ohm | num | A resistor is 50.0 Ω at 20 °C with α = 0.0040 /°C. What is its resistance, in ohms, at 70 °C?
+ohm | mc | A superconductor is a material that, below a critical temperature:
+ohm | mc | A dimmer switch built from a potentiometer reduces a bulb's brightness because:
+ohm | num | A toaster draws 8.0 A from a 120 V outlet. How much energy, in joules, does it use in 90 s?
+circuits | num | Three resistors of 10 Ω, 20 Ω and 30 Ω are connected in series. What is the equivalent resistance, in ohms?
+circuits | num | Two 100 Ω resistors are connected in parallel. What is the equivalent resistance, in ohms?
+circuits | num | A 6.0 Ω and a 3.0 Ω resistor are in parallel. What is the equivalent resistance, in ohms?
+circuits | num | A 12 V battery is connected across a series pair of 40 Ω and 80 Ω resistors. What is the voltage, in volts, across the 80 Ω resistor?
+circuits | num | In the previous divider (12 V across 40 Ω + 80 Ω in series), what current, in milliamperes, flows?
+circuits | mc | In a series circuit, which quantity is the same through every component?
+circuits | mc | Two lamps are wired in parallel across a battery. One burns out. The other:
+circuits | mc | A short circuit across a resistor means:
+circuits | mc | An ideal ammeter and an ideal voltmeter are connected how?
+circuits | num | A resistor has color bands brown, black, red, gold. What is its nominal resistance, in ohms?
+circuits | mc | A resistor is banded yellow, violet, orange, gold. Its value is:
+circuits | num | What is the tolerance range for a 2.2 kΩ ±5% resistor? Give the maximum allowed value, in ohms.
+circuits | num | A 10 Ω resistor is in series with a parallel pair of 20 Ω and 20 Ω. What is the total resistance, in ohms?
+circuits | num | Using only 100 Ω resistors, what is the smallest number you need in parallel to make 25 Ω?
+circuits | num | A 24 V supply feeds 6.0 Ω in series with a parallel combination of 12 Ω and 12 Ω. What is the total current drawn, in amperes?
+circuits | num | In that same circuit (24 V, 6.0 Ω series, then two 12 Ω in parallel), what is the voltage, in volts, across one of the 12 Ω resistors?
+circuits | mc | Which schematic symbol detail distinguishes a battery from a single cell?
+circuits | mc | A potentiometer used as a variable resistor (rheostat) is wired using:
+control | mc | What does SPDT stand for in switch terminology?
+control | mc | A 3-way lighting circuit (one lamp controlled from two locations) is built from:
+control | mc | The main purpose of a fuse is to:
+control | mc | How does a circuit breaker differ from a fuse?
+control | mc | A GFCI outlet trips when:
+control | mc | A relay is best described as:
+control | mc | A relay has normally open (NO) and normally closed (NC) contacts. With the coil de-energized:
+control | mc | In US household wiring, the color of the equipment grounding conductor is usually:
+control | mc | Why should a switch be placed in the hot (line) wire rather than the neutral?
+control | num | A 120 V branch circuit is protected by a 15 A breaker. What is the maximum power, in watts, it can supply continuously at 100% of its rating?
+control | mc | A DPDT switch has how many terminals?
+control | mc | Two SPST switches wired in series to a lamp behave like which logic gate?
+diodes | mc | A diode conducts current:
+diodes | mc | On a diode's body, the painted band marks which terminal?
+diodes | num | A silicon diode is forward biased in a circuit. What is its typical forward voltage drop, in volts?
+diodes | num | A red LED with a 2.0 V forward drop and 20 mA target current runs from a 9.0 V supply. What series resistor, in ohms, is needed?
+diodes | mc | Why does an LED need a series resistor?
+diodes | mc | A half-wave rectifier uses one diode. Its output:
+diodes | mc | How many diodes are in a full-wave bridge rectifier?
+diodes | mc | In a PN junction, the depletion region is:
+diodes | mc | Two LEDs are connected in series to one supply through a single resistor. Compared with wiring them in parallel through one shared resistor, the series arrangement:
+diodes | num | Two LEDs, each dropping 2.1 V, are in series with one resistor on a 12 V supply, with a target current of 15 mA. What resistor value, in ohms, is required?
+logic | mc | The output of a 2-input AND gate is HIGH when:
+logic | mc | A 2-input NOR gate outputs HIGH only when:
+logic | mc | An XOR gate outputs HIGH when:
+logic | num | Convert the binary number 1011 to decimal.
+logic | num | Convert decimal 45 to binary, then give the number of 1s in the result.
+logic | num | Add the binary numbers 1101 + 0110 and give the decimal value of the sum.
+logic | num | What is the largest decimal number that can be represented with 6 bits (unsigned)?
+logic | mc | De Morgan's law states that NOT(A AND B) equals:
+logic | mc | Which gate is a 'universal gate' — able to build any other gate by itself?
+logic | mc | How do you make a NOT gate from a single 2-input NOR gate?
+logic | num | How many rows are in the truth table of a logic circuit with 4 inputs?
+logic | mc | Simplify the Boolean expression A + A·B.
+logic | mc | Simplify A·(A + B).
+logic | mc | What is the value of A + A' (A OR NOT A)?
+logic | mc | A half adder adds two bits and produces:
+logic | mc | A full adder has how many inputs and outputs?
+logic | num | A multiplexer has 8 data inputs. How many select lines does it need?
+logic | mc | A multiplexer (MUX) does what?
+logic | mc | A circuit's output is HIGH only when exactly one of its two inputs is HIGH. Which single gate implements it?
+logic | mc | A safety interlock must turn a machine ON only when the guard is closed (G=1) AND the operator presses start (S=1) AND the emergency stop is NOT pressed (E=0). The Boolean expression is:
+logic | mc | Using De Morgan's law, NOT(A OR B OR C) is equivalent to:
+logic | num | A truth table with inputs A and B has output 1 for the rows (A=0,B=1) and (A=1,B=0) only. How many 2-input gates of a single type are needed to build it in the simplest way?
+kirchhoff | mc | Kirchhoff's current law (KCL) states that at any junction:
+kirchhoff | mc | Kirchhoff's voltage law (KVL) states that around any closed loop:
+kirchhoff | num | At a node, 4.0 A and 2.5 A flow in, and 3.0 A flows out on one branch. What current, in amperes, flows out on the only remaining branch?
+kirchhoff | num | A single loop has a 15 V battery and three resistors with drops of 4.0 V, 6.0 V and an unknown V₃. Find V₃, in volts.

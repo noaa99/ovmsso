@@ -1,0 +1,172 @@
+estuary | mc | An estuary is best defined as:
+estuary | mc | Under the Venice system, water with a salinity of 12 ppt is classified as:
+estuary | mc | Water at 25 ppt in an estuary belongs to which salinity class?
+estuary | mc | In a salt wedge estuary, where is salinity highest?
+estuary | mc | The estuarine turbidity maximum typically forms:
+estuary | mc | The horohalinicum refers to a salinity range near 5–8 ppt that is notable because:
+estuary | mc | An organism that tolerates a wide range of salinities is called:
+estuary | mc | An osmoconformer differs from an osmoregulator in that it:
+estuary | mc | Which process raises the salinity of an estuary?
+estuary | num | Seawater has a chlorinity of 19.0 ppt. Using S = 1.80655 × Cl, what is its salinity, in ppt?
+estuary | num | A water sample has a salinity of 28.0 ppt. What is its chlorinity, in ppt? (S = 1.80655 × Cl)
+estuary | num | What is the average salinity of open ocean surface water, in ppt?
+estuary | num | Seawater at 35 ppt freezes at what temperature, in °C? (Give the value as a negative number.)
+estuary | num | Pressure in seawater increases about 1 atm per 10 m of depth. What is the total pressure, in atmospheres, at 40 m depth (including the 1 atm at the surface)?
+estuary | mc | A sudden heavy rainstorm floods a nearshore coral reef with fresh water. The most likely effect is:
+estuary | mc | Why are estuaries often called 'nurseries of the sea'?
+estuary | mc | Which combination describes a well-mixed estuary rather than a salt wedge estuary?
+estuary | mc | Brackish water in the Venice system spans which salinity range?
+habitat | mc | Mangroves are important to coastal water quality mainly because they:
+habitat | mc | Which adaptation lets mangroves survive in waterlogged, oxygen-poor mud?
+habitat | mc | Seagrass beds improve water quality by:
+habitat | num | Many seagrasses require at least what percentage of surface light to survive? Give the lower end of the usual range.
+habitat | mc | Salt marshes and mangroves both provide which ecosystem service during storms?
+habitat | mc | Which habitat is dominated by salt-tolerant grasses such as Spartina in temperate intertidal zones?
+habitat | mc | Upwelling affects coastal productivity because it:
+habitat | mc | The intertidal zone is defined as the area:
+habitat | mc | Most coastal areas experience semidiurnal tides, meaning:
+habitat | mc | Spring tides, with the largest tidal range, occur when:
+habitat | mc | In an aquatic food web, who are the primary producers in most open-water marine systems?
+habitat | num | Roughly what percentage of energy is transferred from one trophic level to the next?
+habitat | mc | Biomagnification describes:
+habitat | mc | Bioaccumulation differs from biomagnification in that bioaccumulation refers to:
+habitat | mc | Which best describes a benthic organism?
+habitat | mc | Why do oysters improve estuary water quality?
+nutrients | mc | Eutrophication is best described as:
+nutrients | mc | Put the dead-zone sequence in the correct order: (1) algal bloom, (2) bottom-water hypoxia, (3) nutrient runoff, (4) decomposition of sinking algae.
+nutrients | mc | Stratification worsens hypoxia because:
+nutrients | mc | The northern Gulf of Mexico dead zone requires which three conditions together?
+nutrients | mc | Hypoxic sediments create a feedback loop because low oxygen:
+nutrients | num | Below what dissolved oxygen concentration, in mg/L, is water generally considered hypoxic?
+nutrients | mc | In anoxic bottom water, sulfate-reducing bacteria produce which toxic gas?
+nutrients | mc | After an organic waste discharge, the lowest dissolved oxygen is found:
+nutrients | mc | Which is NOT a major source of nitrogen and phosphorus to coastal waters?
+nutrients | mc | Nonpoint source pollution differs from point source pollution because it:
+nutrients | num | A water sample contains 2.0 mg/L of nitrate-nitrogen (NO₃-N). What is the concentration expressed as nitrate (NO₃⁻), in mg/L? (NO₃ = 4.43 × NO₃-N)
+nutrients | num | A sample reads 0.62 mg/L as phosphate (PO₄³⁻). What is this as phosphorus (PO₄-P), in mg/L? (PO₄ = 3.07 × PO₄-P)
+nutrients | num | What is the US drinking-water limit for nitrate, expressed as nitrate-nitrogen, in mg/L as N?
+nutrients | mc | Coral reefs are harmed by nutrient levels that would be considered clean in a river because:
+nutrients | mc | A harmful algal bloom (red tide) damages fish primarily by:
+nutrients | num | A treatment plant reduces nitrate from 25 mg/L to 4.0 mg/L. What is the percent removal?
+acid | mc | Ocean acidification is caused primarily by:
+acid | mc | The net chemical result of adding CO₂ to seawater is:
+acid | num | Surface seawater pH has fallen from about 8.2 to about 8.1 since pre-industrial times. By how many pH units has it dropped?
+acid | num | A 0.1 unit drop in pH corresponds to what percent increase in hydrogen ion concentration? (Round to the nearest whole percent.)
+acid | num | A seawater sample has [H⁺] = 7.9×10⁻⁹ M. What is its pH?
+acid | num | A sample has a pH of 6.4 at 25 °C. What is its pOH?
+acid | mc | The aragonite saturation state (Ω) tells you:
+acid | mc | An aragonite saturation state of Ω = 2.6 for a coral reef is best described as:
+acid | num | Below what value of Ω does aragonite actively dissolve?
+acid | mc | Aragonite saturation is generally highest in:
+acid | mc | Which group is NOT directly threatened by falling aragonite saturation?
+acid | mc | In a sunlit bay, pH typically:
+acid | mc | Under a high-emission scenario, surface ocean pH is projected to reach about 7.8 by 2100. Compared with pre-industrial water, that is roughly:
+acid | mc | Coral bleaching occurs when:
+param | mc | Which unit is used to report turbidity from a nephelometer?
+param | mc | A nephelometer measures turbidity by detecting:
+param | mc | Which instrument is the most accurate standard method for measuring salinity in the field?
+param | mc | To use a refractometer for salinity you should first:
+param | mc | Which parameter must be measured immediately in the field rather than back at the lab?
+param | mc | In the Winkler method for dissolved oxygen, why must the sample be fixed on site?
+param | mc | The Winkler titration endpoint is recognized by:
+param | mc | The nitrate test using cadmium reduction produces which color?
+param | mc | The ascorbic acid method is the standard test for which parameter?
+param | mc | Total phosphorus analysis requires an extra step that dissolved phosphate analysis does not:
+param | mc | In the membrane filtration test for fecal coliform, the filter is incubated at:
+param | mc | Which indicator organism does the EPA recommend for marine recreational water?
+param | mc | Why are coliform bacteria used as indicators rather than testing for each pathogen?
+param | num | In a total solids analysis, at what temperature, in °C, is the sample dried? Give the lower end of the standard range.
+param | mc | Total solids in a water sample consist of:
+param | mc | Under USGS classification, water with 5,000 mg/L of total dissolved solids is:
+param | num | The US secondary drinking-water guideline for total dissolved solids is what value, in mg/L?
+param | mc | BOD₅ is measured by incubating a sealed sample:
+param | mc | A BOD₅ result of 12 mg/L indicates water that is:
+param | num | US secondary treatment effluent must not exceed what BOD₅, in mg/L, as a 30-day average?
+param | num | At 25 °C and a salinity of 35, dissolved oxygen saturation in seawater is about what value, in mg/L?
+param | mc | Which change would increase the amount of oxygen water can hold?
+param | mc | A pH electrode should be calibrated with buffers that:
+param | mc | Tea-brown water stained by tannins and humic substances:
+pollution | mc | Acid mine drainage forms when:
+pollution | mc | Thermal pollution harms aquatic life mainly because warm water:
+pollution | mc | Which parameter is most directly raised by road salt runoff?
+pollution | mc | The largest contributor to sediment pollution by volume is typically:
+pollution | mc | How do impervious surfaces such as asphalt degrade a watershed?
+pollution | mc | Suspended sediment harms coral reefs by:
+pollution | mc | Which best explains why losing a mangrove fringe increases turbidity offshore?
+pollution | mc | A river downstream of a wastewater discharge shows low DO and high nitrate. The most likely cause is:
+pollution | mc | Microplastics are a concern in marine systems chiefly because they:
+pollution | mc | A riparian buffer strip improves water quality by:
+pollution | mc | Dredging a navigation channel can degrade nearby water quality because it:
+pollution | mc | An oil spill harms seabirds most directly by:
+zones | mc | The benthic zone of the ocean is:
+zones | mc | The pelagic zone refers to:
+zones | mc | The euphotic (epipelagic) zone is defined by:
+zones | mc | In which light zone does only a small amount of light penetrate, too little for photosynthesis?
+zones | mc | The difference between the neritic and oceanic zones is that the neritic zone is:
+zones | num | What percentage of Earth's water is held in the oceans?
+zones | mc | Water returns from the atmosphere to the ground by:
+zones | mc | Which set lists only abiotic factors controlling an aquatic ecosystem?
+zones | mc | The defining abiotic factors of a hydrothermal vent community are:
+zones | mc | Which abiotic factors define an estuary?
+zones | mc | Pelagic environments have low productivity per unit area compared with estuaries and reefs mainly because:
+zones | mc | Which of these is a high-productivity estuarine environment?
+reef | mc | Which condition is required for coral reef development?
+reef | num | Reef-building corals require water temperatures above approximately what value, in °C?
+reef | mc | The relationship between coral polyps and zooxanthellae is an example of:
+reef | num | Approximately what percentage of a coral's nutrition is supplied by its zooxanthellae?
+reef | mc | The bright colors of most reef corals come from:
+reef | mc | Which statement about coral bleaching is TRUE?
+reef | num | Bleaching can occur when water stays how many °C above a coral's usual summer monthly mean? Give the lower end of the commonly cited range.
+reef | mc | Besides high temperature, which stress can trigger coral bleaching?
+reef | mc | On NOAA Coral Reef Watch's scale, a reading of HotSpot ≥ 1 with DHW of 10 corresponds to:
+reef | mc | A reef shows HotSpot ≥ 1 and DHW = 2. The Coral Reef Watch stress level is:
+reef | mc | In the northern hemisphere, peak coral bleaching season usually falls in:
+reef | mc | Crown-of-thorns starfish damage reefs by:
+reef | mc | Parrotfish benefit coral reefs mainly by:
+reef | mc | Which organism is used as a Coral Watch indicator species for reef health?
+reef | mc | Why are butterflyfish good indicators of reef condition?
+reef | mc | A boat anchor dropped on a reef is damaging well beyond the area it crushes because:
+reef | mc | Why does nutrient pollution harm reefs even though nutrients help most ecosystems?
+reef | mc | Which human activity is a major physical threat to reefs in addition to climate change?
+reef | mc | Besides corals, which group is most threatened by decreasing aragonite saturation?
+reef | mc | Which measure would most directly slow ocean acidification?
+calc | num | A Winkler titration uses 7.5 mL of 0.0250 N thiosulfate on a 200 mL sample. What is the dissolved oxygen, in mg/L? (DO = V_thio × N × 8000 ÷ V_sample)
+calc | num | A Winkler titration of a 300 mL sample uses 6.0 mL of 0.0250 N thiosulfate. Find the DO, in mg/L.
+calc | num | A BOD bottle starts at 8.2 mg/L DO and ends at 3.4 mg/L after 5 days. The sample made up 10% of the bottle (P = 0.10). What is BOD₅, in mg/L?
+calc | num | A BOD test uses 30 mL of sample diluted to a 300 mL bottle. Initial DO is 9.0 mg/L and final DO is 4.5 mg/L. What is BOD₅, in mg/L?
+calc | mc | A BOD bottle finishes with 0.4 mg/L of dissolved oxygen. The result should be:
+calc | num | A sample measures 5.1 mg/L DO where saturation is 8.5 mg/L. What is the percent saturation?
+calc | num | Water at 20 °C has a DO saturation of 9.1 mg/L. A sample reads 11.4 mg/L. What is its percent saturation?
+calc | num | A Secchi disk disappears at 2.5 m. Estimate the light attenuation coefficient k, in per meter. (k ≈ 1.7 ÷ Secchi depth)
+calc | num | A Secchi disk reading is 3.0 m. Estimate the depth of the euphotic zone, in meters. (Euphotic depth ≈ 2.7 × Secchi depth)
+calc | num | How much 2.0 M stock solution, in mL, is needed to make 500 mL of 0.10 M solution? (C₁V₁ = C₂V₂)
+calc | num | 25 mL of a 400 mg/L standard is diluted to 1000 mL. What is the final concentration, in mg/L?
+calc | num | A salinity meter reads only up to 10 ppt. A sample is diluted 1 part sample to 4 parts distilled water and reads 7.2 ppt. What is the original salinity, in ppt?
+calc | num | A 500 mL sample is evaporated in a dish. The empty dish weighs 42.1500 g and the dish plus residue weighs 42.3000 g. What is the total solids concentration, in mg/L?
+calc | num | A 250 mL sample leaves 9.0 mg of residue after filtering and drying the filter. What is the total suspended solids concentration, in mg/L?
+calc | num | Conductivity is 1200 µS/cm and the conversion factor k is 0.65. Estimate total dissolved solids, in mg/L. (TDS ≈ k × EC)
+calc | num | An alkalinity titration uses 8.0 mL of 0.020 N acid on a 100 mL sample. What is the alkalinity, in mg/L as CaCO₃? (A × N × 50,000 ÷ V)
+calc | num | Water contains 40 mg/L Ca²⁺ and 12 mg/L Mg²⁺. What is its hardness, in mg/L as CaCO₃? (Hardness = 2.497[Ca²⁺] + 4.118[Mg²⁺])
+calc | num | A plant reduces total suspended solids from 220 mg/L to 22 mg/L. What is the percent removal?
+calc | num | Influent BOD is 180 mg/L and effluent BOD is 27 mg/L. What is the percent removal?
+calc | num | Producers in a food chain fix 50,000 J of energy. Using the 10% rule, how many joules reach the secondary consumers?
+calc | num | A tertiary consumer receives 80 J of energy. Using the 10% rule, how many joules did the producers fix?
+calc | num | A hydrometer in seawater reads a specific gravity of 1.025. What is the density of that water, in g/cm³?
+calc | num | A salt solution is 3.5% salt by mass. Express this salinity in ppt (parts per thousand).
+calc | num | A salinometer sample reads 18 ppt. What is this as a mass percent?
+calc | num | To make 250 mL of a 4.0% (mass/volume) salt solution, how many grams of NaCl are needed?
+calc | num | A 200 mL salinometer test solution contains 14 g of salt. What is its mass/volume percent?
+calc | num | A sample has a pH of 5.0. How many times more hydrogen ions does it contain than a sample at pH 8.0?
+calc | num | Fecal coliform counts give 48 colonies from a 20 mL sample filtered. Report the result in colonies per 100 mL.
+salino | mc | In the Water Quality event, the student-built salinometer is used to measure:
+salino | mc | A simple homemade salinometer is essentially a hydrometer, which works because:
+salino | mc | When reading a hydrometer you should take the value:
+salino | mc | A salinometer calibrated at 20 °C is used on a warm 30 °C sample without correction. The reading will be:
+salino | num | Seawater at 35 ppt has a specific gravity of about what value? Give it to three decimal places.
+salino | num | Seawater at 35 ppt has a density of 1.0233 g/cm³ at 25 °C and 1.0281 g/cm³ at 0 °C. How much denser, in g/cm³, is the cold sample?
+salino | num | Seawater at 35 ppt and 25 °C has a conductivity of about what value, in mS/cm?
+salino | mc | Which eye protection is required during the salinometer testing portion of the event?
+salino | mc | In the chloride titration method for salinity, the indicator used is:
+salino | mc | Which equipment is allowed for a competitor in Water Quality?
+salino | mc | If a salinometer is calibrated with table salt solutions but used on real seawater, a small error arises because:
+salino | mc | Which measurement must be taken in the field immediately rather than from a stored sample?
