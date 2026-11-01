@@ -1,1 +1,28 @@
-[]
+[
+  {
+    "id": "x1101a",
+    "topic": "reef",
+    "diff": 2,
+    "type": "num",
+    "q": "On the NOAA Coral Reef Watch alert scale, a reef with HotSpot ≥ 1 is placed at Alert Level 2 when its accumulated degree-heating weeks (DHW) reach or exceed what minimum value, in degree-weeks?",
+    "ans": 12,
+    "unit": "degree-weeks",
+    "tol": 0.02,
+    "explain": "NOAA CRW thresholds (all require HotSpot ≥ 1): Watch = DHW 0–4; Warning = DHW 4–8; Alert Level 1 = DHW 8–12; Alert Level 2 = DHW ≥ 12 degree-weeks. Alert Level 2 predicts widespread severe bleaching and significant mortality."
+  },
+  {
+    "id": "x1101b",
+    "topic": "param",
+    "diff": 2,
+    "type": "mc",
+    "q": "A technician collects a water sample and measures both turbidity and total suspended solids (TSS). Which statement correctly distinguishes the two parameters?",
+    "choices": [
+      "Turbidity measures how much particles scatter light (reported in NTU); TSS measures the mass of particles per unit volume (reported in mg/L)",
+      "TSS measures how much particles scatter light; turbidity measures particle mass per unit volume",
+      "Both measure the same property but turbidity uses NTU while TSS uses ppt",
+      "Turbidity is a chemical test; TSS is a biological assay"
+    ],
+    "ans": 0,
+    "explain": "Turbidity is an optical measurement — a nephelometer detects light scattered by suspended particles, reported in NTU. TSS is gravimetric — a sample is filtered through a pre-weighed membrane, dried at 103–105 °C, and the retained mass is reported in mg/L. High turbidity and high TSS often correlate but they quantify fundamentally different physical properties."
+  }
+]

@@ -1,1 +1,23 @@
-[]
+[
+  {
+    "id": "x1101a",
+    "topic": "kirchhoff",
+    "diff": 3,
+    "type": "num",
+    "q": "A series loop contains a 20 V source, a 4.0 Ω resistor, a 5.0 Ω resistor, and a second battery V₂ opposing the first source. A meter shows the loop current is 1.0 A. Applying KVL, find V₂, in volts.",
+    "ans": 11,
+    "unit": "V",
+    "tol": 0.02,
+    "explain": "KVL around the loop (20 V source taken as positive rise): 20 − (1.0)(4.0) − (1.0)(5.0) − V₂ = 0 → 20 − 4 − 5 = V₂ → V₂ = 11 V. The opposing battery 'uses up' the remaining voltage not dropped across the resistors."
+  },
+  {
+    "id": "x1101b",
+    "topic": "history",
+    "diff": 2,
+    "type": "mc",
+    "q": "The volt is the SI unit of electric potential difference, named after Alessandro Volta. Which ratio correctly expresses one volt?",
+    "choices": ["1 J ÷ 1 C", "1 J ÷ 1 A", "1 C ÷ 1 J", "1 A ÷ 1 Ω"],
+    "ans": 0,
+    "explain": "By definition, 1 V = 1 J/C — one joule of work done moving one coulomb of charge through the potential difference. 1 J/A = V·s (not V); 1 C/J = 1/V; 1 A/Ω = A·(A/V) = A²/V ≠ V (since Ω = V/A, so A/Ω = A²/V)."
+  }
+]
