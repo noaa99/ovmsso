@@ -1,0 +1,6 @@
+
+# daily question run logs
+tools/daily-question/*.log
+
+# macOS
+.DS_Store
