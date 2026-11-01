@@ -56,6 +56,10 @@ h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0}
 .bands i{width:5px;height:13px;border-radius:1px;background:var(--rail);display:block}
 .bands i.on{background:var(--accent)}
 .qtext{font-size:17px;line-height:1.5;margin:0 0 16px}
+.figure{margin:0 0 16px;padding:14px;border:1px solid var(--line);border-radius:7px;background:var(--bg);display:flex;justify-content:center;color:var(--ink)}
+.figure svg{max-width:100%;height:auto;color:var(--ink)}
+.figure img{max-width:100%;height:auto;border-radius:4px}
+.figcap{font-size:12px;color:var(--muted);margin:-10px 0 16px;text-align:center}
 .choices{display:flex;flex-direction:column;gap:8px}
 .choice{display:flex;gap:11px;align-items:flex-start;text-align:left;width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:7px;background:transparent;color:var(--ink);font:inherit;cursor:pointer;transition:border-color .12s,background .12s}
 .choice:hover:not(:disabled){border-color:var(--accent)}
@@ -200,6 +204,10 @@ function card(q,opts){
         '<span class="tag topic">'+LABEL[q.topic]+'</span>'+bands(q.diff)+
         '<span class="tag">'+(q.type==="mc"?"multiple choice":"numeric")+'</span></div>';
   h+='<p class="qtext">'+esc(q.q)+'</p>';
+  // A question may carry a diagram: inline SVG in q.svg, or an image path in q.img.
+  if(q.svg){ h+='<div class="figure">'+q.svg+'</div>'; }
+  else if(q.img){ h+='<div class="figure"><img src="'+esc(q.img)+'" alt="'+esc(q.alt||"figure")+'"></div>'; }
+  if((q.svg||q.img)&&q.caption){ h+='<p class="figcap">'+esc(q.caption)+'</p>'; }
   if(q.type==="mc"){
     h+='<div class="choices">'+q.choices.map((c,i)=>
       '<button class="choice" data-i="'+i+'"><span class="key">'+"ABCD"[i]+'</span><span>'+esc(c)+'</span></button>').join("")+'</div>';

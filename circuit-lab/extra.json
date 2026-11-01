@@ -16,8 +16,26 @@
     "diff": 2,
     "type": "mc",
     "q": "The volt is the SI unit of electric potential difference, named after Alessandro Volta. Which ratio correctly expresses one volt?",
-    "choices": ["1 J ÷ 1 C", "1 J ÷ 1 A", "1 C ÷ 1 J", "1 A ÷ 1 Ω"],
+    "choices": [
+      "1 J ÷ 1 C",
+      "1 J ÷ 1 A",
+      "1 C ÷ 1 J",
+      "1 A ÷ 1 Ω"
+    ],
     "ans": 0,
     "explain": "By definition, 1 V = 1 J/C — one joule of work done moving one coulomb of charge through the potential difference. 1 J/A = V·s (not V); 1 C/J = 1/V; 1 A/Ω = A·(A/V) = A²/V ≠ V (since Ω = V/A, so A/Ω = A²/V)."
+  },
+  {
+    "id": "x1101c",
+    "topic": "circuits",
+    "diff": 2,
+    "type": "num",
+    "q": "The schematic shows a 12 V battery driving two resistors. Find the voltage across R2.",
+    "svg": "<svg viewBox=\"0 0 320 150\" role=\"img\" aria-label=\"Series circuit: 12 V battery with a 40 ohm and an 80 ohm resistor\"><g stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\"><path d=\"M30 110 V40 H110 M150 40 H190 M230 40 H290 V110 H30\"/><path d=\"M110 28 h40 v24 h-40 z\"/><path d=\"M190 28 h40 v24 h-40 z\"/><path d=\"M24 100 h12 M20 92 h20 M24 84 h12 M20 76 h20\"/></g><g fill=\"currentColor\" font-family=\"system-ui,sans-serif\" font-size=\"13\" text-anchor=\"middle\"><text x=\"130\" y=\"22\">R1 = 40 &#937;</text><text x=\"210\" y=\"22\">R2 = 80 &#937;</text><text x=\"64\" y=\"90\">12 V</text><text x=\"160\" y=\"135\">series loop</text></g></svg>",
+    "caption": "Two resistors in series across a 12 V source.",
+    "ans": 8,
+    "unit": "V",
+    "tol": 0.02,
+    "explain": "In series the same current flows through both: I = V/(R1+R2) = 12/(40+80) = 0.1 A. Then V2 = I x R2 = 0.1 x 80 = 8 V. (Check: V1 = 0.1 x 40 = 4 V, and 4 + 8 = 12 V.)"
   }
 ]
