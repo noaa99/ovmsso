@@ -32,8 +32,10 @@ insert into public.roster (email, display_name) values
 The pages will use a one-time code sent by email rather than a password —
 nothing for a student to forget, and no password resets for you to handle.
 
-**5. Make yourself the coach.** Sign in once on the practice page so your
-account exists (add your own email to the roster first), then:
+**5. Make yourself the coach.** The pages do not have sign-in yet, so create
+your account from the dashboard: Authentication, then Users, then Add user,
+with your own email. Add that email to the roster in step 3 first, or the
+signup gate will reject it. Then:
 
 ```sql
 update public.profiles set is_coach = true

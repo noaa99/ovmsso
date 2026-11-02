@@ -24,5 +24,31 @@
     ],
     "ans": 0,
     "explain": "Turbidity is an optical measurement — a nephelometer detects light scattered by suspended particles, reported in NTU. TSS is gravimetric — a sample is filtered through a pre-weighed membrane, dried at 103–105 °C, and the retained mass is reported in mg/L. High turbidity and high TSS often correlate but they quantify fundamentally different physical properties."
+  },
+  {
+    "id": "x1102c",
+    "topic": "calc",
+    "diff": 3,
+    "type": "num",
+    "q": "A river entering an estuary has a dissolved oxygen of 6.8 mg/L. A wastewater discharge enters the river mouth with a DO of 3.2 mg/L; the discharge flow is one-quarter of the river flow (ratio 1 part discharge to 4 parts river water by volume). What is the DO of the fully mixed water, in mg/L?",
+    "ans": 6.08,
+    "unit": "mg/L",
+    "tol": 0.02,
+    "explain": "Use volume-weighted mixing: DO_mix = (V1 × DO1 + V2 × DO2) / (V1 + V2). Assign V_discharge = 1 and V_river = 4. DO_mix = (1 × 3.2 + 4 × 6.8) / (1 + 4) = (3.2 + 27.2) / 5 = 30.4 / 5 = 6.08 mg/L. This is the same algebra as C1V1 = C2V2 extended to a two-stream mix. The large river volume dominates, pulling the result toward (but not reaching) the river DO of 6.8 mg/L."
+  },
+  {
+    "id": "x1102d",
+    "topic": "salino",
+    "diff": 2,
+    "type": "mc",
+    "q": "A hydrometer is placed in three separate samples at the same temperature: fresh water (0 ppt), brackish water (15 ppt), and seawater (35 ppt). In which sample does the hydrometer float with the most stem visible above the surface?",
+    "choices": [
+      "Fresh water (0 ppt), because the hydrometer must sink deeper to displace enough weight, exposing more stem",
+      "Brackish water (15 ppt), because intermediate salinity creates the most stable float position",
+      "Seawater (35 ppt), because the greater density provides more upward force per unit of submerged volume, so less of the instrument needs to be below the surface",
+      "All three are the same, because the hydrometer always displaces a volume of liquid equal to its own weight"
+    ],
+    "ans": 2,
+    "explain": "A hydrometer floats where the weight of displaced fluid equals the hydrometer's own weight (Archimedes' principle). In denser seawater, each centimeter of submerged stem displaces more mass, so equilibrium is reached with less stem below the surface — more stem is visible. In fresh water (least dense), the hydrometer must sink deepest to displace the same weight, leaving the least stem above the waterline. Choice A describes the correct behavior for fresh water but draws the wrong conclusion about stem visibility. Choice D confuses displaced weight (constant) with displaced volume (which varies with density)."
   }
 ]

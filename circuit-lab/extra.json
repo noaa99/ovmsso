@@ -37,5 +37,31 @@
     "unit": "V",
     "tol": 0.02,
     "explain": "In series the same current flows through both: I = V/(R1+R2) = 12/(40+80) = 0.1 A. Then V2 = I x R2 = 0.1 x 80 = 8 V. (Check: V1 = 0.1 x 40 = 4 V, and 4 + 8 = 12 V.)"
+  },
+  {
+    "id": "x1102a",
+    "topic": "charges",
+    "diff": 2,
+    "type": "mc",
+    "q": "Two identical positive point charges are moved from 1.0 m apart to 0.25 m apart. By what factor does the electric potential energy of the system change?",
+    "choices": [
+      "It doubles",
+      "It increases by a factor of 16",
+      "It increases by a factor of 4",
+      "It decreases to one-quarter of its original value"
+    ],
+    "ans": 2,
+    "explain": "Electric potential energy between two point charges: U = kq²/r. Since U is proportional to 1/r, the ratio is U_final/U_initial = r_initial/r_final = 1.0/0.25 = 4. The energy increases by a factor of 4 because the distance decreased by a factor of 4, and work is done against the repulsive force. 'Factor of 16' is the force ratio (F ∝ 1/r²), not the energy ratio. 'Decreases' is wrong because like charges repel — bringing them closer always raises the potential energy."
+  },
+  {
+    "id": "x1102b",
+    "topic": "acdc",
+    "diff": 3,
+    "type": "num",
+    "q": "A 120 Ω resistor is connected directly across a sinusoidal AC source whose peak voltage is 170 V. What is the average power, in watts, dissipated by the resistor?",
+    "ans": 120,
+    "unit": "W",
+    "tol": 0.02,
+    "explain": "Average power in a resistive AC load requires RMS values, not peak values. Step 1 — find V_rms: V_rms = V_peak / √2 = 170 / 1.4142 ≈ 120.2 V. Step 2 — compute power: P = V_rms² / R = (170)² / (2 × 120) = 28900 / 240 ≈ 120 W. A common error is using V_peak directly, giving P = 170²/120 ≈ 241 W — exactly twice the correct answer, because P_avg = P_peak / 2 for a sine wave."
   }
 ]
