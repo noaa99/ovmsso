@@ -50,5 +50,31 @@
     ],
     "ans": 2,
     "explain": "A hydrometer floats where the weight of displaced fluid equals the hydrometer's own weight (Archimedes' principle). In denser seawater, each centimeter of submerged stem displaces more mass, so equilibrium is reached with less stem below the surface — more stem is visible. In fresh water (least dense), the hydrometer must sink deepest to displace the same weight, leaving the least stem above the waterline. Choice A describes the correct behavior for fresh water but draws the wrong conclusion about stem visibility. Choice D confuses displaced weight (constant) with displaced volume (which varies with density)."
+  },
+  {
+    "id": "x1103a",
+    "topic": "pollution",
+    "diff": 3,
+    "type": "num",
+    "q": "A storm event washes runoff from a construction site into a tidal creek. The flow rate during the storm is 0.50 m³/s, the total suspended solids concentration is 320 mg/L, and the storm lasts 45 minutes. What is the total mass of sediment discharged into the creek, in kilograms?",
+    "ans": 432,
+    "unit": "kg",
+    "tol": 0.02,
+    "explain": "Step 1 — convert flow: 0.50 m³/s × 1000 L/m³ = 500 L/s. Step 2 — storm duration in seconds: 45 min × 60 s/min = 2700 s. Step 3 — total volume discharged: 500 L/s × 2700 s = 1,350,000 L. Step 4 — mass of sediment: 320 mg/L × 1,350,000 L = 432,000,000 mg. Step 5 — convert to kg: 432,000,000 mg ÷ 1,000,000 mg/kg = 432 kg. A common error is omitting the m³-to-L conversion (factor of 1000), which understates the answer by 1000×."
+  },
+  {
+    "id": "x1103b",
+    "topic": "estuary",
+    "diff": 2,
+    "type": "mc",
+    "q": "A euryhaline teleost fish moves from its home freshwater river into an estuarine channel at approximately 25 ppt salinity. The fish's blood and body fluids are equivalent to roughly a 9 ppt solution. Which statement correctly describes the net osmotic movement of water across the fish's gill membranes once it enters the estuary?",
+    "choices": [
+      "Water moves into the fish, because the estuary water is less concentrated than the fish's body fluids",
+      "Water moves into the fish, because the fish actively pumps water inward through its chloride cells",
+      "Water moves out of the fish, because the estuary water is more concentrated than the fish's body fluids",
+      "There is no net osmotic water movement, because euryhaline fish are osmoconformers that match their internal salinity to their surroundings"
+    ],
+    "ans": 2,
+    "explain": "Osmosis moves water from the hypotonic (less concentrated) side to the hypertonic (more concentrated) side of a semipermeable membrane. The fish's body fluids (~9 ppt) are hypotonic to the 25 ppt estuary water, so water leaves the fish by osmosis. To compensate, marine and estuarine teleosts drink the surrounding water and actively excrete excess salt through specialized chloride cells in their gills. Choice A reverses the direction (estuary is MORE concentrated, not less). Choice B confuses ion transport with bulk osmotic flow. Choice D is wrong because euryhaline teleosts are osmoREGULATORS — they maintain a stable internal osmolarity rather than conforming to the environment."
   }
 ]

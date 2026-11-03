@@ -63,5 +63,31 @@
     "unit": "W",
     "tol": 0.02,
     "explain": "Average power in a resistive AC load requires RMS values, not peak values. Step 1 — find V_rms: V_rms = V_peak / √2 = 170 / 1.4142 ≈ 120.2 V. Step 2 — compute power: P = V_rms² / R = (170)² / (2 × 120) = 28900 / 240 ≈ 120 W. A common error is using V_peak directly, giving P = 170²/120 ≈ 241 W — exactly twice the correct answer, because P_avg = P_peak / 2 for a sine wave."
+  },
+  {
+    "id": "x1103a",
+    "topic": "ohm",
+    "diff": 3,
+    "type": "num",
+    "q": "A copper wire has a resistance of 6.0 Ω. The wire is then drawn through a die until its length exactly doubles; its volume and resistivity remain unchanged throughout. What is the resistance of the stretched wire, in ohms?",
+    "ans": 24,
+    "unit": "Ω",
+    "tol": 0.02,
+    "explain": "Resistance R = ρL/A. Because volume V = L·A is constant, doubling the length (L′ = 2L) forces the cross-sectional area to halve (A′ = A/2). New resistance: R′ = ρ(2L)/(A/2) = 4·(ρL/A) = 4R₀ = 4 × 6.0 = 24 Ω. A common error is concluding R only doubles because L doubled — that ignores the simultaneous halving of A that constant volume requires."
+  },
+  {
+    "id": "x1103b",
+    "topic": "control",
+    "diff": 2,
+    "type": "mc",
+    "q": "A GFCI outlet trips when it senses a difference greater than about 5 mA between the current in the hot conductor and the current in the neutral conductor. In which scenario would the GFCI NOT protect the person involved?",
+    "choices": [
+      "A person standing on wet concrete touches the metal case of a defective power tool and current flows through their body to ground",
+      "A person simultaneously grasps the hot prong and the neutral prong of an unplugged extension cord, forming a hand-to-hand current path",
+      "A hair dryer falls into a water-filled sink, sending current from the hot wire through the water to the grounded metal drain",
+      "Damaged cord insulation allows the hot conductor to contact the grounded metal frame of an appliance"
+    ],
+    "ans": 1,
+    "explain": "The GFCI measures |I_hot − I_neutral|. In choice B current leaves through the hot prong, travels hand-to-hand through the person, and returns through the neutral prong. Both conductors carry identical current, so the difference is zero and the GFCI never trips — the person receives a shock with no protection. Choices A, C, and D all route current to ground without it returning through neutral, creating an imbalance that trips the GFCI within milliseconds."
   }
 ]
