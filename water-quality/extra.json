@@ -76,5 +76,31 @@
     ],
     "ans": 2,
     "explain": "Osmosis moves water from the hypotonic (less concentrated) side to the hypertonic (more concentrated) side of a semipermeable membrane. The fish's body fluids (~9 ppt) are hypotonic to the 25 ppt estuary water, so water leaves the fish by osmosis. To compensate, marine and estuarine teleosts drink the surrounding water and actively excrete excess salt through specialized chloride cells in their gills. Choice A reverses the direction (estuary is MORE concentrated, not less). Choice B confuses ion transport with bulk osmotic flow. Choice D is wrong because euryhaline teleosts are osmoREGULATORS — they maintain a stable internal osmolarity rather than conforming to the environment."
+  },
+  {
+    "id": "x1104a",
+    "topic": "habitat",
+    "diff": 2,
+    "type": "mc",
+    "q": "Mangrove forests, salt marshes, and seagrass meadows store disproportionately large amounts of carbon per unit area — a resource called 'blue carbon.' In which form and location is the great majority of this carbon actually held?",
+    "choices": [
+      "In the living leaf and stem biomass, which photosynthesize at high rates throughout the year",
+      "In the calcium-carbonate shells and skeletons of invertebrates living at the habitat's fringe",
+      "In waterlogged, oxygen-poor sediments beneath the root systems, where anaerobic conditions dramatically slow decomposition and allow organic matter to accumulate over centuries",
+      "In dissolved organic carbon carried in the water column above the beds"
+    ],
+    "ans": 2,
+    "explain": "Blue carbon refers to organic carbon sequestered in coastal and marine ecosystems. In mangroves, salt marshes, and seagrass meadows, sediment organic matter accumulates because waterlogged, anaerobic conditions dramatically slow microbial decomposition — the carbon can persist for hundreds to thousands of years, making these habitats far more effective carbon sinks per hectare than most terrestrial forests. Living biomass (choice A) cycles carbon quickly: it decomposes rapidly when the plant dies unless buried under anoxic sediment. Invertebrate shells (choice B) contain inorganic calcium carbonate, which can release CO₂ when dissolved in acidifying water and is not long-term organic carbon storage. Dissolved organic carbon in the water column (choice D) is actively cycling and not sequestered on meaningful timescales."
+  },
+  {
+    "id": "x1104b",
+    "topic": "zones",
+    "diff": 3,
+    "type": "num",
+    "q": "A research vessel working in a productive coastal upwelling zone lowers a Secchi disk until it disappears at 10 m depth. Sonar shows the seafloor is 270 m below the surface. Using the standard relationship (euphotic zone depth ≈ 2.7 × Secchi depth), what percentage of the total water column falls within the euphotic zone?",
+    "ans": 10,
+    "unit": "%",
+    "tol": 0.02,
+    "explain": "Step 1 — estimate the euphotic zone depth using the empirical formula: 2.7 × 10 m = 27 m. Step 2 — calculate the fraction of the water column that is sunlit: (27 m ÷ 270 m) × 100 = 10%. Even in this nutrient-rich upwelling setting, only the top tenth of the water column receives enough light for net photosynthesis; the remaining 243 m lie in the disphotic and aphotic zones, where primary production is zero. A common error is confusing the euphotic-depth formula (2.7 × Secchi depth) with the light-attenuation coefficient formula (k ≈ 1.7 ÷ Secchi depth) — using k directly gives a nonsensical result of 0.17 m⁻¹, not a depth."
   }
 ]

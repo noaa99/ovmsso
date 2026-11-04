@@ -89,5 +89,33 @@
     ],
     "ans": 1,
     "explain": "The GFCI measures |I_hot − I_neutral|. In choice B current leaves through the hot prong, travels hand-to-hand through the person, and returns through the neutral prong. Both conductors carry identical current, so the difference is zero and the GFCI never trips — the person receives a shock with no protection. Choices A, C, and D all route current to ground without it returning through neutral, creating an imbalance that trips the GFCI within milliseconds."
+  },
+  {
+    "id": "x1104a",
+    "topic": "ohm",
+    "diff": 2,
+    "type": "mc",
+    "q": "Unlike most metals, the electrical resistance of a pure (intrinsic) semiconductor such as silicon DECREASES as temperature rises. Which explanation is correct?",
+    "choices": [
+      "Increased atomic vibrations scatter conduction electrons more often, lowering the resistance.",
+      "The crystal lattice contracts at higher temperatures, opening wider conduction pathways.",
+      "In a semiconductor, resistance is determined solely by doping concentration and does not vary with temperature.",
+      "Thermal energy promotes more valence electrons across the band gap into the conduction band, sharply increasing the number of charge carriers."
+    ],
+    "ans": 3,
+    "explain": "In a metal, resistance rises with temperature because lattice vibrations scatter carriers more (the carrier count barely changes). In an intrinsic semiconductor the dominant effect is carrier generation: thermal energy excites valence electrons across the band gap, so the carrier concentration rises exponentially with temperature — overwhelmingly outweighing the also-present increase in scattering — and resistance falls. Distractor A gets the scattering direction right but draws the wrong conclusion for semiconductors; more scattering alone would raise resistance, but the flood of new carriers wins. Distractor B states incorrect physics — solids thermally expand, not contract. Distractor C conflates extrinsic (doped) semiconductors with intrinsic ones; even doped semiconductors show temperature dependence, and intrinsic silicon has no intentional dopants at all."
+  },
+  {
+    "id": "x1104b",
+    "topic": "control",
+    "diff": 3,
+    "type": "num",
+    "q": "The schematic shows a relay control circuit. The 15 V supply drives a series chain of Rs (unknown), an indicator LED (forward voltage 1.8 V), and a relay coil (360 Ω). The relay pulls in whenever coil current is at least 30 mA. What is the maximum Rs, in ohms, that still guarantees pull-in?",
+    "svg": "<svg viewBox=\"0 0 400 170\" role=\"img\" aria-label=\"Relay control circuit: 15 V source, Rs, LED indicator, and 360-ohm relay coil in series\"><g stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\"><path d=\"M42 55 H85\"/><rect x=\"85\" y=\"43\" width=\"55\" height=\"24\"/><path d=\"M140 55 H172\"/><path d=\"M172 41 L172 69 L204 55 Z\"/><path d=\"M204 41 V69\"/><path d=\"M204 55 H238\"/><rect x=\"238\" y=\"43\" width=\"82\" height=\"24\"/><path d=\"M320 55 H370 V130 H42\"/><path d=\"M42 55 V72\"/><path d=\"M28 72 H56\"/><path d=\"M33 80 H51\"/><path d=\"M42 80 V130\"/></g><g fill=\"currentColor\" font-family=\"system-ui,sans-serif\" font-size=\"12\" text-anchor=\"middle\"><text x=\"112\" y=\"40\">Rs = ?</text><text x=\"188\" y=\"36\">LED</text><text x=\"188\" y=\"86\">1.8 V</text><text x=\"279\" y=\"40\">Coil</text><text x=\"279\" y=\"86\">360 &#937;</text><text x=\"20\" y=\"77\">15 V</text><text x=\"20\" y=\"60\" font-size=\"11\">+</text><text x=\"20\" y=\"128\" font-size=\"11\">&#8722;</text></g></svg>",
+    "caption": "Series relay control circuit: 15 V supply, Rs, LED indicator, and 360 Ω coil.",
+    "ans": 80,
+    "unit": "Ω",
+    "tol": 0.02,
+    "explain": "Step 1 — the LED drops 1.8 V, so the voltage shared by Rs and the coil is 15 − 1.8 = 13.2 V. Step 2 — pull-in requires I ≥ 30 mA = 0.030 A. Step 3 — maximum total resistance = V / I_min = 13.2 / 0.030 = 440 Ω. Step 4 — Rs_max = 440 − 360 = 80 Ω. Any Rs above 80 Ω starves the coil below the pull-in threshold and the relay stays open. A common error is ignoring the LED voltage drop and computing 15 / 0.030 = 500 Ω total, then Rs = 140 Ω — in real hardware that relay would fail to close because the LED eats 1.8 V of the available headroom."
   }
 ]
