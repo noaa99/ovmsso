@@ -117,5 +117,31 @@
     "unit": "Ω",
     "tol": 0.02,
     "explain": "Step 1 — the LED drops 1.8 V, so the voltage shared by Rs and the coil is 15 − 1.8 = 13.2 V. Step 2 — pull-in requires I ≥ 30 mA = 0.030 A. Step 3 — maximum total resistance = V / I_min = 13.2 / 0.030 = 440 Ω. Step 4 — Rs_max = 440 − 360 = 80 Ω. Any Rs above 80 Ω starves the coil below the pull-in threshold and the relay stays open. A common error is ignoring the LED voltage drop and computing 15 / 0.030 = 500 Ω total, then Rs = 140 Ω — in real hardware that relay would fail to close because the LED eats 1.8 V of the available headroom."
+  },
+  {
+    "id": "x1105a",
+    "topic": "circuits",
+    "diff": 2,
+    "type": "mc",
+    "q": "A 5-band precision resistor has the color bands Brown–Green–Black–Red–Brown, read from the band closest to the lead. What is its resistance and tolerance?",
+    "choices": [
+      "1.5 kΩ ± 5%",
+      "15 kΩ ± 1%",
+      "150 Ω ± 1%",
+      "15 kΩ ± 5%"
+    ],
+    "ans": 1,
+    "explain": "In a 5-band resistor the first three bands are significant digits, the fourth is the multiplier, and the fifth is tolerance. Brown=1, Green=5, Black=0 → significant digits 1-5-0. Red multiplier = ×10² = 100. Value: 150 × 100 = 15,000 Ω = 15 kΩ. Brown tolerance band = ±1%. Common errors: treating Black as ×1 instead of ×10⁰ gives 150 Ω (choice C); reading only the first two digit bands and treating the third as the multiplier gives 1.5 kΩ with the wrong tolerance (choice A); confusing the Brown tolerance band for Gold (±5%) gives choice D."
+  },
+  {
+    "id": "x1105b",
+    "topic": "diodes",
+    "diff": 3,
+    "type": "num",
+    "q": "A full-wave bridge rectifier is built from four silicon diodes, each with a 0.7 V forward drop. The transformer secondary delivers 15 V RMS. What is the peak value of the rectified output voltage, in volts?",
+    "ans": 19.8,
+    "unit": "V",
+    "tol": 0.02,
+    "explain": "Step 1 — convert secondary RMS to peak: V_peak = V_rms × √2 = 15 × 1.4142 = 21.21 V. Step 2 — in a bridge rectifier two diodes conduct on each half-cycle (one on the positive path in, one on the return path), so the total forward-voltage penalty is 2 × 0.7 = 1.4 V. Step 3 — peak output: V_out = 21.21 − 1.4 = 19.81 V ≈ 19.8 V. A common error is subtracting only one diode drop (giving 20.5 V) because students forget that current passes through two diodes per half-cycle in a bridge. A second error is using V_rms directly without converting to peak, giving 15 − 1.4 = 13.6 V."
   }
 ]

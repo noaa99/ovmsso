@@ -102,5 +102,31 @@
     "unit": "%",
     "tol": 0.02,
     "explain": "Step 1 — estimate the euphotic zone depth using the empirical formula: 2.7 × 10 m = 27 m. Step 2 — calculate the fraction of the water column that is sunlit: (27 m ÷ 270 m) × 100 = 10%. Even in this nutrient-rich upwelling setting, only the top tenth of the water column receives enough light for net photosynthesis; the remaining 243 m lie in the disphotic and aphotic zones, where primary production is zero. A common error is confusing the euphotic-depth formula (2.7 × Secchi depth) with the light-attenuation coefficient formula (k ≈ 1.7 ÷ Secchi depth) — using k directly gives a nonsensical result of 0.17 m⁻¹, not a depth."
+  },
+  {
+    "id": "x1105a",
+    "topic": "pollution",
+    "diff": 3,
+    "type": "num",
+    "q": "A coastal power plant discharges cooling water at 35 °C at a flow rate of 20 m³/s into a tidal river whose water is 15 °C at a flow rate of 80 m³/s. Assuming complete mixing and negligible heat loss to the air, what is the temperature of the mixed water, in °C?",
+    "ans": 19,
+    "unit": "°C",
+    "tol": 0.02,
+    "explain": "Use a flow-weighted temperature average — the same algebra as a two-stream mixing calculation: T_mix = (Q₁T₁ + Q₂T₂) / (Q₁ + Q₂) = (80 × 15 + 20 × 35) / (80 + 20) = (1200 + 700) / 100 = 1900 / 100 = 19 °C. The large river volume pulls the result much closer to the river temperature (15 °C) than to the discharge temperature (35 °C). A common error is a simple arithmetic average of the two temperatures, (15 + 35) / 2 = 25 °C — that ignores the unequal flow rates and overestimates the warming by 6 °C."
+  },
+  {
+    "id": "x1105b",
+    "topic": "estuary",
+    "diff": 2,
+    "type": "mc",
+    "q": "Which statement correctly describes a fjord-type estuary?",
+    "choices": [
+      "A broad, shallow coastal-plain estuary formed by the submergence of a river valley after the last ice age; typically well mixed by tidal action with weak vertical stratification.",
+      "A shallow, low-energy estuary largely enclosed by a sandbar or barrier island that restricts tidal exchange with the open ocean.",
+      "A narrow, deep basin originally carved by a glacier and later flooded by rising sea level; a shallow rock sill at the mouth traps dense saltwater at depth, producing strong vertical stratification and long deep-water residence times.",
+      "A tropical estuary in which low river inflow and high evaporation produce salinities above that of the open ocean, creating an inverse (hypersaline) salinity gradient."
+    ],
+    "ans": 2,
+    "explain": "Fjord-type estuaries (e.g., Norwegian fjords, Puget Sound) are glacially scoured, often hundreds of meters deep, and have a shallow bedrock sill at the seaward entrance. The sill limits exchange of dense, saline deep water with the ocean; fresh river water flows seaward near the surface while cold, salty water is trapped below the sill depth — producing strong two-layer stratification and very long residence times for the deep layer. Choice A describes a coastal-plain (drowned-river-valley) estuary such as Chesapeake Bay. Choice B describes a bar-built or lagoonal estuary such as Pamlico Sound. Choice D describes an inverse or hypersaline estuary typical of arid coasts, such as the Laguna Madre."
   }
 ]
