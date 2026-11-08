@@ -143,5 +143,33 @@
     "unit": "V",
     "tol": 0.02,
     "explain": "Step 1 — convert secondary RMS to peak: V_peak = V_rms × √2 = 15 × 1.4142 = 21.21 V. Step 2 — in a bridge rectifier two diodes conduct on each half-cycle (one on the positive path in, one on the return path), so the total forward-voltage penalty is 2 × 0.7 = 1.4 V. Step 3 — peak output: V_out = 21.21 − 1.4 = 19.81 V ≈ 19.8 V. A common error is subtracting only one diode drop (giving 20.5 V) because students forget that current passes through two diodes per half-cycle in a bridge. A second error is using V_rms directly without converting to peak, giving 15 − 1.4 = 13.6 V."
+  },
+  {
+    "id": "x1108a",
+    "topic": "logic",
+    "diff": 2,
+    "type": "mc",
+    "q": "Three 2-input NAND gates implement a logic function from inputs A and B. Gate 1 has both its inputs tied to A; Gate 2 has both its inputs tied to B; Gate 3 takes Gate 1's output and Gate 2's output as its two inputs. Which function does the output Z compute?",
+    "choices": [
+      "A AND B — because stacking three NAND gates cancels two inversions and restores the AND function",
+      "NOT A — because the first NAND gate dominates the network and suppresses the B path",
+      "A OR B — because NOT(NOT A · NOT B) equals A + B by De Morgan's theorem",
+      "A XOR B — because having separate single-input inversion paths produces the exclusive difference"
+    ],
+    "ans": 2,
+    "explain": "Gate 1: NAND(A, A) = NOT(A·A) = NOT A. Gate 2: NAND(B, B) = NOT(B·B) = NOT B. Gate 3: NAND(NOT A, NOT B) = NOT(NOT A · NOT B). Apply De Morgan's law: NOT(NOT A · NOT B) = NOT(NOT A) + NOT(NOT B) = A + B = A OR B. This is the classic 3-NAND implementation of OR — a direct consequence of NAND being a universal gate. Distractor A: for A=1, B=0, Gate 1→0, Gate 2→1, Gate 3=NAND(0,1)=1, but A AND B=0 — wrong. Distractor B ignores Gate 2 entirely. Distractor D: for A=1, B=1, the network outputs NAND(0,0)=1, but A XOR B=0 — wrong."
+  },
+  {
+    "id": "x1108b",
+    "topic": "kirchhoff",
+    "diff": 3,
+    "type": "num",
+    "q": "The schematic shows a two-mesh ladder circuit driven by a single 18 V source. Mesh currents I₁ (left mesh) and I₂ (right mesh) are both defined clockwise. Find the magnitude of the current, in amperes, flowing through the shared 6 Ω resistor.",
+    "svg": "<svg viewBox=\"0 0 360 200\" role=\"img\" aria-label=\"Two-mesh ladder circuit: 18 V source left, 3 ohm top, shared 6 ohm middle, 2 ohm right\"><g stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\"><line x1=\"50\" y1=\"50\" x2=\"50\" y2=\"86\"/><line x1=\"36\" y1=\"86\" x2=\"64\" y2=\"86\"/><line x1=\"42\" y1=\"98\" x2=\"58\" y2=\"98\"/><line x1=\"50\" y1=\"98\" x2=\"50\" y2=\"160\"/><line x1=\"50\" y1=\"50\" x2=\"80\" y2=\"50\"/><rect x=\"80\" y=\"42\" width=\"65\" height=\"16\"/><line x1=\"145\" y1=\"50\" x2=\"180\" y2=\"50\"/><line x1=\"180\" y1=\"50\" x2=\"310\" y2=\"50\"/><line x1=\"180\" y1=\"50\" x2=\"180\" y2=\"76\"/><rect x=\"172\" y=\"76\" width=\"16\" height=\"52\"/><line x1=\"180\" y1=\"128\" x2=\"180\" y2=\"160\"/><line x1=\"310\" y1=\"50\" x2=\"310\" y2=\"76\"/><rect x=\"302\" y=\"76\" width=\"16\" height=\"52\"/><line x1=\"310\" y1=\"128\" x2=\"310\" y2=\"160\"/><line x1=\"50\" y1=\"160\" x2=\"310\" y2=\"160\"/></g><g fill=\"currentColor\" font-family=\"system-ui,sans-serif\" font-size=\"13\" text-anchor=\"middle\"><text x=\"112\" y=\"38\">3 Ω</text><text x=\"197\" y=\"105\">6 Ω</text><text x=\"330\" y=\"105\">2 Ω</text><text x=\"27\" y=\"90\">+</text><text x=\"27\" y=\"102\">−</text><text x=\"27\" y=\"118\">18 V</text><text x=\"112\" y=\"125\">I₁</text><text x=\"245\" y=\"125\">I₂</text></g></svg>",
+    "caption": "Ladder circuit: 18 V source, 3 Ω series branch, shared 6 Ω centre leg, 2 Ω terminating branch. Both mesh currents clockwise.",
+    "ans": 1,
+    "unit": "A",
+    "tol": 0.02,
+    "explain": "Write mesh equations (self-resistance × own current minus shared resistance × other current = net source voltage). Mesh 1: (3+6)I₁ − 6I₂ = 18 → 9I₁ − 6I₂ = 18. Mesh 2: (6+2)I₂ − 6I₁ = 0 → −6I₁ + 8I₂ = 0. From equation 2: I₁ = (4/3)I₂. Substitute into equation 1: 9·(4/3)I₂ − 6I₂ = 12I₂ − 6I₂ = 6I₂ = 18, so I₂ = 3 A and I₁ = 4 A. The shared 6 Ω carries the difference of the two mesh currents: |I₁ − I₂| = |4 − 3| = 1 A. Verification — Mesh 1: 18 − 3(4) − 6(1) = 0 ✓; Mesh 2: 6(1) − 2(3) = 0 ✓. A common error is treating the two meshes as independent, applying Ohm's law to the 6 Ω without the opposing I₂ contribution, which incorrectly gives 18/9 = 2 A."
   }
 ]

@@ -128,5 +128,31 @@
     ],
     "ans": 2,
     "explain": "Fjord-type estuaries (e.g., Norwegian fjords, Puget Sound) are glacially scoured, often hundreds of meters deep, and have a shallow bedrock sill at the seaward entrance. The sill limits exchange of dense, saline deep water with the ocean; fresh river water flows seaward near the surface while cold, salty water is trapped below the sill depth — producing strong two-layer stratification and very long residence times for the deep layer. Choice A describes a coastal-plain (drowned-river-valley) estuary such as Chesapeake Bay. Choice B describes a bar-built or lagoonal estuary such as Pamlico Sound. Choice D describes an inverse or hypersaline estuary typical of arid coasts, such as the Laguna Madre."
+  },
+  {
+    "id": "x1108a",
+    "topic": "nutrients",
+    "diff": 2,
+    "type": "mc",
+    "q": "In temperate coastal marine and estuarine waters, which nutrient most commonly limits phytoplankton growth, and what management priority follows from this?",
+    "choices": [
+      "Phosphorus; reducing phosphorus discharge is the top coastal eutrophication priority, just as it is for freshwater lakes",
+      "Nitrogen; reducing nitrogen inputs is the primary coastal management goal, because marine phytoplankton require nitrogen and phosphorus in roughly a 16:1 molar ratio (the Redfield ratio) and coastal waters are typically deficient in dissolved nitrogen relative to that demand",
+      "Carbon dioxide; dense algal blooms exhaust dissolved CO₂ faster than mineral nutrients, shutting down photosynthesis first",
+      "Iron; even coastal upwelling zones deliver insufficient bioavailable iron for sustained phytoplankton growth"
+    ],
+    "ans": 1,
+    "explain": "In most coastal marine and estuarine systems, nitrogen (as dissolved inorganic N — nitrate, nitrite, and ammonium) is the primary limiting nutrient because phytoplankton demand N and P in roughly the Redfield ratio of 16:1 by atoms. Coastal seawater is often N-deficient relative to available P, so adding N triggers blooms while adding P alone does not. The management implication is the opposite of freshwater: coastal eutrophication is best controlled by limiting nitrogen inputs from agricultural runoff, fertilisers, and sewage. Distractor A is wrong: freshwater systems are P-limited, not marine ones — a classic misconception. Distractor C is wrong: dissolved CO₂ is replenished by air-sea gas exchange and carbonate buffering far faster than phytoplankton can consume it. Distractor D is wrong: iron limitation characterises high-nutrient, low-chlorophyll (HNLC) regions of the open ocean (Southern Ocean, equatorial Pacific), not typical coastal zones where iron arrives in river runoff and atmospheric dust."
+  },
+  {
+    "id": "x1108b",
+    "topic": "acid",
+    "diff": 3,
+    "type": "num",
+    "q": "An upwelling event brings cold, CO₂-enriched deep water to the surface along a productive coastline. Laboratory analysis of the upwelled sample gives [Ca²⁺] = 10,000 μmol/kg and [CO₃²⁻] = 90 μmol/kg. At these conditions, the solubility product of aragonite is Ksp = 6.0 × 10⁻⁷ mol²/kg². Calculate the aragonite saturation state Ω for this upwelled water.",
+    "ans": 1.5,
+    "unit": "dimensionless",
+    "tol": 0.02,
+    "explain": "The aragonite saturation state is Ω = [Ca²⁺][CO₃²⁻] / Ksp, where concentrations must be in mol/kg. Step 1 — unit conversion: [Ca²⁺] = 10,000 × 10⁻⁶ = 0.0100 mol/kg; [CO₃²⁻] = 90 × 10⁻⁶ = 9.0 × 10⁻⁵ mol/kg. Step 2 — ion product: 0.0100 × 9.0 × 10⁻⁵ = 9.0 × 10⁻⁷ mol²/kg². Step 3 — divide by Ksp: Ω = (9.0 × 10⁻⁷) / (6.0 × 10⁻⁷) = 1.5. Because Ω > 1 the water is supersaturated with respect to aragonite, so it does not dissolve existing coral skeleton under these conditions — but Ω = 1.5 is relatively low; further acidification or stronger upwelling can push Ω below 1, making the water corrosive to aragonite. A common error is omitting the μmol/kg → mol/kg conversion, which leaves the ion product 10¹² times too large and gives a nonsensically huge Ω."
   }
 ]
