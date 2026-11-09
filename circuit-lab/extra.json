@@ -171,5 +171,33 @@
     "unit": "A",
     "tol": 0.02,
     "explain": "Write mesh equations (self-resistance × own current minus shared resistance × other current = net source voltage). Mesh 1: (3+6)I₁ − 6I₂ = 18 → 9I₁ − 6I₂ = 18. Mesh 2: (6+2)I₂ − 6I₁ = 0 → −6I₁ + 8I₂ = 0. From equation 2: I₁ = (4/3)I₂. Substitute into equation 1: 9·(4/3)I₂ − 6I₂ = 12I₂ − 6I₂ = 6I₂ = 18, so I₂ = 3 A and I₁ = 4 A. The shared 6 Ω carries the difference of the two mesh currents: |I₁ − I₂| = |4 − 3| = 1 A. Verification — Mesh 1: 18 − 3(4) − 6(1) = 0 ✓; Mesh 2: 6(1) − 2(3) = 0 ✓. A common error is treating the two meshes as independent, applying Ohm's law to the 6 Ω without the opposing I₂ contribution, which incorrectly gives 18/9 = 2 A."
+  },
+  {
+    "id": "x1109a",
+    "topic": "history",
+    "diff": 2,
+    "type": "mc",
+    "q": "Gustav Kirchhoff is best known in circuit lab for his two circuit laws, but he also made a landmark contribution to science by collaborating with Robert Bunsen at Heidelberg University. What did their joint work establish?",
+    "choices": [
+      "That blackbody radiation is emitted in discrete packets — a discovery that launched quantum mechanics",
+      "That every chemical element emits and absorbs light at a unique set of wavelengths, enabling identification of elements in distant stars",
+      "That the force between magnetic poles obeys the same inverse-square law as Coulomb's force between electric charges",
+      "That electromagnetic waves travel at the speed of light, confirming Maxwell's wave theory"
+    ],
+    "ans": 1,
+    "explain": "Kirchhoff and Bunsen developed spectral analysis (spectroscopy) at Heidelberg in the late 1850s–1860s. They showed that each element has a characteristic line spectrum and used this to identify sodium in the solar spectrum by matching solar absorption lines against lab emission lines — the first remote chemical analysis of a star. Choice A is Planck's 1900 quantum theory (Kirchhoff did formulate a law of thermal radiation, but the quantum step was Planck's, not a Kirchhoff–Bunsen result). Choice C is an inverse-square magnetic law explored by Coulomb and others, unrelated to the Kirchhoff–Bunsen collaboration. Choice D summarises Hertz's 1887 radio-wave experiments."
+  },
+  {
+    "id": "x1109b",
+    "topic": "charges",
+    "diff": 3,
+    "type": "num",
+    "q": "Three point charges sit on the x-axis: q₁ = +3.0 μC at x = 0, q₂ = −1.0 μC at x = 0.20 m, and q₃ = +2.0 μC at x = 0.40 m. Using k = 8.99 × 10⁹ N·m²/C², find the magnitude of the net electrostatic force on q₂, in newtons.",
+    "svg": "<svg viewBox=\"0 0 420 100\" role=\"img\" aria-label=\"Three collinear point charges\"><g stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\"><line x1=\"20\" y1=\"52\" x2=\"395\" y2=\"52\"/><polyline points=\"388,47 395,52 388,57\"/><circle cx=\"60\" cy=\"52\" r=\"12\"/><circle cx=\"210\" cy=\"52\" r=\"12\"/><circle cx=\"360\" cy=\"52\" r=\"12\"/></g><g fill=\"currentColor\" font-family=\"system-ui,sans-serif\" text-anchor=\"middle\" font-size=\"12\"><text x=\"60\" y=\"14\">q₁ = +3.0 μC</text><text x=\"210\" y=\"14\">q₂ = −1.0 μC</text><text x=\"360\" y=\"14\">q₃ = +2.0 μC</text><text x=\"60\" y=\"78\">x = 0</text><text x=\"210\" y=\"78\">x = 0.20 m</text><text x=\"360\" y=\"78\">x = 0.40 m</text><text x=\"400\" y=\"55\" text-anchor=\"start\">x</text></g></svg>",
+    "caption": "Three collinear point charges spaced 0.20 m apart.",
+    "ans": 0.225,
+    "unit": "N",
+    "tol": 0.02,
+    "explain": "Step 1 — force directions on q₂. q₁ (+) and q₂ (−) attract, pulling q₂ toward −x; q₃ (+) and q₂ (−) attract, pulling q₂ toward +x. The two forces oppose each other. Step 2 — Coulomb magnitudes (both pairs share r = 0.20 m): F₁₂ = (8.99×10⁹)(3.0×10⁻⁶)(1.0×10⁻⁶)/(0.20)² = 0.6743 N; F₃₂ = (8.99×10⁹)(2.0×10⁻⁶)(1.0×10⁻⁶)/(0.20)² = 0.4495 N. Step 3 — net magnitude: |0.6743 − 0.4495| = 0.2248 N ≈ 0.225 N (net toward q₁). Common error: adding both forces instead of subtracting opposing contributions, giving 1.12 N — more than four times too large."
   }
 ]

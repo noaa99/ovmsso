@@ -154,5 +154,31 @@
     "unit": "dimensionless",
     "tol": 0.02,
     "explain": "The aragonite saturation state is Ω = [Ca²⁺][CO₃²⁻] / Ksp, where concentrations must be in mol/kg. Step 1 — unit conversion: [Ca²⁺] = 10,000 × 10⁻⁶ = 0.0100 mol/kg; [CO₃²⁻] = 90 × 10⁻⁶ = 9.0 × 10⁻⁵ mol/kg. Step 2 — ion product: 0.0100 × 9.0 × 10⁻⁵ = 9.0 × 10⁻⁷ mol²/kg². Step 3 — divide by Ksp: Ω = (9.0 × 10⁻⁷) / (6.0 × 10⁻⁷) = 1.5. Because Ω > 1 the water is supersaturated with respect to aragonite, so it does not dissolve existing coral skeleton under these conditions — but Ω = 1.5 is relatively low; further acidification or stronger upwelling can push Ω below 1, making the water corrosive to aragonite. A common error is omitting the μmol/kg → mol/kg conversion, which leaves the ion product 10¹² times too large and gives a nonsensically huge Ω."
+  },
+  {
+    "id": "x1109a",
+    "topic": "reef",
+    "diff": 2,
+    "type": "mc",
+    "q": "Reef-building (hermatypic) corals are rarely found below 50 meters, even in the clearest tropical ocean water. What is the PRIMARY reason for this depth limit?",
+    "choices": [
+      "Water pressure at depth compresses the coral's calcium carbonate skeleton faster than calcification can repair it",
+      "Sea temperatures below 50 m drop beneath the 18 °C minimum that reef-building corals require, shutting down calcification",
+      "Reef-building corals depend on photosynthesis by their symbiotic zooxanthellae, which require sufficient sunlight — available only within the euphotic zone, typically the top 30–50 m in clear tropical water",
+      "Aragonite saturation states fall below Ω = 1 by 50 m depth in the tropics, causing newly formed coral skeleton to dissolve as fast as it is deposited"
+    ],
+    "ans": 2,
+    "explain": "Hermatypic corals host zooxanthellae (symbiotic dinoflagellates) that supply up to 90% of the coral's energy through photosynthesis. Without adequate light, zooxanthellae cannot photosynthesize; without that energy the coral cannot sustain the high calcification rates needed to build reef. Light attenuates exponentially with depth, restricting hermatypic corals to the euphotic zone. Choice A is wrong — hydrostatic pressure at 50 m (~5 atm) does not damage coral skeletons. Choice B is a confounding factor in some regions, but light — not temperature — is the dominant control in clear, warm tropical seas. Choice D is incorrect: in warm, shallow tropical water Ω for aragonite is well above 1 (typically 2–4); corrosive undersaturation occurs only in deeper, cooler, CO₂-enriched water."
+  },
+  {
+    "id": "x1109b",
+    "topic": "param",
+    "diff": 3,
+    "type": "num",
+    "q": "Three gravimetric tests are performed on a water sample from a turbid tidal estuary: (1) Total solids (TS) by evaporating 500 mL of unfiltered sample = 650 mg/L; (2) Total dissolved solids (TDS) by filtering through a 0.45 μm membrane then evaporating the filtrate = 420 mg/L; (3) A volatile-solids ignition test at 550 °C shows 40% of the total suspended solids burn off. What is the concentration of fixed (non-volatile) suspended solids, in mg/L?",
+    "ans": 138,
+    "unit": "mg/L",
+    "tol": 0.02,
+    "explain": "Step 1 — derive TSS from the mass-balance identity TS = TDS + TSS: TSS = 650 − 420 = 230 mg/L. Step 2 — volatile suspended solids (VSS): VSS = 0.40 × 230 = 92 mg/L. Step 3 — fixed (non-volatile) suspended solids: FSS = TSS − VSS = 230 − 92 = 138 mg/L. Fixed solids are mostly inorganic (sand, silt, clay); volatile solids are organic matter that oxidises at 550 °C. A common error is omitting Step 1 and treating the two given values (650 and 420) as components of TSS rather than deriving TSS first from the mass-balance identity."
   }
 ]
