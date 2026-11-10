@@ -180,5 +180,31 @@
     "unit": "mg/L",
     "tol": 0.02,
     "explain": "Step 1 — derive TSS from the mass-balance identity TS = TDS + TSS: TSS = 650 − 420 = 230 mg/L. Step 2 — volatile suspended solids (VSS): VSS = 0.40 × 230 = 92 mg/L. Step 3 — fixed (non-volatile) suspended solids: FSS = TSS − VSS = 230 − 92 = 138 mg/L. Fixed solids are mostly inorganic (sand, silt, clay); volatile solids are organic matter that oxidises at 550 °C. A common error is omitting Step 1 and treating the two given values (650 and 420) as components of TSS rather than deriving TSS first from the mass-balance identity."
+  },
+  {
+    "id": "x1110a",
+    "topic": "calc",
+    "diff": 3,
+    "type": "num",
+    "q": "A coastal estuary receives fresh river water at 400 m³/s (TDS = 250 mg/L) and ocean water through a tidal inlet at 100 m³/s (salinity = 32 ppt). Treat seawater density as 1.000 kg/L and use the equivalence 1 ppt ≈ 1 000 mg/L at this density. What is the TDS concentration of the fully mixed estuary water, in mg/L?",
+    "ans": 6600,
+    "unit": "mg/L",
+    "tol": 0.02,
+    "explain": "Step 1 — convert ocean salinity to mg/L: 32 ppt = 32 g/kg; at ρ = 1.000 kg/L one litre weighs 1 kg, so 32 g/L = 32 000 mg/L. Step 2 — volume-weighted mixing (same form as C₁V₁ + C₂V₂ = C_mix·(V₁ + V₂)): TDS_mix = (Q_river × TDS_river + Q_ocean × TDS_ocean) / (Q_river + Q_ocean) = (400 × 250 + 100 × 32 000) / (400 + 100) = (100 000 + 3 200 000) / 500 = 3 300 000 / 500 = 6 600 mg/L. Common error: using 32 instead of 32 000 for the ocean concentration (forgetting the ppt-to-mg/L conversion) gives (400 × 250 + 100 × 32) / 500 = 206 mg/L — plausible but off by a factor of ~32 on the ocean contribution."
+  },
+  {
+    "id": "x1110b",
+    "topic": "salino",
+    "diff": 2,
+    "type": "mc",
+    "q": "After lowering their student-built hydrometer into a salinity test sample, a competitor notices small air bubbles clinging to the lower portion of the submerged stem. How do these bubbles affect the specific-gravity reading, and in which direction?",
+    "choices": [
+      "Each bubble displaces water (adding upward buoyant force) without adding significant weight, so the hydrometer floats higher than it should — the stem reads a specific gravity HIGHER than the true value, overestimating salinity.",
+      "The bubbles coat the glass and increase surface friction, holding the hydrometer at an artificially low position — the stem reads a specific gravity LOWER than the true value.",
+      "The bubbles add extra mass to the lower stem, causing the hydrometer to sink deeper — the stem reads a specific gravity LOWER than the true value.",
+      "Attached bubbles are not part of the fluid displacement zone, so they have no effect on the reading."
+    ],
+    "ans": 0,
+    "explain": "By Archimedes' principle a floating object displaces fluid equal in weight to its own weight. Air bubbles clinging to the submerged stem displace additional water (each bubble's volume provides upward buoyant force ≈ ρ_water × V_bubble × g) while contributing negligible weight (ρ_air ≈ 1.2 kg/m³ vs ρ_seawater ≈ 1 025 kg/m³, a factor of ~850). The net effect is extra upward force, pushing the hydrometer higher — more stem emerges above the surface and the scale reads a higher specific gravity, overestimating salinity. Standard technique is to give the hydrometer a gentle half-rotation after placing it to detach bubbles before reading. Choice B is incorrect: a hydrometer reaches equilibrium by floating freely, not by friction against the cylinder wall. Choice C is incorrect: air density is ~850× less than seawater; bubbles add negligible weight. Choice D is incorrect: bubbles attached to the submerged stem DO displace water and DO alter buoyancy."
   }
 ]

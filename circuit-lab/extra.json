@@ -199,5 +199,31 @@
     "unit": "N",
     "tol": 0.02,
     "explain": "Step 1 — force directions on q₂. q₁ (+) and q₂ (−) attract, pulling q₂ toward −x; q₃ (+) and q₂ (−) attract, pulling q₂ toward +x. The two forces oppose each other. Step 2 — Coulomb magnitudes (both pairs share r = 0.20 m): F₁₂ = (8.99×10⁹)(3.0×10⁻⁶)(1.0×10⁻⁶)/(0.20)² = 0.6743 N; F₃₂ = (8.99×10⁹)(2.0×10⁻⁶)(1.0×10⁻⁶)/(0.20)² = 0.4495 N. Step 3 — net magnitude: |0.6743 − 0.4495| = 0.2248 N ≈ 0.225 N (net toward q₁). Common error: adding both forces instead of subtracting opposing contributions, giving 1.12 N — more than four times too large."
+  },
+  {
+    "id": "x1110a",
+    "topic": "acdc",
+    "diff": 2,
+    "type": "mc",
+    "q": "The full-cycle average of a pure sinusoidal AC voltage is zero. Why does a resistor connected to this source still dissipate power continuously?",
+    "choices": [
+      "Current in a pure resistor leads voltage by 90°, so when voltage is zero, current is at its peak; the product v·i is therefore always positive and averages to a nonzero value.",
+      "Power equals v²/R; since v² = V²_peak·sin²(ωt) is always non-negative, its cycle average is V²_peak/2 — exactly what V_RMS captures: V_RMS = V_peak/√2. Average power P = V²_RMS/R is therefore nonzero even though v averages to zero.",
+      "The resistor dissipates energy only during the positive half-cycle; during the negative half-cycle no power is dissipated, so the cycle average equals half the positive-half-cycle average — still nonzero.",
+      "The full-cycle average of AC voltage is not zero; a true AC voltmeter reads the RMS value V_peak/√2, which is the genuine cycle average."
+    ],
+    "ans": 1,
+    "explain": "Power in a resistor at every instant is p(t) = v(t)²/R = V²_peak·sin²(ωt)/R. Because v² ≥ 0 always, p(t) ≥ 0 always — the resistor converts electrical energy to heat in BOTH half-cycles, never reversing. The cycle average of sin²(ωt) is 1/2, giving P_avg = V²_peak/(2R) = V²_RMS/R, where V_RMS ≡ V_peak/√2. The key point: average(v²) ≠ [average(v)]² — squaring and averaging are not interchangeable. Choice A is wrong: in a pure resistor V and I are exactly IN phase (0° shift), not 90° — a 90° phase lead belongs to capacitors. Choice C is wrong: the negative half-cycle also produces positive power (p = v²/R ≥ 0 whether v is positive or negative). Choice D is wrong: the arithmetic cycle average of a sine wave IS zero; V_RMS is the root-mean-SQUARE, not the arithmetic mean."
+  },
+  {
+    "id": "x1110b",
+    "topic": "ohm",
+    "diff": 3,
+    "type": "num",
+    "q": "A light bulb is rated 60 W at 120 V RMS and behaves as a pure resistor at its operating temperature. It is connected to a standard 120 V RMS sinusoidal AC outlet. What is the peak instantaneous power, in watts, dissipated by the bulb at the moment the voltage reaches its positive maximum?",
+    "ans": 120,
+    "unit": "W",
+    "tol": 0.02,
+    "explain": "Step 1 — find bulb resistance from the rating: R = V²_RMS / P_avg = (120)² / 60 = 14 400 / 60 = 240 Ω. Step 2 — find peak voltage: V_peak = V_RMS × √2 = 120 × 1.4142 ≈ 169.7 V. Step 3 — peak instantaneous power: P_peak = V²_peak / R = (169.7)² / 240 = 28 800 / 240 = 120 W. Shortcut: P_peak = (√2 × V_RMS)² / R = 2 × V²_RMS / R = 2 × P_avg = 2 × 60 = 120 W. For any resistor on sinusoidal AC, peak instantaneous power is always exactly twice the average power. Common error: substituting V_RMS directly into P = V²/R gives 60 W — that is the rated average, not the peak; the √2 step from RMS to peak must not be skipped."
   }
 ]
