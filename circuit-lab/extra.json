@@ -225,5 +225,33 @@
     "unit": "W",
     "tol": 0.02,
     "explain": "Step 1 — find bulb resistance from the rating: R = V²_RMS / P_avg = (120)² / 60 = 14 400 / 60 = 240 Ω. Step 2 — find peak voltage: V_peak = V_RMS × √2 = 120 × 1.4142 ≈ 169.7 V. Step 3 — peak instantaneous power: P_peak = V²_peak / R = (169.7)² / 240 = 28 800 / 240 = 120 W. Shortcut: P_peak = (√2 × V_RMS)² / R = 2 × V²_RMS / R = 2 × P_avg = 2 × 60 = 120 W. For any resistor on sinusoidal AC, peak instantaneous power is always exactly twice the average power. Common error: substituting V_RMS directly into P = V²/R gives 60 W — that is the rated average, not the peak; the √2 step from RMS to peak must not be skipped."
+  },
+  {
+    "id": "x1111a",
+    "topic": "history",
+    "diff": 2,
+    "type": "mc",
+    "q": "Georg Ohm published his resistance law in 1827 in 'Die galvanische Kette, mathematisch bearbeitet.' How did the German scientific establishment initially respond, and how was his work eventually vindicated internationally?",
+    "choices": [
+      "German universities welcomed the work immediately, and Ohm was appointed to a full professorship in Berlin within two years of publication.",
+      "A senior German official dismissed the work as 'a tissue of naked fantasies,' but the Royal Society of London awarded Ohm the Copley Medal in 1841 — recognition that ultimately overcame the domestic resistance and led to his appointment at Munich.",
+      "His work was quietly shelved for decades until Michael Faraday publicised it during his Royal Institution lectures, bringing it to international attention.",
+      "Ohm published under a pseudonym to avoid professional retaliation; his identity as the author was confirmed only posthumously when his private notebooks were released."
+    ],
+    "ans": 1,
+    "explain": "Ohm's work was poorly received in his home country: the dismissive phrase 'a tissue of naked fantasies' is documented in connection with the Prussian educational establishment. International recognition came first from Britain — the Royal Society of London awarded him the Copley Medal in 1841 — and German institutions then acknowledged him, culminating in his Munich professorship in 1849. Choice A is false: the professorship came 22 years after publication, not within two. Choice C is false: Faraday played no role in vindicating Ohm's law; the work became accepted through Ohm's own published mathematical derivation and later foreign recognition. Choice D is false: Ohm published under his own name throughout."
+  },
+  {
+    "id": "x1111b",
+    "topic": "charges",
+    "diff": 3,
+    "type": "num",
+    "q": "The figure shows two horizontal parallel conducting plates separated by d = 0.030 m with V = 450 V applied (positive plate on top). A particle carrying charge q = +5.0 μC is placed midway between the plates. Find the magnitude of the electrostatic force on the particle, in newtons. (Use E = V/d, then F = qE.)",
+    "svg": "<svg viewBox=\"0 0 400 190\" role=\"img\" aria-label=\"Two horizontal parallel conducting plates 0.030 m apart with 450 V applied, +q charge midway between them\"><g stroke=\"currentColor\" stroke-width=\"2.5\" fill=\"none\" stroke-linecap=\"round\"><line x1=\"60\" y1=\"52\" x2=\"258\" y2=\"52\"/><line x1=\"60\" y1=\"152\" x2=\"258\" y2=\"152\"/><circle cx=\"155\" cy=\"102\" r=\"15\"/></g><g fill=\"currentColor\" font-family=\"system-ui,sans-serif\" font-size=\"13\" text-anchor=\"middle\"><text x=\"90\" y=\"49\">+</text><text x=\"130\" y=\"49\">+</text><text x=\"170\" y=\"49\">+</text><text x=\"210\" y=\"49\">+</text><text x=\"90\" y=\"166\">&#8722;</text><text x=\"130\" y=\"166\">&#8722;</text><text x=\"170\" y=\"166\">&#8722;</text><text x=\"210\" y=\"166\">&#8722;</text><text x=\"155\" y=\"107\" font-size=\"12\">+q</text></g><g stroke=\"currentColor\" stroke-width=\"1.5\" fill=\"none\"><line x1=\"275\" y1=\"52\" x2=\"275\" y2=\"152\"/><polyline points=\"270,64 275,52 280,64\"/><polyline points=\"270,140 275,152 280,140\"/></g><text x=\"284\" y=\"105\" fill=\"currentColor\" font-family=\"system-ui,sans-serif\" font-size=\"11\" text-anchor=\"start\">d = 0.030 m</text><text x=\"155\" y=\"24\" fill=\"currentColor\" font-family=\"system-ui,sans-serif\" font-size=\"12\" text-anchor=\"middle\">V = 450 V</text><text x=\"41\" y=\"56\" fill=\"currentColor\" font-family=\"system-ui,sans-serif\" font-size=\"11\" text-anchor=\"end\">(+)</text><text x=\"41\" y=\"156\" fill=\"currentColor\" font-family=\"system-ui,sans-serif\" font-size=\"11\" text-anchor=\"end\">(&#8722;)</text></svg>",
+    "caption": "Parallel plates with gap d = 0.030 m and V = 450 V; +q charge placed midway.",
+    "ans": 0.075,
+    "unit": "N",
+    "tol": 0.02,
+    "explain": "Step 1 — uniform field between the plates: E = V/d = 450 / 0.030 = 15 000 V/m. Step 2 — force on the charge: F = qE = (5.0×10⁻⁶ C)(15 000 V/m) = 0.075 N. The field points from the positive plate (top) to the negative plate (bottom), so the force on the positive charge is directed downward; the question asks for magnitude only. Common error 1: substituting into F = qV directly instead of first finding the field via E = V/d, giving (5×10⁻⁶)(450) = 2.25×10⁻³ N — wrong because V is not the field. Common error 2: forgetting to convert μC to C, giving 5.0 × 15 000 = 75 000 N — a factor of 10⁶ too large."
   }
 ]

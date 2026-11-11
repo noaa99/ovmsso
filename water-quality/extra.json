@@ -206,5 +206,31 @@
     ],
     "ans": 0,
     "explain": "By Archimedes' principle a floating object displaces fluid equal in weight to its own weight. Air bubbles clinging to the submerged stem displace additional water (each bubble's volume provides upward buoyant force ≈ ρ_water × V_bubble × g) while contributing negligible weight (ρ_air ≈ 1.2 kg/m³ vs ρ_seawater ≈ 1 025 kg/m³, a factor of ~850). The net effect is extra upward force, pushing the hydrometer higher — more stem emerges above the surface and the scale reads a higher specific gravity, overestimating salinity. Standard technique is to give the hydrometer a gentle half-rotation after placing it to detach bubbles before reading. Choice B is incorrect: a hydrometer reaches equilibrium by floating freely, not by friction against the cylinder wall. Choice C is incorrect: air density is ~850× less than seawater; bubbles add negligible weight. Choice D is incorrect: bubbles attached to the submerged stem DO displace water and DO alter buoyancy."
+  },
+  {
+    "id": "x1111a",
+    "topic": "reef",
+    "diff": 2,
+    "type": "mc",
+    "q": "Darwin's 1842 theory of coral reef formation links three reef types through one continuous process. Which of the following correctly describes that process and the sequence of reef types?",
+    "choices": [
+      "Fringing reef → patch reef → barrier reef → atoll: each stage forms as reef debris accumulates on the seafloor, pushing the reef progressively further from shore over time.",
+      "Atoll → barrier reef → fringing reef: ocean currents and storm swells gradually carry reef sediment shoreward over millennia, eventually rebuilding the reef against the coastline.",
+      "Fringing reef → barrier reef → atoll: as the volcanic island beneath the reef slowly subsides, the reef becomes separated from the receding shore by a lagoon; continued subsidence eventually leaves only a ring of coral with no island remaining.",
+      "Barrier reef → fringing reef → atoll: barrier reefs are the original structure, and storms progressively push reef material inshore and then into a central ring over centuries."
+    ],
+    "ans": 2,
+    "explain": "Darwin proposed the subsidence theory from Beagle observations and published it in 1842. A new volcanic island first develops a fringing reef that grows along its shallow nearshore waters. As the volcanic foundation slowly subsides over millions of years, coral continues growing upward to stay in the photic zone, but the shoreline retreats inward, opening a lagoon between coast and reef — the barrier-reef stage. If subsidence continues until the island disappears entirely below sea level, only the reef ring remains as an atoll. Boreholes through Pacific atolls confirmed Darwin's prediction by encountering volcanic basalt hundreds of metres beneath the reef limestone. Distractor A adds a spurious patch-reef intermediate; patch reefs are features found within lagoons, not a step in Darwin's succession. Distractor B reverses the sequence. Distractor D misidentifies the starting point and incorrectly invokes storm-driven lateral transport."
+  },
+  {
+    "id": "x1111b",
+    "topic": "param",
+    "diff": 3,
+    "type": "num",
+    "q": "A technician expects the fecal coliform count in a marina water sample to be very high. She dilutes 10.0 mL of the original sample with distilled water to a total volume of 1000 mL, then passes all 1000 mL of the diluted mixture through a membrane filter. After incubation at 44.5 °C for 24 hours, the membrane shows 136 colonies. Report the fecal coliform count in the original, undiluted sample, in colonies per 100 mL.",
+    "ans": 1360,
+    "unit": "colonies/100 mL",
+    "tol": 0.02,
+    "explain": "Step 1 — identify the volume of original sample in the filtered volume: the entire 1000 mL filtrate was prepared from only 10.0 mL of original sample, so every colony on the membrane represents bacteria that came from 10.0 mL of original water. Step 2 — normalize to 100 mL: (136 colonies / 10.0 mL) × 100 mL = 1360 colonies per 100 mL. Equivalent formula: colonies/100 mL = (count × 100) ÷ mL_original_in_filter = (136 × 100) ÷ 10.0 = 1360. At this count the sample far exceeds the US marine recreational-water single-sample limit of 35 enterococcus CFU/100 mL. Common error: treating the 1000 mL filtrate as if it were 1000 mL of undiluted sample, then reporting (136 ÷ 1000) × 100 = 13.6 colonies/100 mL — this ignores the 100-fold dilution and understates the contamination by a factor of 100."
   }
 ]
