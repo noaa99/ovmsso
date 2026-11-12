@@ -223,6 +223,32 @@
     "explain": "Darwin proposed the subsidence theory from Beagle observations and published it in 1842. A new volcanic island first develops a fringing reef that grows along its shallow nearshore waters. As the volcanic foundation slowly subsides over millions of years, coral continues growing upward to stay in the photic zone, but the shoreline retreats inward, opening a lagoon between coast and reef — the barrier-reef stage. If subsidence continues until the island disappears entirely below sea level, only the reef ring remains as an atoll. Boreholes through Pacific atolls confirmed Darwin's prediction by encountering volcanic basalt hundreds of metres beneath the reef limestone. Distractor A adds a spurious patch-reef intermediate; patch reefs are features found within lagoons, not a step in Darwin's succession. Distractor B reverses the sequence. Distractor D misidentifies the starting point and incorrectly invokes storm-driven lateral transport."
   },
   {
+    "id": "x1112a",
+    "topic": "calc",
+    "diff": 3,
+    "type": "num",
+    "q": "A wastewater sample with high organic load is prepared for BOD₅ analysis. The 300 mL BOD bottle contains 30 mL of sample and 270 mL of seeded dilution water. A seed control bottle contains 300 mL of seeded dilution water only. Both bottles begin at DO = 8.6 mg/L. After 5 days at 20 °C, the sample bottle reads 2.8 mg/L and the seed control reads 7.6 mg/L. Using BOD₅ = [(D₁ − D₂) − (B₁ − B₂)·f] / P, where D₁ and D₂ are the initial and final DO of the sample bottle, B₁ and B₂ are the initial and final DO of the seed control, f = mL seed water in sample bottle ÷ bottle volume, and P = mL sample ÷ bottle volume, what is the BOD₅ of the sample, in mg/L?",
+    "ans": 49.0,
+    "unit": "mg/L",
+    "tol": 0.02,
+    "explain": "Step 1 — identify fractions: P = 30/300 = 0.10; f = 270/300 = 0.90. Step 2 — calculate oxygen depletions: (D₁ − D₂) = 8.6 − 2.8 = 5.8 mg/L; (B₁ − B₂) = 8.6 − 7.6 = 1.0 mg/L. Step 3 — seed correction removes oxygen consumed by micro-organisms in the seeded dilution water itself; seed contribution in the sample bottle = 1.0 × 0.90 = 0.90 mg/L. Step 4 — corrected depletion due to sample alone = 5.8 − 0.90 = 4.90 mg/L. Step 5 — BOD₅ = 4.90 / 0.10 = 49.0 mg/L. A common error is omitting the seed correction entirely, giving 5.8/0.10 = 58 mg/L — this overstates BOD by attributing all oxygen depletion to the sample. A second error is treating P = 0.10 as the whole number 10 instead of the decimal fraction, giving 0.49 mg/L."
+  },
+  {
+    "id": "x1112b",
+    "topic": "salino",
+    "diff": 2,
+    "type": "mc",
+    "q": "Salinity in ppt is defined as grams of dissolved salt per kilogram of solution (mass per mass). A student needs to prepare a 20 ppt NaCl calibration solution for her salinometer. Which procedure correctly produces a 20 ppt solution?",
+    "choices": [
+      "Weigh 20 g of NaCl and dissolve it in 980 g of distilled water; total solution mass = 20 + 980 = 1000 g, so salinity = 20/1000 = 20 ppt.",
+      "Weigh 20 g of NaCl and dissolve it in 1000 g of distilled water; since the salt mass is 20 g and the solvent mass is 1000 g, the salinity is 20 g/1000 g = 20 ppt.",
+      "Transfer 20 g of NaCl into a 1000 mL volumetric flask and dilute to the 1000 mL mark; at 20 °C water density is 1.000 g/mL, so 1000 mL = 1000 g and salinity = 20/1000 = 20 ppt.",
+      "Dissolve NaCl in 1000 mL of distilled water while stirring until the hydrometer reads SG = 1.0200; this specific gravity corresponds exactly to 20 ppt at 20 °C."
+    ],
+    "ans": 0,
+    "explain": "Ppt (parts per thousand) is a mass/mass ratio: g of salt per kg of SOLUTION (salt + water together). Choice A correctly places 20 g salt in 980 g water so the total solution mass is 1000 g → 20/1000 = 20 ppt. Choice B uses 'per kg of SOLVENT': the solvent mass is 1000 g but the solution mass is 1020 g, giving 20/1020 = 19.6 ppt, not 20. Choice C uses a volumetric flask (fixes volume, not mass); 1000 mL of a ~20 ppt saline solution has a mass of about 1013 g (density ≈ 1.013 g/mL), so the actual concentration is 20/1013 ≈ 19.75 ppt. Choice D is doubly wrong: SG 1.0200 at 20 °C corresponds to roughly 25 ppt, not 20 ppt (20 ppt gives SG ≈ 1.013–1.016); and using the salinometer to define its own calibration standard is circular."
+  },
+  {
     "id": "x1111b",
     "topic": "param",
     "diff": 3,

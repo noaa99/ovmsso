@@ -242,6 +242,32 @@
     "explain": "Ohm's work was poorly received in his home country: the dismissive phrase 'a tissue of naked fantasies' is documented in connection with the Prussian educational establishment. International recognition came first from Britain — the Royal Society of London awarded him the Copley Medal in 1841 — and German institutions then acknowledged him, culminating in his Munich professorship in 1849. Choice A is false: the professorship came 22 years after publication, not within two. Choice C is false: Faraday played no role in vindicating Ohm's law; the work became accepted through Ohm's own published mathematical derivation and later foreign recognition. Choice D is false: Ohm published under his own name throughout."
   },
   {
+    "id": "x1112a",
+    "topic": "acdc",
+    "diff": 3,
+    "type": "num",
+    "q": "A resistive heating element is rated 800 W at 240 V RMS. What is the peak current, in amperes, drawn from the supply?",
+    "ans": 4.71,
+    "unit": "A",
+    "tol": 0.02,
+    "explain": "Step 1 — find resistance from the power rating: R = V_rms² / P = (240)² / 800 = 57 600 / 800 = 72 Ω. Step 2 — find RMS current: I_rms = V_rms / R = 240 / 72 = 10/3 ≈ 3.333 A. Step 3 — convert to peak: I_peak = I_rms × √2 = (10/3) × 1.4142 ≈ 4.71 A. A common error is computing I_peak = P / V_rms = 800/240 = 3.33 A — this gives I_rms (the value used in the power formula), not I_peak. A second error is computing I_peak = P / V_peak = 800/339 ≈ 2.36 A — this mixes average power with peak voltage."
+  },
+  {
+    "id": "x1112b",
+    "topic": "ohm",
+    "diff": 2,
+    "type": "mc",
+    "q": "A resistor is connected to a DC supply and dissipates power P. The supply voltage is then doubled (from V to 2V) while the resistance stays the same. The new power dissipated is:",
+    "choices": [
+      "2P — voltage doubled, so power doubled.",
+      "4P — power is proportional to voltage squared (P = V²/R), so doubling V quadruples P.",
+      "√2 · P — the same factor that converts between peak and RMS voltage.",
+      "P — a resistor's power dissipation depends only on its resistance, not on voltage."
+    ],
+    "ans": 1,
+    "explain": "P = V²/R. When V → 2V: P_new = (2V)²/R = 4V²/R = 4P. Distractor A uses P = VI but forgets that I also doubles when V doubles (I = V/R → 2V/R = 2I), so P_new = (2V)(2I) = 4VI = 4P — still quadruple, not double. Distractor C (√2 factor) has no basis here — the √2 relationship is between peak and RMS values for a sinusoidal AC signal, not a DC scaling. Distractor D is wrong: resistance sets the proportionality between V² and P (via R), but higher V always means more power in a fixed resistor."
+  },
+  {
     "id": "x1111b",
     "topic": "charges",
     "diff": 3,
