@@ -279,5 +279,33 @@
     "unit": "N",
     "tol": 0.02,
     "explain": "Step 1 — uniform field between the plates: E = V/d = 450 / 0.030 = 15 000 V/m. Step 2 — force on the charge: F = qE = (5.0×10⁻⁶ C)(15 000 V/m) = 0.075 N. The field points from the positive plate (top) to the negative plate (bottom), so the force on the positive charge is directed downward; the question asks for magnitude only. Common error 1: substituting into F = qV directly instead of first finding the field via E = V/d, giving (5×10⁻⁶)(450) = 2.25×10⁻³ N — wrong because V is not the field. Common error 2: forgetting to convert μC to C, giving 5.0 × 15 000 = 75 000 N — a factor of 10⁶ too large."
+  },
+  {
+    "id": "x1113a",
+    "topic": "circuits",
+    "diff": 3,
+    "type": "num",
+    "q": "The schematic shows a Wheatstone bridge. Supply V_s is connected across nodes P (top, +) and Q (bottom, −). The known resistances are R₁ = 200 Ω (arm P→A), R₂ = 400 Ω (arm P→B), and R₄ = 600 Ω (arm B→Q). A sensitive galvanometer between nodes A and B reads exactly zero. Find the unknown resistance Rₓ in arm A→Q, in ohms.",
+    "svg": "<svg viewBox=\"0 0 340 255\" role=\"img\" aria-label=\"Wheatstone bridge: supply on left, R1 P to A top-left, R2 P to B top-right, Rx A to Q bottom-left unknown, R4 B to Q bottom-right, galvanometer G between A and B\"><g stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\"><line x1=\"175\" y1=\"24\" x2=\"22\" y2=\"24\"/><line x1=\"22\" y1=\"24\" x2=\"22\" y2=\"90\"/><line x1=\"10\" y1=\"90\" x2=\"34\" y2=\"90\"/><line x1=\"15\" y1=\"100\" x2=\"29\" y2=\"100\"/><line x1=\"10\" y1=\"110\" x2=\"34\" y2=\"110\"/><line x1=\"15\" y1=\"120\" x2=\"29\" y2=\"120\"/><line x1=\"22\" y1=\"120\" x2=\"22\" y2=\"224\"/><line x1=\"22\" y1=\"224\" x2=\"175\" y2=\"224\"/><line x1=\"175\" y1=\"24\" x2=\"68\" y2=\"124\"/><line x1=\"175\" y1=\"24\" x2=\"287\" y2=\"124\"/><line x1=\"68\" y1=\"124\" x2=\"175\" y2=\"224\"/><line x1=\"287\" y1=\"124\" x2=\"175\" y2=\"224\"/><line x1=\"68\" y1=\"124\" x2=\"152\" y2=\"124\"/><circle cx=\"175\" cy=\"124\" r=\"17\"/><line x1=\"198\" y1=\"124\" x2=\"287\" y2=\"124\"/></g><g fill=\"currentColor\"><circle cx=\"175\" cy=\"24\" r=\"4\"/><circle cx=\"68\" cy=\"124\" r=\"4\"/><circle cx=\"287\" cy=\"124\" r=\"4\"/><circle cx=\"175\" cy=\"224\" r=\"4\"/></g><g fill=\"currentColor\" font-family=\"system-ui,sans-serif\" font-size=\"13\" text-anchor=\"middle\"><text x=\"175\" y=\"13\">P</text><text x=\"53\" y=\"130\" text-anchor=\"end\">A</text><text x=\"302\" y=\"130\" text-anchor=\"start\">B</text><text x=\"175\" y=\"244\">Q</text><text x=\"175\" y=\"129\" font-size=\"11\">G</text><text x=\"8\" y=\"88\" text-anchor=\"end\" font-size=\"11\">+</text><text x=\"8\" y=\"126\" text-anchor=\"end\" font-size=\"11\">&#8722;</text><text x=\"117\" y=\"57\" font-size=\"12\">R&#8321;=200 &#937;</text><text x=\"233\" y=\"57\" font-size=\"12\">R&#8322;=400 &#937;</text><text x=\"117\" y=\"197\" font-size=\"12\">R&#x2093;=?</text><text x=\"233\" y=\"197\" font-size=\"12\">R&#8324;=600 &#937;</text></g></svg>",
+    "caption": "Wheatstone bridge: galvanometer reads zero (balanced). Find Rₓ.",
+    "ans": 300,
+    "unit": "Ω",
+    "tol": 0.02,
+    "explain": "A balanced Wheatstone bridge has zero galvanometer current because V_A = V_B. The left branch (R₁ and Rₓ) and right branch (R₂ and R₄) each form a voltage divider across V_s. Setting the mid-point fractions equal: Rₓ/(R₁+Rₓ) = R₄/(R₂+R₄). Cross-multiplying gives the balance rule R₁×R₄ = R₂×Rₓ. Solving: Rₓ = R₁×R₄/R₂ = 200×600/400 = 300 Ω. Verification — V_A = V_s×300/(200+300) = 0.60 V_s; V_B = V_s×600/(400+600) = 0.60 V_s. ✓ The result is independent of V_s — a hallmark of the bridge that makes it useful for precision resistance measurement. Common error: combining all four resistors as a series–parallel network between P and Q, which yields an equivalent resistance but loses the internal node voltages needed to solve for Rₓ."
+  },
+  {
+    "id": "x1113b",
+    "topic": "control",
+    "diff": 2,
+    "type": "mc",
+    "q": "A branch circuit is wired with 14 AWG wire (NEC rating: 15 A maximum). Its 15 A fuse keeps blowing because a window air conditioner draws a brief 18 A startup surge. The homeowner replaces the 15 A fuse with a 30 A fuse to stop the nuisance blowing. What is the most serious safety hazard this change creates?",
+    "choices": [
+      "The 30 A fuse will blow even more frequently than the 15 A fuse because a higher-rated element stores more heat during inrush.",
+      "The 14 AWG wiring can now carry up to 30 A before the fuse opens, but the wire is only rated for 15 A — currents above 15 A overheat the insulation and can ignite wall framing before the fuse ever responds.",
+      "The air conditioner will draw more current because a higher-rated fuse presents less resistance in the circuit.",
+      "The main breaker in the service panel will trip more often to compensate for the oversized branch fuse."
+    ],
+    "ans": 1,
+    "explain": "A fuse protects the WIRING, not the appliance. 14 AWG copper is rated 15 A continuous; above that, I²R heating raises the conductor temperature until insulation chars and can ignite building materials hidden inside walls — a hazard far worse than a nuisance blow. With a 30 A fuse installed, the wire can carry almost twice its rated current before the overcurrent device responds. The correct fix is a 15 A slow-blow (time-delay) fuse, which tolerates brief motor-start surges while still protecting the wire from sustained overloads. Distractor A is wrong: a 30 A fuse blows at 30 A, so it blows LESS often than a 15 A fuse — that is exactly the danger. Distractor C is wrong: a fuse's resistance is a few milliohms — negligible; the air conditioner's current draw is set by its motor impedance. Distractor D is wrong: the main breaker monitors total service current independently of individual branch fuses."
   }
 ]

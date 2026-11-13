@@ -258,5 +258,31 @@
     "unit": "colonies/100 mL",
     "tol": 0.02,
     "explain": "Step 1 — identify the volume of original sample in the filtered volume: the entire 1000 mL filtrate was prepared from only 10.0 mL of original sample, so every colony on the membrane represents bacteria that came from 10.0 mL of original water. Step 2 — normalize to 100 mL: (136 colonies / 10.0 mL) × 100 mL = 1360 colonies per 100 mL. Equivalent formula: colonies/100 mL = (count × 100) ÷ mL_original_in_filter = (136 × 100) ÷ 10.0 = 1360. At this count the sample far exceeds the US marine recreational-water single-sample limit of 35 enterococcus CFU/100 mL. Common error: treating the 1000 mL filtrate as if it were 1000 mL of undiluted sample, then reporting (136 ÷ 1000) × 100 = 13.6 colonies/100 mL — this ignores the 100-fold dilution and understates the contamination by a factor of 100."
+  },
+  {
+    "id": "x1113a",
+    "topic": "pollution",
+    "diff": 3,
+    "type": "num",
+    "q": "A tributary draining an agricultural watershed enters a coastal estuary at a steady flow rate of 1.5 m³/s. Continuous monitoring shows a dissolved phosphate concentration of 0.80 mg/L. How many kilograms of phosphate enter the estuary from this tributary each day?",
+    "ans": 103.68,
+    "unit": "kg/day",
+    "tol": 0.02,
+    "explain": "Step 1 — convert flow to litres per day: 1.5 m³/s × 1000 L/m³ × 86 400 s/day = 129 600 000 L/day. Step 2 — multiply by concentration to get mass flux: 0.80 mg/L × 129 600 000 L/day = 103 680 000 mg/day. Step 3 — convert to kilograms: 103 680 000 mg ÷ 1 000 000 mg/kg = 103.68 kg/day. This pollutant-load calculation (mass load = concentration × volumetric flow) is the foundation of nutrient-budget modelling for estuaries; even a low phosphate concentration produces a large daily mass input at typical river flow rates, driving eutrophication. Common error 1: forgetting to convert m³ to L (factor of 1000), giving 1.5 × 86 400 = 129 600 m³/day; then 0.80 × 129 600 = 103 680 — this result has mixed units (mg·m³/L) and is 1000× too small. Common error 2: computing only flow × concentration without converting seconds to days (1.5 × 1000 × 0.80 / 1 000 000 = 0.0012 kg/s), yielding a per-second rate and forgetting to scale to 86 400 s/day."
+  },
+  {
+    "id": "x1113b",
+    "topic": "estuary",
+    "diff": 2,
+    "type": "mc",
+    "q": "An estuary on an arid coastline is classified as 'inverse' (sometimes called hypersaline). Which condition most directly produces this reversal of the normal salinity gradient?",
+    "choices": [
+      "River discharge greatly exceeds tidal inflow, flushing saltwater seaward and leaving freshwater throughout the estuary head.",
+      "Evaporation of estuarine water exceeds the combined freshwater inputs from river discharge and rainfall, concentrating dissolved salts so that salinity increases toward the estuary head rather than decreasing.",
+      "Cold dense oceanic water intrudes along the bottom and displaces warm brackish water upward, reversing the vertical density stratification.",
+      "Strong tidal currents mix the estuary to a uniform salinity equal to that of the adjacent open ocean, eliminating any longitudinal gradient."
+    ],
+    "ans": 1,
+    "explain": "In a typical positive estuary, freshwater inflow at the head dilutes seawater entering at the mouth so salinity decreases inland. When net evaporation (evaporation minus precipitation) exceeds the freshwater supply from rivers, the opposite holds: water is removed but salts remain, concentrating them until salinity at the head exceeds that at the mouth — an inverse or hypersaline estuary. Examples include the Laguna Madre (Texas/Mexico), the Persian Gulf, and Spencer Gulf (South Australia). Under the Venice system, inverse estuaries may contain euhaline (30–40 ppt) or hyperhaline (>40 ppt) water in landward reaches. Distractor A describes a strongly flushed, low-salinity estuary — the head is LESS saline than the mouth, which is the normal gradient, not an inverse one. Distractor C describes temperature-driven vertical stratification (thermohaline layering), not a longitudinal salinity reversal along the estuary's length. Distractor D describes a well-mixed estuary with zero longitudinal gradient, which is different from a reversed (inverse) gradient."
   }
 ]
