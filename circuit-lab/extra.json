@@ -307,5 +307,31 @@
     ],
     "ans": 1,
     "explain": "A fuse protects the WIRING, not the appliance. 14 AWG copper is rated 15 A continuous; above that, I²R heating raises the conductor temperature until insulation chars and can ignite building materials hidden inside walls — a hazard far worse than a nuisance blow. With a 30 A fuse installed, the wire can carry almost twice its rated current before the overcurrent device responds. The correct fix is a 15 A slow-blow (time-delay) fuse, which tolerates brief motor-start surges while still protecting the wire from sustained overloads. Distractor A is wrong: a 30 A fuse blows at 30 A, so it blows LESS often than a 15 A fuse — that is exactly the danger. Distractor C is wrong: a fuse's resistance is a few milliohms — negligible; the air conditioner's current draw is set by its motor impedance. Distractor D is wrong: the main breaker monitors total service current independently of individual branch fuses."
+  },
+  {
+    "id": "x1114a",
+    "topic": "diodes",
+    "diff": 2,
+    "type": "mc",
+    "q": "A red LED (peak emission ≈ 630 nm) and a blue LED (peak emission ≈ 460 nm) are measured in forward bias. The blue LED has a noticeably higher forward voltage drop than the red LED. Which explanation is correct?",
+    "choices": [
+      "The blue LED's semiconductor has a wider band gap; each photon of shorter-wavelength blue light carries more energy (E = hc/λ), so the junction must supply more energy per electron — requiring a higher forward voltage.",
+      "The blue LED package is tinted with an absorbing dye, which blocks some current and raises the effective voltage drop.",
+      "Blue light propagates more slowly through the semiconductor, giving electrons less time to traverse the junction and forcing a higher driving voltage.",
+      "The blue LED chip is physically smaller to produce a tighter beam, and a smaller junction area raises resistance and therefore forward voltage."
+    ],
+    "ans": 0,
+    "explain": "In an LED, photon energy E = hc/λ determines the minimum forward voltage: V_f ≈ hc/(λ·e). For red at 630 nm: V_f ≈ (6.63×10⁻³⁴ × 3×10⁸)/(630×10⁻⁹ × 1.60×10⁻¹⁹) ≈ 1.97 V. For blue at 460 nm: V_f ≈ 2.70 V. Shorter wavelength → higher photon energy → wider semiconductor band gap → higher forward voltage. Silicon signal diodes (infrared emission, ~1100 nm) have the lowest drop (~0.7 V); blue/UV LEDs have the highest. Distractor B: LED color is set by the semiconductor alloy composition, not by dye; there is no absorbing dye in the junction. Distractor C: light propagation speed inside the material does not set junction voltage — the band-gap energy of the semiconductor does. Distractor D: junction area affects the saturation current and thermal handling, but forward voltage is determined by the band-gap energy, not by chip size."
+  },
+  {
+    "id": "x1114b",
+    "topic": "logic",
+    "diff": 3,
+    "type": "num",
+    "q": "A full adder produces a carry-out (Cout) of 1 whenever two or more of its three inputs — A, B, and carry-in (Cin) — are HIGH. Its complete truth table has 2³ = 8 rows. How many of those 8 rows produce Cout = 1?",
+    "ans": 4,
+    "unit": "rows",
+    "tol": 0.02,
+    "explain": "Cout = 1 when two or more of {A, B, Cin} are HIGH. Count rows by number of HIGH inputs: 0 HIGH → C(3,0)=1 row, Cout=0; 1 HIGH → C(3,1)=3 rows, Cout=0; 2 HIGH → C(3,2)=3 rows, Cout=1; 3 HIGH → C(3,3)=1 row, Cout=1. Total with Cout=1: 3+1=4. Explicit check: (A=0,B=1,Cin=1)→1, (A=1,B=0,Cin=1)→1, (A=1,B=1,Cin=0)→1, (A=1,B=1,Cin=1)→1; all other four rows→0. The Boolean expression is Cout = AB + BCin + ACin (the 3-input majority function). Common error 1: confusing Cout with the Sum output — Sum=1 for a different set of 4 rows: (0,0,1),(0,1,0),(1,0,0),(1,1,1). Common error 2: working from a half adder (2 inputs, only 4 rows) rather than a full adder."
   }
 ]

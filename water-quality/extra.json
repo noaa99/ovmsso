@@ -284,5 +284,31 @@
     ],
     "ans": 1,
     "explain": "In a typical positive estuary, freshwater inflow at the head dilutes seawater entering at the mouth so salinity decreases inland. When net evaporation (evaporation minus precipitation) exceeds the freshwater supply from rivers, the opposite holds: water is removed but salts remain, concentrating them until salinity at the head exceeds that at the mouth — an inverse or hypersaline estuary. Examples include the Laguna Madre (Texas/Mexico), the Persian Gulf, and Spencer Gulf (South Australia). Under the Venice system, inverse estuaries may contain euhaline (30–40 ppt) or hyperhaline (>40 ppt) water in landward reaches. Distractor A describes a strongly flushed, low-salinity estuary — the head is LESS saline than the mouth, which is the normal gradient, not an inverse one. Distractor C describes temperature-driven vertical stratification (thermohaline layering), not a longitudinal salinity reversal along the estuary's length. Distractor D describes a well-mixed estuary with zero longitudinal gradient, which is different from a reversed (inverse) gradient."
+  },
+  {
+    "id": "x1114a",
+    "topic": "habitat",
+    "diff": 2,
+    "type": "mc",
+    "q": "Salt marshes dominated by Spartina alterniflora (smooth cordgrass) rank among the most productive ecosystems on Earth, with net primary productivity often exceeding 1,000 g of carbon per square meter per year. What is the primary physiological reason Spartina sustains such high productivity despite waterlogged, saline conditions?",
+    "choices": [
+      "Spartina absorbs dissolved organic carbon directly through its roots rather than fixing CO₂ from the atmosphere, bypassing the energy cost of photosynthesis.",
+      "Spartina uses C4 photosynthesis, which concentrates CO₂ at the site of carbon fixation, suppressing photorespiration and maintaining efficient carbon gain even under the high temperatures and bright light typical of coastal marshes.",
+      "Spartina's rhizome network doubles its effective leaf area, capturing twice the sunlight of comparable C3 grasses at the same shoot density.",
+      "Spartina secretes salt through specialized leaf glands so efficiently that its internal osmotic environment is effectively equivalent to fresh water, eliminating the metabolic cost of osmoregulation."
+    ],
+    "ans": 1,
+    "explain": "Spartina alterniflora is one of the few C4 grasses in a temperate intertidal habitat. C4 plants use a biochemical CO₂-concentrating mechanism: mesophyll cells capture CO₂ as malate or aspartate, then release it at high concentration inside bundle-sheath cells where RuBisCO operates. This suppresses photorespiration — the wasteful oxygenase side-reaction that reduces photosynthetic efficiency in C3 plants under warm, bright, water-stressed conditions — giving Spartina a large productivity advantage in the high-light, warm-summer marsh. Distractor A is wrong: Spartina is a photosynthetic primary producer that fixes atmospheric CO₂; it does not assimilate dissolved organic carbon from the water. Distractor C confuses pneumatophores (the specialized aerial roots of mangroves) with Spartina's rhizomes; Spartina's rhizomes store carbohydrates below ground and produce tillers but are not photosynthetic organs that expand leaf area. Distractor D is partially true (Spartina has salt glands that excrete NaCl onto leaf surfaces) but salt secretion reduces, not eliminates, internal salinity; the glands improve salt tolerance but do not explain the high photosynthetic rate — that is the C4 pathway."
+  },
+  {
+    "id": "x1114b",
+    "topic": "zones",
+    "diff": 3,
+    "type": "num",
+    "q": "Continental shelves make up approximately 8% of the total ocean area and have an average depth of 80 m; the remaining 92% of ocean area is the deep oceanic zone with an average depth of 3,800 m. Using these figures, calculate what percentage of the entire ocean's volume lies in the neritic (shelf) zone.",
+    "ans": 0.183,
+    "unit": "%",
+    "tol": 0.05,
+    "explain": "Volume is proportional to area × average depth. Using relative units where total ocean area = 100: V_neritic = 8 × 80 = 640; V_oceanic = 92 × 3,800 = 349,600; V_total = 640 + 349,600 = 350,240. Neritic fraction: (640 ÷ 350,240) × 100 = 0.1827 ≈ 0.183%. Although the neritic zone covers 8% of ocean area, it holds less than 0.2% of the ocean's volume — illustrating why open-ocean biogeochemistry is dominated by the deep-water compartment despite coastal zones having far higher productivity per unit area. Common error 1: reporting the area fraction (8%) as if it equals the volume fraction — this ignores the extreme depth difference between the two zones. Common error 2: computing V_neritic ÷ V_oceanic instead of V_neritic ÷ V_total, which slightly overstates the fraction but changes the result by less than 0.1% here."
   }
 ]
