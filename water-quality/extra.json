@@ -310,5 +310,31 @@
     "unit": "%",
     "tol": 0.05,
     "explain": "Volume is proportional to area × average depth. Using relative units where total ocean area = 100: V_neritic = 8 × 80 = 640; V_oceanic = 92 × 3,800 = 349,600; V_total = 640 + 349,600 = 350,240. Neritic fraction: (640 ÷ 350,240) × 100 = 0.1827 ≈ 0.183%. Although the neritic zone covers 8% of ocean area, it holds less than 0.2% of the ocean's volume — illustrating why open-ocean biogeochemistry is dominated by the deep-water compartment despite coastal zones having far higher productivity per unit area. Common error 1: reporting the area fraction (8%) as if it equals the volume fraction — this ignores the extreme depth difference between the two zones. Common error 2: computing V_neritic ÷ V_oceanic instead of V_neritic ÷ V_total, which slightly overstates the fraction but changes the result by less than 0.1% here."
+  },
+  {
+    "id": "x1115a",
+    "topic": "pollution",
+    "diff": 3,
+    "type": "num",
+    "q": "During a storm, 25 mm of rain falls on an impervious concrete dock with an area of 400 m². The runoff coefficient for the surface is 0.90 (90% of precipitation becomes runoff), and the stormwater carries a total phosphorus concentration of 0.40 mg/L. How many grams of total phosphorus are discharged into the marina during this storm?",
+    "ans": 3.6,
+    "unit": "g",
+    "tol": 0.02,
+    "explain": "Step 1 — rainfall volume on the dock: V_rain = area × depth = 400 m² × 0.025 m = 10 m³. Step 2 — runoff volume (apply the runoff coefficient): V_runoff = 0.90 × 10 m³ = 9 m³. Step 3 — convert to litres: 9 m³ × 1000 L/m³ = 9000 L. Step 4 — phosphorus mass: mass = 0.40 mg/L × 9000 L = 3600 mg. Step 5 — convert to grams: 3600 mg ÷ 1000 mg/g = 3.6 g. Common error 1: not converting 25 mm to 0.025 m before multiplying by area, overstating volume by 1000×. Common error 2: omitting the runoff coefficient and using the full 10 m³ of rain, giving 10 000 L × 0.40 = 4000 mg = 4.0 g. Common error 3: forgetting the m³-to-litre conversion (factor of 1000), yielding 9 L × 0.40 = 3.6 mg — a result 1000× too small."
+  },
+  {
+    "id": "x1115b",
+    "topic": "estuary",
+    "diff": 2,
+    "type": "mc",
+    "q": "A large, shallow coastal lagoon is separated from the open ocean by a barrier island. Tidal exchange occurs only through two narrow inlets, and nutrient-laden agricultural runoff enters the lagoon year-round. Which estuary type is this, and what water-quality hazard arises most directly from the restricted tidal exchange?",
+    "choices": [
+      "A fjord estuary; the barrier island acts as a sill that traps cold, dense saltwater at depth, producing year-round anoxia similar to a Norwegian fjord.",
+      "A coastal-plain (drowned-river-valley) estuary; flat topography behind the barrier island allows saltwater intrusion to push far inland, raising residence time and nutrient concentrations.",
+      "A bar-built (lagoonal) estuary; restricted tidal flushing increases water residence time, allowing nutrients to accumulate and dissolved oxygen to be depleted — raising the risk of eutrophication and hypoxia.",
+      "A tectonic estuary; fault-bounded inlets restrict circulation, trapping nutrients in the same way that lithospheric uplift isolates fjord basins."
+    ],
+    "ans": 2,
+    "explain": "A bar-built or lagoonal estuary forms when longshore sediment transport deposits a barrier (sandbar, barrier island, or reef) across a coastal embayment, restricting tidal exchange to narrow inlets. The defining consequence is long residence time: water and dissolved substances remain in the lagoon for days to weeks rather than hours. With agricultural nutrient loading, nitrogen and phosphorus accumulate faster than tidal flushing can export them, fuelling phytoplankton blooms; when the bloom biomass sinks and decomposes, bacterial respiration consumes dissolved oxygen, producing hypoxia. Classic examples include Pamlico Sound (NC) and the Indian River Lagoon (FL). Choice A is wrong: fjords are deep, glacially carved basins with a bedrock sill at the mouth — the shallow-lagoon-with-barrier-island setting is unambiguously bar-built, not glacial. Choice B is wrong: coastal-plain estuaries such as Chesapeake Bay are broad drowned river valleys with moderate, open tidal access and no enclosing barrier island. Choice D is wrong: tectonic estuary is not characterized by a barrier island enclosing a shallow lagoon; standard estuarine typologies classify this geometry as bar-built."
   }
 ]

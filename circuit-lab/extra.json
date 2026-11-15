@@ -333,5 +333,33 @@
     "unit": "rows",
     "tol": 0.02,
     "explain": "Cout = 1 when two or more of {A, B, Cin} are HIGH. Count rows by number of HIGH inputs: 0 HIGH → C(3,0)=1 row, Cout=0; 1 HIGH → C(3,1)=3 rows, Cout=0; 2 HIGH → C(3,2)=3 rows, Cout=1; 3 HIGH → C(3,3)=1 row, Cout=1. Total with Cout=1: 3+1=4. Explicit check: (A=0,B=1,Cin=1)→1, (A=1,B=0,Cin=1)→1, (A=1,B=1,Cin=0)→1, (A=1,B=1,Cin=1)→1; all other four rows→0. The Boolean expression is Cout = AB + BCin + ACin (the 3-input majority function). Common error 1: confusing Cout with the Sum output — Sum=1 for a different set of 4 rows: (0,0,1),(0,1,0),(1,0,0),(1,1,1). Common error 2: working from a half adder (2 inputs, only 4 rows) rather than a full adder."
+  },
+  {
+    "id": "x1115a",
+    "topic": "circuits",
+    "diff": 3,
+    "type": "num",
+    "q": "The schematic shows an 18 V source driving R1 = 6 Ω in series with a parallel combination of R2 = 12 Ω and R3 = 4 Ω. Find the power dissipated in R3, in watts.",
+    "svg": "<svg viewBox='0 0 420 180' role='img' aria-label='Series-parallel circuit: 18 V source, R1=6 ohm series, R2=12 ohm parallel with R3=4 ohm'><g stroke='currentColor' stroke-width='2' fill='none' stroke-linecap='round'><line x1='60' y1='25' x2='60' y2='68'/><line x1='46' y1='68' x2='74' y2='68'/><line x1='51' y1='78' x2='69' y2='78'/><line x1='60' y1='78' x2='60' y2='158'/><line x1='60' y1='25' x2='100' y2='25'/><rect x='100' y='15' width='68' height='20'/><line x1='168' y1='25' x2='218' y2='25'/><rect x='218' y='15' width='80' height='20'/><line x1='298' y1='25' x2='358' y2='25'/><line x1='358' y1='25' x2='358' y2='158'/><line x1='60' y1='158' x2='358' y2='158'/><line x1='218' y1='25' x2='218' y2='68'/><rect x='208' y='68' width='20' height='52'/><line x1='218' y1='120' x2='218' y2='158'/></g><circle cx='218' cy='25' r='4' fill='currentColor'/><circle cx='218' cy='158' r='4' fill='currentColor'/><g fill='currentColor' font-family='system-ui,sans-serif' font-size='13' text-anchor='middle'><text x='134' y='10'>R1 = 6 &#937;</text><text x='258' y='10'>R2 = 12 &#937;</text><text x='252' y='97'>R3 = 4 &#937;</text><text x='46' y='66' font-size='11'>+</text><text x='46' y='82' font-size='11'>&#8722;</text><text x='28' y='118'>18 V</text></g></svg>",
+    "caption": "18 V source; R1 = 6 Ω in series, then R2 = 12 Ω ∥ R3 = 4 Ω.",
+    "ans": 9,
+    "unit": "W",
+    "tol": 0.02,
+    "explain": "Step 1 — equivalent resistance of the parallel pair: R₂ ∥ R₃ = (12 × 4) / (12 + 4) = 48 / 16 = 3 Ω. Step 2 — total circuit resistance: R_total = R1 + 3 = 6 + 3 = 9 Ω. Step 3 — total current from source: I_total = 18 / 9 = 2 A. Step 4 — voltage across the parallel section: V_p = I_total × 3 = 2 × 3 = 6 V. Step 5 — power in R3: P_R3 = V_p² / R3 = 6² / 4 = 36 / 4 = 9 W. Verification — P_R2 = 36/12 = 3 W; P_R1 = 2² × 6 = 24 W; total = 24 + 3 + 9 = 36 W = P_source = 18 × 2 = 36 W ✓. Common error: computing I_total² × R3 with the full source current instead of the branch current, giving 4 × 4 = 16 W — this ignores the current split at the parallel junction."
+  },
+  {
+    "id": "x1115b",
+    "topic": "control",
+    "diff": 2,
+    "type": "mc",
+    "q": "A technician must protect a small electric motor circuit with a fuse. The motor's nameplate shows a full-load running current of 5.0 A, but during starting it briefly draws 30 A for about 0.4 seconds before the rotor reaches full speed. Which fuse type should be installed, and why?",
+    "choices": [
+      "A fast-blow fuse rated 30 A, to protect the wire against the peak inrush current",
+      "A slow-blow (time-delay) fuse rated for the running current (~5–6 A), because it tolerates brief inrush transients without opening while still protecting the circuit from sustained overloads",
+      "A fast-blow fuse rated 5 A, because fuses must be sized to the running current and must open the moment any current above that value flows",
+      "Either type works equally well, because fuse response depends only on the rated current, not on how quickly the fault current builds up"
+    ],
+    "ans": 1,
+    "explain": "Electric motors draw several times their full-load current for a fraction of a second while the rotor accelerates from standstill (inrush or locked-rotor current). A fast-blow fuse rated for the running current (5 A) interprets the 30 A inrush as a fault and opens immediately — a nuisance trip on every normal start. A slow-blow (time-delay) fuse uses a thermal element (spring or solder alloy) with a deliberately extended time-to-open characteristic: it absorbs brief inrush energy without melting, then opens reliably on a sustained overload. Sized to the running current, it still protects the wiring from true faults. Choice A is wrong: a 30 A fuse leaves branch-circuit wiring (commonly 14 AWG, rated 15 A) unprotected during normal operation — it would not open under a moderate sustained fault. Choice C selects the right rated current but the wrong fuse type, causing a nuisance trip on every motor start. Choice D is wrong: fast-blow and slow-blow fuses have fundamentally different time-current curves — the slow-blow curve lies well above the fast-blow curve at short durations even for identical rated currents."
   }
 ]
