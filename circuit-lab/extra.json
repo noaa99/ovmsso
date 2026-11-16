@@ -361,5 +361,31 @@
     ],
     "ans": 1,
     "explain": "Electric motors draw several times their full-load current for a fraction of a second while the rotor accelerates from standstill (inrush or locked-rotor current). A fast-blow fuse rated for the running current (5 A) interprets the 30 A inrush as a fault and opens immediately — a nuisance trip on every normal start. A slow-blow (time-delay) fuse uses a thermal element (spring or solder alloy) with a deliberately extended time-to-open characteristic: it absorbs brief inrush energy without melting, then opens reliably on a sustained overload. Sized to the running current, it still protects the wiring from true faults. Choice A is wrong: a 30 A fuse leaves branch-circuit wiring (commonly 14 AWG, rated 15 A) unprotected during normal operation — it would not open under a moderate sustained fault. Choice C selects the right rated current but the wrong fuse type, causing a nuisance trip on every motor start. Choice D is wrong: fast-blow and slow-blow fuses have fundamentally different time-current curves — the slow-blow curve lies well above the fast-blow curve at short durations even for identical rated currents."
+  },
+  {
+    "id": "x1116a",
+    "topic": "logic",
+    "diff": 2,
+    "type": "mc",
+    "q": "Using Boolean algebra, simplify the expression (A + B)(A + C). Note: in Boolean algebra, A · A = A (idempotent law).",
+    "choices": [
+      "AB + AC",
+      "A + B + C",
+      "A + BC",
+      "A(B + C)"
+    ],
+    "ans": 2,
+    "explain": "Expand using Boolean distribution: (A+B)(A+C) = A·A + A·C + B·A + B·C. Apply the idempotent law (A·A = A): = A + AC + AB + BC. Factor A from the first three terms: A(1+C+B) + BC. Because 1+anything = 1 in Boolean algebra: = A + BC. This is the Boolean dual of the distributive law. Distractor 'AB+AC' (= A(B+C)) results from wrongly treating (A+B)(A+C) as A(B+C), forgetting the A·A and B·C cross-product terms. Distractor 'A+B+C' overexpands; verify it fails: for A=0, B=1, C=0, A+B+C=1 but A+BC=0+0=0. Distractor 'A(B+C)' equals AB+AC; verify it fails: for A=0, B=1, C=1, A(B+C)=0 but A+BC=0+1=1."
+  },
+  {
+    "id": "x1116b",
+    "topic": "diodes",
+    "diff": 3,
+    "type": "num",
+    "q": "A transformer secondary delivers 20 V RMS into a half-wave rectifier built from one silicon diode with V_f = 0.7 V. Using V_peak = V_rms × √2 and V_avg = (V_peak − V_f) ÷ π, what is the average DC output voltage, in volts?",
+    "ans": 8.78,
+    "unit": "V",
+    "tol": 0.02,
+    "explain": "Step 1 — convert to peak: V_peak = 20 × √2 = 20 × 1.4142 = 28.28 V. Step 2 — subtract the diode forward drop: 28.28 − 0.7 = 27.58 V. Step 3 — apply the half-wave average formula: V_avg = 27.58 ÷ π = 27.58 ÷ 3.1416 = 8.78 V. The π factor arises because only one half-cycle (of π radians out of 2π total) conducts through the diode; the reverse half-cycle is blocked. Common error 1: skip the diode drop, giving 28.28/π = 9.00 V. Common error 2: use V_rms directly without converting to peak, giving (20−0.7)/π = 6.14 V. Common error 3: use the full-wave average formula 2V_peak/π rather than V_peak/π, giving 17.56 V — twice the correct answer."
   }
 ]

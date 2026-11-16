@@ -336,5 +336,31 @@
     ],
     "ans": 2,
     "explain": "A bar-built or lagoonal estuary forms when longshore sediment transport deposits a barrier (sandbar, barrier island, or reef) across a coastal embayment, restricting tidal exchange to narrow inlets. The defining consequence is long residence time: water and dissolved substances remain in the lagoon for days to weeks rather than hours. With agricultural nutrient loading, nitrogen and phosphorus accumulate faster than tidal flushing can export them, fuelling phytoplankton blooms; when the bloom biomass sinks and decomposes, bacterial respiration consumes dissolved oxygen, producing hypoxia. Classic examples include Pamlico Sound (NC) and the Indian River Lagoon (FL). Choice A is wrong: fjords are deep, glacially carved basins with a bedrock sill at the mouth — the shallow-lagoon-with-barrier-island setting is unambiguously bar-built, not glacial. Choice B is wrong: coastal-plain estuaries such as Chesapeake Bay are broad drowned river valleys with moderate, open tidal access and no enclosing barrier island. Choice D is wrong: tectonic estuary is not characterized by a barrier island enclosing a shallow lagoon; standard estuarine typologies classify this geometry as bar-built."
+  },
+  {
+    "id": "x1116c",
+    "topic": "habitat",
+    "diff": 2,
+    "type": "mc",
+    "q": "Spring tides occur when the Sun, Earth, and Moon are aligned (syzygy), combining their gravitational pulls to produce the greatest tidal range. Neap tides — with the SMALLEST tidal range — occur when:",
+    "choices": [
+      "The Sun and Moon are on the same side of Earth (new Moon alignment), maximizing their combined gravitational pull.",
+      "The Sun and Moon are at approximately right angles relative to Earth (quadrature), so their tidal forces partially cancel each other.",
+      "The Moon is at apogee (the farthest point from Earth in its orbit), reducing the Moon's gravitational influence.",
+      "The Earth is at aphelion (the farthest point from the Sun in its annual orbit), slightly reducing solar tidal forcing."
+    ],
+    "ans": 1,
+    "explain": "Neap tides occur at first and third quarter Moon, when the Moon–Earth line is roughly perpendicular to the Sun–Earth line (quadrature). In this geometry the Moon's tidal bulge and the Sun's tidal bulge point in perpendicular directions, so the solar tide partially cancels the lunar tide rather than reinforcing it, producing a tidal range about 10–20% below the monthly average. Choice A describes a new Moon (syzygy), which produces a spring tide — maximum range, not a neap. Choice C: the Moon at apogee is farther away and does reduce tidal force slightly, but apogee occurs independently of the Sun's position and is not the defining cause of neap tides. Choice D: Earth's orbital position changes solar tidal forcing by only ~3% between perihelion and aphelion — a negligible effect that does not produce neap tides."
+  },
+  {
+    "id": "x1116d",
+    "topic": "zones",
+    "diff": 3,
+    "type": "num",
+    "q": "In a productive coastal upwelling zone, a Secchi disk disappears at 6 m depth. Volumetric primary productivity averages 8.0 g C/m³/day uniformly throughout the euphotic zone. Using euphotic zone depth ≈ 2.7 × Secchi depth, what is the total water-column primary production, in g C/m²/day?",
+    "ans": 129.6,
+    "unit": "g C/m²/day",
+    "tol": 0.02,
+    "explain": "Step 1 — estimate euphotic zone depth: 2.7 × 6 m = 16.2 m. Step 2 — multiply volumetric productivity by that depth to get the column-integrated areal rate: 8.0 g C/m³/day × 16.2 m = 129.6 g C/m²/day. Unit check: (g/m³) × m = g/m² ✓. This integration step converts a per-volume rate into a per-area rate — the standard form for comparing ecosystem productivity. Common error 1: use the raw Secchi depth (6 m) without the 2.7 multiplier, giving 8.0 × 6 = 48 g C/m²/day — 2.7× too low. Common error 2: confuse the euphotic depth formula (2.7 × Secchi) with the light attenuation coefficient (k = 1.7 ÷ Secchi) and compute 1.7 × 6 = 10.2 m, giving 81.6 g C/m²/day."
   }
 ]
