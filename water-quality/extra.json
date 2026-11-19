@@ -362,5 +362,31 @@
     "unit": "g C/m²/day",
     "tol": 0.02,
     "explain": "Step 1 — estimate euphotic zone depth: 2.7 × 6 m = 16.2 m. Step 2 — multiply volumetric productivity by that depth to get the column-integrated areal rate: 8.0 g C/m³/day × 16.2 m = 129.6 g C/m²/day. Unit check: (g/m³) × m = g/m² ✓. This integration step converts a per-volume rate into a per-area rate — the standard form for comparing ecosystem productivity. Common error 1: use the raw Secchi depth (6 m) without the 2.7 multiplier, giving 8.0 × 6 = 48 g C/m²/day — 2.7× too low. Common error 2: confuse the euphotic depth formula (2.7 × Secchi) with the light attenuation coefficient (k = 1.7 ÷ Secchi) and compute 1.7 × 6 = 10.2 m, giving 81.6 g C/m²/day."
+  },
+  {
+    "id": "x1119a",
+    "topic": "nutrients",
+    "diff": 3,
+    "type": "num",
+    "q": "The Redfield ratio describes the average atomic proportions of key elements in marine phytoplankton. The N:P molar ratio is 16:1. Using atomic masses of N = 14 g/mol and P = 31 g/mol, calculate the N:P ratio by MASS in Redfield-balanced phytoplankton. Give your answer in grams of nitrogen per gram of phosphorus.",
+    "ans": 7.23,
+    "unit": "g N per g P",
+    "tol": 0.02,
+    "explain": "The Redfield ratio says that for every 1 mole of P, marine phytoplankton contain 16 moles of N. Mass of N: 16 mol × 14 g/mol = 224 g. Mass of P: 1 mol × 31 g/mol = 31 g. N:P mass ratio = 224 ÷ 31 = 7.226 g N per g P ≈ 7.23. This matters for water quality: if a water sample has an N:P mass ratio well above 7.23, phosphorus is relatively scarce compared with the Redfield demand, and nitrogen is not limiting; if the N:P mass ratio is well below 7.23, the system is trending toward nitrogen limitation — the typical condition in coastal marine and estuarine waters. Common error: using the molar ratio directly (16/1 = 16) without converting to mass units, which overstates the mass ratio by a factor of 14/31 × 16 ≈ 2.2 times."
+  },
+  {
+    "id": "x1119b",
+    "topic": "acid",
+    "diff": 2,
+    "type": "mc",
+    "q": "In normal open-ocean surface seawater (pH ≈ 8.1), dissolved inorganic carbon (DIC) exists as three species: dissolved CO₂ (including H₂CO₃), bicarbonate (HCO₃⁻), and carbonate (CO₃²⁻). The carbonate system has two dissociation constants: pKₐ₁ ≈ 6.0 and pKₐ₂ ≈ 9.0. Which ranking by abundance is correct at pH 8.1?",
+    "choices": [
+      "CO₂ ≈ HCO₃⁻ ≈ CO₃²⁻ — seawater buffering keeps all three DIC species in roughly equal proportions",
+      "CO₂ > HCO₃⁻ > CO₃²⁻ — dissolved CO₂ dominates because the atmosphere continuously re-equilibrates surface seawater",
+      "HCO₃⁻ > CO₃²⁻ > CO₂ — bicarbonate is the dominant intermediate species when pH falls between the two pKₐ values, with dissolved CO₂ the least abundant",
+      "CO₃²⁻ > HCO₃⁻ > CO₂ — the ocean is supersaturated in aragonite and calcite, so carbonate ions dominate the DIC pool"
+    ],
+    "ans": 2,
+    "explain": "Between pKₐ₁ ≈ 6.0 and pKₐ₂ ≈ 9.0, the intermediate species HCO₃⁻ is overwhelmingly favoured: at pH 8.1 about 90% of DIC is bicarbonate. CO₃²⁻ is next (~9%) because pH 8.1 is below pKₐ₂ = 9.0, so HCO₃⁻ has not fully dissociated to CO₃²⁻. Dissolved CO₂ is the least abundant (~1%) because pH 8.1 is well above pKₐ₁ = 6.0, meaning most CO₂ has already converted to HCO₃⁻. This distribution explains ocean acidification's main threat: as rising CO₂ lowers ocean pH from 8.1 toward 7.8, the CO₃²⁻ fraction shrinks; it is this reduction in [CO₃²⁻] that lowers the aragonite saturation state Ω = [Ca²⁺][CO₃²⁻]/Ksp and threatens shell-forming organisms. Choice B (CO₂ dominates) would be true below pH 6 — the opposite of ocean conditions. Choice D (CO₃²⁻ dominates) would require pH well above pKₐ₂ = 9.0. Choice A (equal proportions) is physically impossible — species are equal only at their respective pKₐ crossover points (pH = 6.0 or 9.0), not at pH 8.1."
   }
 ]

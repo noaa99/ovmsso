@@ -387,5 +387,33 @@
     "unit": "V",
     "tol": 0.02,
     "explain": "Step 1 — convert to peak: V_peak = 20 × √2 = 20 × 1.4142 = 28.28 V. Step 2 — subtract the diode forward drop: 28.28 − 0.7 = 27.58 V. Step 3 — apply the half-wave average formula: V_avg = 27.58 ÷ π = 27.58 ÷ 3.1416 = 8.78 V. The π factor arises because only one half-cycle (of π radians out of 2π total) conducts through the diode; the reverse half-cycle is blocked. Common error 1: skip the diode drop, giving 28.28/π = 9.00 V. Common error 2: use V_rms directly without converting to peak, giving (20−0.7)/π = 6.14 V. Common error 3: use the full-wave average formula 2V_peak/π rather than V_peak/π, giving 17.56 V — twice the correct answer."
+  },
+  {
+    "id": "x1119a",
+    "topic": "kirchhoff",
+    "diff": 3,
+    "type": "num",
+    "q": "The figure shows three branches connected in parallel between node A (top wire) and ground (bottom wire). Left branch: 2 Ω resistor in series with an 18 V source (positive terminal facing A). Centre branch: 3 Ω resistor only. Right branch: 4 Ω resistor in series with a 16 V source (positive terminal facing A). Applying KCL at node A, find the node voltage V_A, in volts.",
+    "svg": "<svg viewBox=\"0 0 360 230\" role=\"img\" aria-label=\"Node-voltage circuit: left branch 18 V source with 2 ohm resistor, centre branch 3 ohm resistor, right branch 16 V source with 4 ohm resistor, all sharing node A at top and ground at bottom\"><g stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\"><line x1=\"70\" y1=\"30\" x2=\"290\" y2=\"30\"/><line x1=\"70\" y1=\"200\" x2=\"290\" y2=\"200\"/><line x1=\"70\" y1=\"30\" x2=\"70\" y2=\"70\"/><rect x=\"58\" y=\"70\" width=\"24\" height=\"44\"/><line x1=\"70\" y1=\"114\" x2=\"70\" y2=\"143\"/><line x1=\"55\" y1=\"143\" x2=\"85\" y2=\"143\"/><line x1=\"61\" y1=\"153\" x2=\"79\" y2=\"153\"/><line x1=\"70\" y1=\"153\" x2=\"70\" y2=\"200\"/><line x1=\"180\" y1=\"30\" x2=\"180\" y2=\"80\"/><rect x=\"168\" y=\"80\" width=\"24\" height=\"62\"/><line x1=\"180\" y1=\"142\" x2=\"180\" y2=\"200\"/><line x1=\"290\" y1=\"30\" x2=\"290\" y2=\"70\"/><rect x=\"278\" y=\"70\" width=\"24\" height=\"44\"/><line x1=\"290\" y1=\"114\" x2=\"290\" y2=\"143\"/><line x1=\"275\" y1=\"143\" x2=\"305\" y2=\"143\"/><line x1=\"281\" y1=\"153\" x2=\"299\" y2=\"153\"/><line x1=\"290\" y1=\"153\" x2=\"290\" y2=\"200\"/></g><g fill=\"currentColor\" font-family=\"system-ui,sans-serif\" font-size=\"12\" text-anchor=\"middle\"><text x=\"180\" y=\"22\">A</text><text x=\"97\" y=\"95\">2 &#937;</text><text x=\"207\" y=\"115\">3 &#937;</text><text x=\"317\" y=\"95\">4 &#937;</text><text x=\"43\" y=\"140\" font-size=\"10\">+</text><text x=\"43\" y=\"157\" font-size=\"10\">&#8722;</text><text x=\"43\" y=\"178\">18 V</text><text x=\"317\" y=\"140\" font-size=\"10\">+</text><text x=\"317\" y=\"157\" font-size=\"10\">&#8722;</text><text x=\"317\" y=\"178\">16 V</text></g></svg>",
+    "caption": "Three-branch parallel circuit; positive terminal of each source faces node A.",
+    "ans": 12,
+    "unit": "V",
+    "tol": 0.02,
+    "explain": "Apply KCL at node A: sum of currents entering node = current leaving node. Each branch contributes (source voltage − V_A) ÷ series resistance toward A, or just V_A ÷ R for the resistor-only branch. Setting up: (18 − V_A)/2 + (16 − V_A)/4 = V_A/3. Multiply every term by 12: 6(18 − V_A) + 3(16 − V_A) = 4·V_A → 108 − 6V_A + 48 − 3V_A = 4V_A → 156 = 13·V_A → V_A = 12 V. Verification — I₁ = (18−12)/2 = 3 A in; I₂ = (16−12)/4 = 1 A in; I₃ = 12/3 = 4 A out; 3+1 = 4 ✓. Note that the left source delivers 3 A and the right source delivers 1 A into node A; all 4 A drains through the centre 3 Ω. A common error is writing a mesh-current equation (two loops) instead of the single node-voltage equation — mesh analysis works but requires solving two simultaneous equations; node analysis needs only one."
+  },
+  {
+    "id": "x1119b",
+    "topic": "history",
+    "diff": 2,
+    "type": "mc",
+    "q": "During his landmark 1887 experiments confirming the existence of electromagnetic waves, Heinrich Hertz made an unexpected additional observation that he reported but could not explain, and that would not be fully understood for nearly two more decades. What did he observe?",
+    "choices": [
+      "He noticed that ultraviolet light from the transmitter spark made the detector spark gap fire at a lower voltage — the first recorded observation of the photoelectric effect, later explained by Einstein in 1905.",
+      "He demonstrated that his radio waves could be reflected and refracted just like visible light, directly confirming Maxwell's theoretical prediction that light is an electromagnetic wave.",
+      "He precisely measured the speed of his radio waves using standing-wave interference patterns and found it equal to the speed of light — the first direct measurement of c for long-wavelength radiation.",
+      "He found that a high-frequency oscillating current in a primary coil could induce a spark in a physically separated secondary coil across a small air gap, anticipating resonant inductive coupling."
+    ],
+    "ans": 0,
+    "explain": "While generating and detecting radio waves in 1887, Hertz observed that UV light from the transmitter (primary) spark reduced the breakdown voltage needed at the receiver (secondary) spark gap — it was easier to make the detector spark when illuminated by UV. He reported this anomaly but offered no mechanism. Einstein's 1905 paper on the photoelectric effect showed that UV photons carry energy E = hf sufficient to eject electrons from metal surfaces, lowering the threshold voltage for sparking; this paper earned Einstein the 1921 Nobel Prize. Choices B and C describe the core intended results of Hertz's electromagnetic wave experiments — confirming Maxwell's theory via reflection, refraction, and speed measurement was the whole point of the work, not an unexpected side-finding. Choice D describes resonant inductive coupling later explored by Nikola Tesla; Hertz's experiments used far-field radiation across metres, not near-field magnetic induction."
   }
 ]
