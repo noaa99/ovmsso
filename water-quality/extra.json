@@ -388,5 +388,31 @@
     ],
     "ans": 2,
     "explain": "Between pKₐ₁ ≈ 6.0 and pKₐ₂ ≈ 9.0, the intermediate species HCO₃⁻ is overwhelmingly favoured: at pH 8.1 about 90% of DIC is bicarbonate. CO₃²⁻ is next (~9%) because pH 8.1 is below pKₐ₂ = 9.0, so HCO₃⁻ has not fully dissociated to CO₃²⁻. Dissolved CO₂ is the least abundant (~1%) because pH 8.1 is well above pKₐ₁ = 6.0, meaning most CO₂ has already converted to HCO₃⁻. This distribution explains ocean acidification's main threat: as rising CO₂ lowers ocean pH from 8.1 toward 7.8, the CO₃²⁻ fraction shrinks; it is this reduction in [CO₃²⁻] that lowers the aragonite saturation state Ω = [Ca²⁺][CO₃²⁻]/Ksp and threatens shell-forming organisms. Choice B (CO₂ dominates) would be true below pH 6 — the opposite of ocean conditions. Choice D (CO₃²⁻ dominates) would require pH well above pKₐ₂ = 9.0. Choice A (equal proportions) is physically impossible — species are equal only at their respective pKₐ crossover points (pH = 6.0 or 9.0), not at pH 8.1."
+  },
+  {
+    "id": "x1120a",
+    "topic": "reef",
+    "diff": 3,
+    "type": "num",
+    "q": "A coral reef is monitored over 6 consecutive weeks. The HotSpot for each week — sea surface temperature above the site's maximum monthly mean — is: Week 1: 0.4°C, Week 2: 1.1°C, Week 3: 2.3°C, Week 4: 1.6°C, Week 5: 0.8°C, Week 6: 1.0°C. In the NOAA Coral Reef Watch system, only weeks with HotSpot ≥ 1°C accumulate toward degree-heating weeks (DHW). What is the total accumulated DHW, in degree-weeks, after all 6 weeks?",
+    "ans": 6.0,
+    "unit": "degree-weeks",
+    "tol": 0.02,
+    "explain": "Step 1 — apply the HotSpot ≥ 1°C threshold: Week 1 (0.4°C, below — excluded), Week 2 (1.1°C ✓), Week 3 (2.3°C ✓), Week 4 (1.6°C ✓), Week 5 (0.8°C, below — excluded), Week 6 (1.0°C ✓, exactly at threshold — counts). Step 2 — sum the qualifying values: DHW = 1.1 + 2.3 + 1.6 + 1.0 = 6.0 degree-weeks. At DHW = 6.0 (with HotSpot ≥ 1) this reef is in the NOAA CRW Warning category (DHW 4–8), indicating significant bleaching is likely. Common error 1: including all six weeks regardless of threshold, giving 1.1 + 2.3 + 1.6 + 1.0 + 0.4 + 0.8 = 7.2 degree-weeks — this overstates thermal stress by counting sub-threshold weeks. Common error 2: reporting the highest single HotSpot (2.3°C) as the DHW — DHW is a cumulative sum over qualifying weeks, not a peak value."
+  },
+  {
+    "id": "x1120b",
+    "topic": "param",
+    "diff": 2,
+    "type": "mc",
+    "q": "In the Winkler dissolved oxygen method, the sample bottle is 'fixed' on-site immediately after collection by adding two chemical reagents in sequence. The first reagent added is manganese sulfate (MnSO₄). What is the chemical role of this addition?",
+    "choices": [
+      "Manganese sulfate supplies the iodide ions that will ultimately be released in proportion to dissolved oxygen and titrated with sodium thiosulfate",
+      "Manganese ions react with dissolved oxygen to form an insoluble manganese oxide precipitate, locking oxygen into solid form before it can escape or be consumed during transport to the lab",
+      "Manganese sulfate precipitates interfering chloride ions, clarifying the sample so the starch-iodine endpoint color change can be detected accurately",
+      "Manganese sulfate buffers the sample to neutral pH, preventing microbial respiration from altering the dissolved oxygen concentration before titration"
+    ],
+    "ans": 1,
+    "explain": "The Winkler fixation chemistry proceeds in two steps. (1) MnSO₄ provides Mn²⁺, which is immediately oxidized by dissolved O₂ in the sample: 2 Mn²⁺ + O₂ + 4 OH⁻ → 2 MnO(OH)₂ (brown precipitate). All dissolved oxygen is now trapped in an insoluble, non-volatile solid and cannot escape or be consumed by micro-organisms during transport. (2) Back in the lab, the second reagent (alkali-iodide-azide) releases I₂ from the precipitate in proportion to the original O₂, and I₂ is titrated with thiosulfate. Distractor A is wrong: iodide comes from the SECOND reagent (the alkali-iodide-azide solution), not from MnSO₄. Distractor C is wrong: MnSO₄ does not precipitate chloride; the azide component of the second reagent suppresses nitrite interference, a different purpose. Distractor D is wrong: MnSO₄ has no pH-buffering function — Mn²⁺ is a transition metal ion, not an acid-base buffer pair."
   }
 ]
