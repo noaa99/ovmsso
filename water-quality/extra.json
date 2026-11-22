@@ -414,5 +414,31 @@
     ],
     "ans": 1,
     "explain": "The Winkler fixation chemistry proceeds in two steps. (1) MnSO₄ provides Mn²⁺, which is immediately oxidized by dissolved O₂ in the sample: 2 Mn²⁺ + O₂ + 4 OH⁻ → 2 MnO(OH)₂ (brown precipitate). All dissolved oxygen is now trapped in an insoluble, non-volatile solid and cannot escape or be consumed by micro-organisms during transport. (2) Back in the lab, the second reagent (alkali-iodide-azide) releases I₂ from the precipitate in proportion to the original O₂, and I₂ is titrated with thiosulfate. Distractor A is wrong: iodide comes from the SECOND reagent (the alkali-iodide-azide solution), not from MnSO₄. Distractor C is wrong: MnSO₄ does not precipitate chloride; the azide component of the second reagent suppresses nitrite interference, a different purpose. Distractor D is wrong: MnSO₄ has no pH-buffering function — Mn²⁺ is a transition metal ion, not an acid-base buffer pair."
+  },
+  {
+    "id": "x1122a",
+    "topic": "calc",
+    "diff": 3,
+    "type": "mc",
+    "q": "A technician prepares a phosphate calibration solution by mixing 20 mL of a 100 mg/L stock with 30 mL of a 200 mg/L stock, then diluting the combined mixture with distilled water to a total volume of 500 mL. Which calculation correctly gives the final phosphate concentration, in mg/L?",
+    "choices": [
+      "(20 × 100 + 30 × 200) ÷ 500 = 16 mg/L",
+      "(20 × 100 + 30 × 200) ÷ (20 + 30) = 160 mg/L",
+      "(100 + 200) ÷ 2 = 150 mg/L",
+      "(20 × 100 + 30 × 200) ÷ 250 = 32 mg/L"
+    ],
+    "ans": 0,
+    "explain": "Total mass of phosphate from both stocks: (20 mL × 100 mg/L) + (30 mL × 200 mg/L) = 2000 + 6000 = 8000 (the mL and L units cancel when volume and concentration are both in the same mL/L system; equivalently, 2.0 mg + 6.0 mg = 8.0 mg). After diluting to 500 mL: concentration = 8000 ÷ 500 = 16 mg/L. Distractor B (160 mg/L): divides the total mass by 50 mL (the combined unmixed volume), forgetting that the mixture is then diluted to a final volume of 500 mL — a 10-fold error. Distractor C (150 mg/L): takes a simple arithmetic average of the two stock concentrations, ignoring both the volume weighting and the dilution step — this would only be correct if equal volumes were mixed and no further dilution occurred. Distractor D (32 mg/L): uses 250 mL (half the final volume) as the denominator — perhaps from mistakenly halving the target volume."
+  },
+  {
+    "id": "x1122b",
+    "topic": "salino",
+    "diff": 2,
+    "type": "num",
+    "q": "A student calibrates her homemade hydrometer salinometer at 20 °C using two known solutions: distilled water (0.0 ppt, SG = 1.000) and a seawater standard (35.0 ppt, SG = 1.025). An unknown estuary sample at 20 °C reads SG = 1.015. Using linear interpolation between the two calibration points, what is the estimated salinity of the sample, in ppt?",
+    "ans": 21,
+    "unit": "ppt",
+    "tol": 0.02,
+    "explain": "Linear interpolation between calibration points: salinity = (SG_unknown − SG_low) ÷ (SG_high − SG_low) × ppt_high = (1.015 − 1.000) ÷ (1.025 − 1.000) × 35.0 = 0.015 ÷ 0.025 × 35.0 = 0.60 × 35.0 = 21.0 ppt. The fraction 0.60 means the unknown sits 60% of the way from 0 ppt to 35 ppt on the SG scale. Common error 1: computing 1.015/1.025 = 0.9902 and multiplying by 35, giving 34.7 ppt — this uses raw SG ratios instead of the difference from the zero-salinity reference (SG = 1.000), so it misidentifies where the unknown falls within the calibration range. Common error 2: reading the SG directly as the salinity (reporting 1.015 ppt), which confuses a dimensionless density ratio with a mass-fraction concentration."
   }
 ]

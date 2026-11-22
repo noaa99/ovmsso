@@ -443,5 +443,31 @@
     ],
     "ans": 0,
     "explain": "Apply the identity sin²(θ) = [1 − cos(2θ)]/2 to p(t): p(t) = V²_peak sin²(2πt/T)/R = (V²_peak/2R)[1 − cos(4πt/T)]. The argument of the cosine is 4πt/T = 2π·t/(T/2), which reveals a period of T/2 — exactly half the voltage period. p(t) oscillates between 0 (when v = 0) and V²_peak/R (when v = ±V_peak) at twice the source frequency. Distractor B confuses the period of v(t) with the period of v²(t): squaring removes the sign reversal, so both the positive and negative half-cycles of the voltage produce identical power pulses — meaning p(t) completes two full oscillations for every one of v(t). Distractor C imagines the negative half-cycle 'undoes' energy deposited in the positive half-cycle; it does not — p = v²/R ≥ 0 always, so both half-cycles heat the resistor equally. Distractor D confuses the time-average of p(t) — which IS the constant value V²_peak/(2R) = P_avg — with the instantaneous power, which fluctuates between 0 and V²_peak/R."
+  },
+  {
+    "id": "x1122a",
+    "topic": "ohm",
+    "diff": 2,
+    "type": "num",
+    "q": "A platinum resistance thermometer has a nominal resistance of R₀ = 100.0 Ω at 0 °C and a linear temperature coefficient α = 0.00390 /°C. When placed in thermal contact with an unknown sample, its resistance reads 139.0 Ω. Using R(T) = R₀(1 + αT), where T is in °C above 0 °C, find the temperature of the sample, in °C.",
+    "ans": 100,
+    "unit": "°C",
+    "tol": 0.02,
+    "explain": "Rearrange R(T) = R₀(1 + αT) to solve for T: T = [R(T)/R₀ − 1] / α = [139.0/100.0 − 1] / 0.00390 = [1.390 − 1] / 0.00390 = 0.390 / 0.00390 = 100 °C. This inverts the standard temperature-coefficient problem: rather than computing R from a known T, we recover T from a measured R. The Pt-100 sensor (100 Ω at 0 °C, α ≈ 0.00390 /°C) is a standard industrial temperature element and this linear formula is accurate from 0 °C to about 850 °C. Common error 1: dividing R₀ by R(T) instead of the other way, giving 100/139 − 1 = −0.281 and then T = −72 °C — a negative temperature because the ratio was inverted. Common error 2: multiplying 0.390 × 0.00390 ≈ 0.00152 instead of dividing, yielding 0.00152 °C — essentially absolute zero, clearly unreasonable."
+  },
+  {
+    "id": "x1122b",
+    "topic": "circuits",
+    "diff": 3,
+    "type": "mc",
+    "q": "A 6.0 V battery with negligible internal resistance drives two identical 30 Ω lamps wired in parallel. A technician adds a third identical 30 Ω lamp in parallel with the existing pair. Which statement correctly describes ALL the changes that occur?",
+    "choices": [
+      "Each lamp's brightness increases — adding more loads in parallel reduces the equivalent resistance, so more current flows through each individual lamp.",
+      "Each lamp's brightness stays the same, and the total current drawn from the battery increases by 50%.",
+      "Each lamp's brightness decreases — the battery must share its current among more lamps, so each lamp receives less.",
+      "Total power delivered by the battery decreases — adding more parallel lamps increases the total circuit resistance."
+    ],
+    "ans": 1,
+    "explain": "Before: Req = 30/2 = 15 Ω, I_total = 6/15 = 0.40 A, each lamp carries 6/30 = 0.20 A and dissipates 1.20 W. After: Req = 30/3 = 10 Ω, I_total = 6/10 = 0.60 A — a 50% increase — but each lamp STILL carries 6/30 = 0.20 A and 1.20 W unchanged, because the voltage across every parallel branch is fixed at the source voltage of 6 V regardless of how many branches are present. Distractor A: more branches do lower Req and raise I_total, but branch current = V_source / R_branch stays constant — the reduced Req accelerates total current, not individual branch currents. Distractor C applies series-circuit intuition to a parallel circuit: in series, adding a lamp would indeed redistribute voltage and dim existing lamps — but each parallel branch connects directly to the 6 V source and is unaffected by other branches. Distractor D has both facts backward: Req fell from 15 Ω to 10 Ω (not increased), and total power rose from 2.4 W to 3.6 W (not decreased)."
   }
 ]
