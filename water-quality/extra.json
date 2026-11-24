@@ -440,5 +440,31 @@
     "unit": "ppt",
     "tol": 0.02,
     "explain": "Linear interpolation between calibration points: salinity = (SG_unknown − SG_low) ÷ (SG_high − SG_low) × ppt_high = (1.015 − 1.000) ÷ (1.025 − 1.000) × 35.0 = 0.015 ÷ 0.025 × 35.0 = 0.60 × 35.0 = 21.0 ppt. The fraction 0.60 means the unknown sits 60% of the way from 0 ppt to 35 ppt on the SG scale. Common error 1: computing 1.015/1.025 = 0.9902 and multiplying by 35, giving 34.7 ppt — this uses raw SG ratios instead of the difference from the zero-salinity reference (SG = 1.000), so it misidentifies where the unknown falls within the calibration range. Common error 2: reading the SG directly as the salinity (reporting 1.015 ppt), which confuses a dimensionless density ratio with a mass-fraction concentration."
+  },
+  {
+    "id": "x1124a",
+    "topic": "salino",
+    "diff": 2,
+    "type": "mc",
+    "q": "A student's hydrometer salinometer was calibrated at 20 °C. Without warming the sample first, she lowers the hydrometer into estuary water that is at 8 °C. How does the hydrometer reading compare to the true specific gravity of the sample at 8 °C, and what does this do to the reported salinity?",
+    "choices": [
+      "The hydrometer reads LOWER than the true specific gravity — cold water contracts the hydrometer glass, compressing the scale markings downward.",
+      "The hydrometer reads HIGHER than the true specific gravity — the water is denser at 8 °C than at 20 °C for the same salinity, pushing the hydrometer higher in the sample so a larger scale reading appears at the waterline, overestimating salinity.",
+      "The hydrometer reads the SAME as the true specific gravity — temperature affects only the reference line for zero salinity, not the slope of the scale.",
+      "The hydrometer reads LOWER than the true specific gravity — cold water has higher surface tension, dragging the stem downward and causing the instrument to underread."
+    ],
+    "ans": 1,
+    "explain": "By Archimedes' principle, a hydrometer floats where the upward buoyant force (weight of displaced liquid) equals the hydrometer's own weight. At 8 °C, water is denser than at 20 °C for the same salinity, so each centimetre of submerged stem displaces more mass. Equilibrium is reached with less stem submerged — the hydrometer rides higher — and the scale reading at the waterline is therefore LARGER than the 20 °C-equivalent SG, causing the salinometer to overestimate salinity. The correct fix is to warm the sample to the calibration temperature or apply a published temperature-correction table. This is the opposite of the warm-sample error: a sample warmer than the calibration temperature is less dense, so the hydrometer sinks deeper and underestimates salinity. Distractor A has the direction wrong — cold water is denser, raising the hydrometer, not lowering it. Distractor C is wrong: the full calibration scale shifts with temperature because density changes throughout the SG range, not only at zero salinity. Distractor D is wrong: surface tension at the air-water interface exerts a small upward pull on the stem at the waterline, so it tends to raise the reading slightly rather than lower it."
+  },
+  {
+    "id": "x1124b",
+    "topic": "pollution",
+    "diff": 3,
+    "type": "num",
+    "q": "PCBs are detected at 0.0040 μg/L in the water column of a coastal estuary. Field measurements show each trophic transfer biomagnifies PCBs by a factor of 10. The estuary's simplified food chain passes through four trophic levels above the water: phytoplankton → copepods → anchovies → bottlenose dolphins. What is the expected PCB concentration in the dolphins, in μg/L?",
+    "ans": 40,
+    "unit": "μg/L",
+    "tol": 0.02,
+    "explain": "Each trophic transfer multiplies the PCB concentration by 10. Starting from water: phytoplankton: 0.0040 × 10 = 0.040 μg/L; copepods: 0.040 × 10 = 0.40 μg/L; anchovies: 0.40 × 10 = 4.0 μg/L; dolphins: 4.0 × 10 = 40 μg/L. Equivalently, four transfers at 10× each: 0.0040 × 10⁴ = 40 μg/L. This 10,000-fold increase demonstrates why persistent bioaccumulative toxins (PBTs) such as PCBs, DDT, and methylmercury are most dangerous at the top of marine food chains, even when dissolved water concentrations are far below acute-toxicity thresholds. Common error 1: counting only three transfers (forgetting that dolphins are the fourth level above water, not the third), giving 0.0040 × 10³ = 4.0 μg/L — 10 times too low. Common error 2: confusing the 10× biomagnification factor with the 10% energy-transfer rule and using 0.1 instead of 10, giving 0.0040 × (0.1)⁴ = 4 × 10⁻⁷ μg/L — this fundamentally mistakes energy loss for pollutant concentration gain."
   }
 ]

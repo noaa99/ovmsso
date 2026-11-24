@@ -469,5 +469,33 @@
     ],
     "ans": 1,
     "explain": "Before: Req = 30/2 = 15 Ω, I_total = 6/15 = 0.40 A, each lamp carries 6/30 = 0.20 A and dissipates 1.20 W. After: Req = 30/3 = 10 Ω, I_total = 6/10 = 0.60 A — a 50% increase — but each lamp STILL carries 6/30 = 0.20 A and 1.20 W unchanged, because the voltage across every parallel branch is fixed at the source voltage of 6 V regardless of how many branches are present. Distractor A: more branches do lower Req and raise I_total, but branch current = V_source / R_branch stays constant — the reduced Req accelerates total current, not individual branch currents. Distractor C applies series-circuit intuition to a parallel circuit: in series, adding a lamp would indeed redistribute voltage and dim existing lamps — but each parallel branch connects directly to the 6 V source and is unaffected by other branches. Distractor D has both facts backward: Req fell from 15 Ω to 10 Ω (not increased), and total power rose from 2.4 W to 3.6 W (not decreased)."
+  },
+  {
+    "id": "x1124a",
+    "topic": "circuits",
+    "diff": 3,
+    "type": "num",
+    "q": "The schematic shows a real battery modeled as an ideal EMF source ε = 15 V in series with an internal resistance r = 2.5 Ω. It drives an external load R_L = 12.5 Ω. What is the terminal voltage V_T, in volts, that appears across the load terminals A and B?",
+    "svg": "<svg viewBox='0 0 400 200' role='img' aria-label='Real battery: ideal EMF source 15 V in series with internal resistance r=2.5 ohm driving load R_L=12.5 ohm; V_T is the terminal voltage across terminals A and B'><g stroke='currentColor' stroke-width='2' fill='none' stroke-linecap='round'><line x1='70' y1='40' x2='70' y2='78'/><line x1='55' y1='78' x2='85' y2='78'/><line x1='62' y1='88' x2='78' y2='88'/><line x1='55' y1='98' x2='85' y2='98'/><line x1='62' y1='108' x2='78' y2='108'/><line x1='70' y1='108' x2='70' y2='160'/><line x1='70' y1='40' x2='135' y2='40'/><rect x='135' y='28' width='65' height='24'/><line x1='200' y1='40' x2='295' y2='40'/><line x1='295' y1='40' x2='295' y2='72'/><rect x='283' y='72' width='24' height='56'/><line x1='295' y1='128' x2='295' y2='160'/><line x1='70' y1='160' x2='295' y2='160'/></g><circle cx='295' cy='40' r='4' fill='currentColor'/><circle cx='295' cy='160' r='4' fill='currentColor'/><g stroke='currentColor' stroke-width='1.5' stroke-dasharray='4,3' fill='none'><line x1='323' y1='40' x2='323' y2='160'/><polyline points='318,52 323,40 328,52'/><polyline points='318,148 323,160 328,148'/></g><g fill='currentColor' font-family='system-ui,sans-serif' font-size='13' text-anchor='middle'><text x='167' y='22'>r = 2.5 &#937;</text><text x='68' y='72' font-size='11' text-anchor='end'>+</text><text x='68' y='116' font-size='11' text-anchor='end'>&#8722;</text><text x='68' y='97' text-anchor='end'>&#949; = 15 V</text><text x='275' y='97' text-anchor='end'>R_L =</text><text x='275' y='113' text-anchor='end'>12.5 &#937;</text><text x='308' y='34'>A</text><text x='308' y='178'>B</text><text x='350' y='104'>V_T</text></g></svg>",
+    "caption": "Real battery: ideal EMF ε in series with internal resistance r, driving external load R_L. Terminal voltage V_T appears across the external terminals A–B.",
+    "ans": 12.5,
+    "unit": "V",
+    "tol": 0.02,
+    "explain": "Step 1 — find the loop current: I = ε / (r + R_L) = 15 / (2.5 + 12.5) = 15 / 15 = 1.0 A. Step 2 — the internal resistance drops I·r = 1.0 × 2.5 = 2.5 V, so the terminal voltage is V_T = ε − I·r = 15 − 2.5 = 12.5 V. Cross-check: V_T = I × R_L = 1.0 × 12.5 = 12.5 V ✓. The terminal voltage is always less than the EMF under load; it equals ε only at open circuit (I = 0). The reference exam (exam-set-e, Q2) uses a similar leaves-inward reduction strategy — here the two-resistor series chain reduces in one step. Common error 1: using ε = 15 V directly as the terminal voltage, forgetting that r consumes 2.5 V under the 1 A load — this overstates V_T by 20%. Common error 2: treating r and R_L as a parallel pair, giving Req ≈ 2.08 Ω and I ≈ 7.2 A — a topology error that ignores the series connection inside the battery model."
+  },
+  {
+    "id": "x1124b",
+    "topic": "control",
+    "diff": 2,
+    "type": "mc",
+    "q": "In a latching (self-holding) relay circuit, a normally-open (NO) momentary pushbutton PB₁ is wired in parallel with the relay's own normally-open auxiliary contact RC. This parallel pair is connected in series with the relay coil and the 24 V supply. The relay starts de-energized. A technician briefly presses PB₁ and immediately releases it. What is the state of the relay coil after PB₁ is fully released?",
+    "choices": [
+      "The coil stays de-energized — a momentary pushbutton cannot hold a relay coil on.",
+      "The coil energizes while PB₁ is held down, then de-energizes the moment PB₁ is released, because the only sustained path was through PB₁.",
+      "The coil energizes when PB₁ is pressed and stays energized after PB₁ is released, because the now-closed auxiliary contact RC provides a parallel current path that keeps the coil powered.",
+      "The coil energizes then de-energizes repeatedly — RC and PB₁ form an oscillating feedback loop."
+    ],
+    "ans": 2,
+    "explain": "When PB₁ is pressed, current flows through PB₁ → relay coil → relay energizes → all NO contacts (including auxiliary contact RC) close. When PB₁ is released, RC is now closed and maintains the coil current path independently: current continues through RC → coil. The relay stays latched indefinitely. To de-energize it, a normally-closed (NC) stop pushbutton wired in series with the coil circuit must be pressed, breaking the RC path and dropping out the relay. Distractor A: a momentary pushbutton CAN latch a relay — RC provides the sustained path after PB₁ starts the sequence; this circuit appears in every industrial motor starter. Distractor B correctly describes a circuit where RC is absent; adding RC converts momentary control into a latch. Distractor D is wrong: at DC with no timing element, the relay pulls in once and stays in — RC closes when the relay energizes and remains closed, providing steady (not oscillating) coil current."
   }
 ]
