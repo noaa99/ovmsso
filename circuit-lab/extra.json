@@ -497,5 +497,33 @@
     ],
     "ans": 2,
     "explain": "When PB₁ is pressed, current flows through PB₁ → relay coil → relay energizes → all NO contacts (including auxiliary contact RC) close. When PB₁ is released, RC is now closed and maintains the coil current path independently: current continues through RC → coil. The relay stays latched indefinitely. To de-energize it, a normally-closed (NC) stop pushbutton wired in series with the coil circuit must be pressed, breaking the RC path and dropping out the relay. Distractor A: a momentary pushbutton CAN latch a relay — RC provides the sustained path after PB₁ starts the sequence; this circuit appears in every industrial motor starter. Distractor B correctly describes a circuit where RC is absent; adding RC converts momentary control into a latch. Distractor D is wrong: at DC with no timing element, the relay pulls in once and stays in — RC closes when the relay energizes and remains closed, providing steady (not oscillating) coil current."
+  },
+  {
+    "id": "x1126a",
+    "topic": "diodes",
+    "diff": 3,
+    "type": "num",
+    "q": "A half-wave rectifier uses a single silicon diode with a forward voltage drop of 0.7 V. The transformer secondary delivers 15 V RMS. The rectified output drives a purely resistive load with no filter capacitor. What is the peak inverse voltage (PIV) across the diode during the non-conducting half-cycle, in volts? (Use V_peak = V_rms × √2; during the reverse half-cycle the resistive load holds 0 V.)",
+    "svg": "<svg viewBox=\"0 0 420 180\" role=\"img\" aria-label=\"Half-wave rectifier: 15 V RMS AC source feeds diode D1 in series with resistive load R; PIV bracket shown across D1 during the non-conducting half-cycle\"><g stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\"><circle cx=\"65\" cy=\"93\" r=\"27\"/><line x1=\"65\" y1=\"66\" x2=\"65\" y2=\"50\"/><line x1=\"65\" y1=\"50\" x2=\"148\" y2=\"50\"/><polygon points=\"148,34 148,66 208,50\" stroke=\"currentColor\" fill=\"none\"/><line x1=\"208\" y1=\"34\" x2=\"208\" y2=\"66\"/><line x1=\"208\" y1=\"50\" x2=\"340\" y2=\"50\"/><line x1=\"340\" y1=\"50\" x2=\"340\" y2=\"72\"/><rect x=\"328\" y=\"72\" width=\"24\" height=\"56\"/><line x1=\"340\" y1=\"128\" x2=\"340\" y2=\"142\"/><line x1=\"340\" y1=\"142\" x2=\"65\" y2=\"142\"/><line x1=\"65\" y1=\"142\" x2=\"65\" y2=\"120\"/></g><g stroke=\"currentColor\" stroke-width=\"1.5\" fill=\"none\"><line x1=\"148\" y1=\"80\" x2=\"208\" y2=\"80\"/><line x1=\"148\" y1=\"75\" x2=\"148\" y2=\"85\"/><line x1=\"208\" y1=\"75\" x2=\"208\" y2=\"85\"/></g><g fill=\"currentColor\" font-family=\"system-ui,sans-serif\" text-anchor=\"middle\"><text x=\"65\" y=\"99\" font-size=\"16\">~</text><text x=\"22\" y=\"89\" font-size=\"11\">15 V</text><text x=\"22\" y=\"103\" font-size=\"11\">RMS</text><text x=\"178\" y=\"28\" font-size=\"12\">D1</text><text x=\"136\" y=\"47\" font-size=\"10\" text-anchor=\"end\">A</text><text x=\"222\" y=\"47\" font-size=\"10\" text-anchor=\"start\">K</text><text x=\"370\" y=\"103\" font-size=\"12\" text-anchor=\"start\">R</text><text x=\"178\" y=\"97\" font-size=\"11\">PIV = ?</text></g></svg>",
+    "caption": "Half-wave rectifier: 15 V RMS secondary, diode D1 (anode A, cathode K), resistive load R. The PIV bracket marks the reverse voltage across D1 when it is not conducting.",
+    "ans": 21.2,
+    "unit": "V",
+    "tol": 0.02,
+    "explain": "Step 1 — find the peak secondary voltage: V_peak = V_rms × √2 = 15 × 1.4142 = 21.2 V. Step 2 — during the negative half-cycle the diode is reverse-biased and no current flows. Because the load is purely resistive with no storage capacitor, the load voltage drops to 0 V; the entire transformer peak voltage therefore appears across the reverse-biased diode: PIV = V_peak = 21.2 V. The forward-voltage drop (0.7 V) applies only during forward conduction and is irrelevant here. Common error 1: subtracting the forward drop (21.2 − 0.7 = 20.5 V) — the 0.7 V reduction applies to the output during the conducting half-cycle, not to the reverse blocking voltage. Common error 2: using V_rms = 15 V directly as the PIV — it is the transformer peak voltage, not its RMS value, that the reverse-biased diode must withstand; the diode sees 21.2 V of reverse stress even though the supply is rated 15 V RMS."
+  },
+  {
+    "id": "x1126b",
+    "topic": "logic",
+    "diff": 2,
+    "type": "mc",
+    "q": "Using Boolean algebra, simplify the expression (A · B) + (A · NOT B).",
+    "choices": [
+      "NOT A — the two product terms are complements of each other and their OR cancels to the inverse of the shared factor",
+      "A — factor out A: A · (B + NOT B) = A · 1 = A, using the complement law (B + NOT B = 1) and the identity law (A · 1 = A)",
+      "1 — the two terms together cover every possible value of B, making the output always HIGH regardless of A",
+      "A · B — the second term A · NOT B is dominated by the first term and disappears under the absorption law"
+    ],
+    "ans": 1,
+    "explain": "Factor the common variable A from both terms: (A · B) + (A · NOT B) = A · (B + NOT B). By the complement law, B + NOT B = 1 for any Boolean variable B; by the identity law, A · 1 = A. The expression therefore simplifies to A. Full truth-table check — A=0, B=0: (0·0)+(0·1)=0=A ✓; A=0, B=1: (0·1)+(0·0)=0=A ✓; A=1, B=0: (1·0)+(1·1)=1=A ✓; A=1, B=1: (1·1)+(1·0)=1=A ✓. Distractor A — NOT A: for A=1, B=0 the expression equals 1 but NOT A = 0, so wrong. Distractor C — 1 (always HIGH): for A=0, B=0 the expression equals 0, not 1; the output is HIGH only when A is HIGH, not unconditionally. Distractor D — A·B: for A=1, B=0 the expression equals 1 but A·B = 1·0 = 0, so wrong."
   }
 ]

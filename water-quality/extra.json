@@ -466,5 +466,31 @@
     "unit": "μg/L",
     "tol": 0.02,
     "explain": "Each trophic transfer multiplies the PCB concentration by 10. Starting from water: phytoplankton: 0.0040 × 10 = 0.040 μg/L; copepods: 0.040 × 10 = 0.40 μg/L; anchovies: 0.40 × 10 = 4.0 μg/L; dolphins: 4.0 × 10 = 40 μg/L. Equivalently, four transfers at 10× each: 0.0040 × 10⁴ = 40 μg/L. This 10,000-fold increase demonstrates why persistent bioaccumulative toxins (PBTs) such as PCBs, DDT, and methylmercury are most dangerous at the top of marine food chains, even when dissolved water concentrations are far below acute-toxicity thresholds. Common error 1: counting only three transfers (forgetting that dolphins are the fourth level above water, not the third), giving 0.0040 × 10³ = 4.0 μg/L — 10 times too low. Common error 2: confusing the 10× biomagnification factor with the 10% energy-transfer rule and using 0.1 instead of 10, giving 0.0040 × (0.1)⁴ = 4 × 10⁻⁷ μg/L — this fundamentally mistakes energy loss for pollutant concentration gain."
+  },
+  {
+    "id": "x1126c",
+    "topic": "estuary",
+    "diff": 3,
+    "type": "num",
+    "q": "An estuary manager uses the freshwater replacement method to estimate how long contaminants will persist before being flushed out to sea. The estuary has a total water volume of 2.4 × 10⁸ m³, and a river delivers a steady freshwater discharge of 20 m³/s. Using flushing time = total volume ÷ freshwater flow rate, calculate the flushing time, in days. (1 day = 86 400 s)",
+    "ans": 139,
+    "unit": "days",
+    "tol": 0.02,
+    "explain": "Step 1 — divide total volume by freshwater flow rate to get flushing time in seconds: T = V / Q = (2.4 × 10⁸ m³) / (20 m³/s) = 1.2 × 10⁷ s. Step 2 — convert to days: 1.2 × 10⁷ s ÷ 86 400 s/day = 138.9 days ≈ 139 days. The flushing time (hydraulic residence time) governs how long nutrients, contaminants, and salinity anomalies persist in the estuary; at 139 days this estuary flushes very slowly — roughly once every five months — making it highly vulnerable to eutrophication and hypoxia from sustained nutrient loading. Common error 1: reporting 1.2 × 10⁷ as the final answer (forgetting the seconds-to-days conversion) — off by a factor of 86 400. Common error 2: inverting the fraction and computing Q / V = 20 / (2.4 × 10⁸) ≈ 8.3 × 10⁻⁸ s⁻¹ — this is a flushing rate, not a flushing time, and is dimensionally inconsistent with 'days'."
+  },
+  {
+    "id": "x1126d",
+    "topic": "habitat",
+    "diff": 2,
+    "type": "mc",
+    "q": "On a temperate rocky shore, organisms are arranged in distinct horizontal bands at different elevations above sea level. Which abiotic factor most directly establishes this vertical zonation pattern?",
+    "choices": [
+      "Salinity gradient — rainwater pools at higher elevations, creating progressively lower salinity upshore and excluding salt-requiring species from the highest zones",
+      "Duration of aerial exposure (emersion time) — organisms higher on the shore spend longer periods out of water at every low tide, facing greater desiccation, temperature extremes, and UV stress; only species physiologically tolerant of these stresses can survive at upper elevations",
+      "Wave energy — hydraulic force is greatest in the upper splash zone and diminishes toward the low-tide mark, so the calmest conditions (lowest on the shore) support the most stress-tolerant species",
+      "Predation pressure — mobile predators such as sea stars and crabs forage exclusively at the low-tide mark, indirectly pushing prey species upshore into higher, unoccupied zones"
+    ],
+    "ans": 1,
+    "explain": "The primary physical gradient on a rocky shore is set by tidal exposure: at high elevations a site is submerged for only a small fraction of each tidal cycle, so organisms endure prolonged aerial desiccation, solar heating, and temperature extremes with every low tide. Only highly stress-tolerant species such as barnacles and littorine snails can survive there. As elevation decreases, emersion time shortens and species richness increases, until competitive exclusion and predation shape community structure near the low-tide mark. This emersion-time gradient is the foundational concept of classical intertidal ecology. Distractor A is partly backward: evaporation from exposed upper rocks tends to concentrate salts rather than dilute them, and freshwater runoff is intermittent — salinity is not the primary zonation driver. Distractor C misidentifies the direction: wave energy is highest at mid-to-upper intertidal levels on exposed shores, not lowest — and wave action is a secondary modifier that compresses or expands zone boundaries rather than creating the basic vertical gradient. Distractor D confuses biotic interactions (predation sets the lower limits of prey distributions) with abiotic drivers; predation shapes community composition within zones but is not the physical factor that generates the zonation pattern itself."
   }
 ]
