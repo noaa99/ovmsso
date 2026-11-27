@@ -525,5 +525,33 @@
     ],
     "ans": 1,
     "explain": "Factor the common variable A from both terms: (A · B) + (A · NOT B) = A · (B + NOT B). By the complement law, B + NOT B = 1 for any Boolean variable B; by the identity law, A · 1 = A. The expression therefore simplifies to A. Full truth-table check — A=0, B=0: (0·0)+(0·1)=0=A ✓; A=0, B=1: (0·1)+(0·0)=0=A ✓; A=1, B=0: (1·0)+(1·1)=1=A ✓; A=1, B=1: (1·1)+(1·0)=1=A ✓. Distractor A — NOT A: for A=1, B=0 the expression equals 1 but NOT A = 0, so wrong. Distractor C — 1 (always HIGH): for A=0, B=0 the expression equals 0, not 1; the output is HIGH only when A is HIGH, not unconditionally. Distractor D — A·B: for A=1, B=0 the expression equals 1 but A·B = 1·0 = 0, so wrong."
+  },
+  {
+    "id": "x1127a",
+    "topic": "kirchhoff",
+    "diff": 3,
+    "type": "num",
+    "q": "The schematic shows a two-mesh ladder circuit driven by two voltage sources, both with positive terminals at the top. Left mesh: 16 V source with R₁ = 4 Ω in the top branch. Right mesh: 6 V source with R₂ = 5 Ω in the top branch. The shared centre leg is R_mid = 4 Ω. Mesh currents I₁ (left mesh) and I₂ (right mesh) are both defined clockwise. Using mesh analysis, find the power delivered by the 16 V source, in watts.",
+    "svg": "<svg viewBox='0 0 420 230' role='img' aria-label='Two-mesh ladder: 16 V source drives R1 top-left; 6 V source drives R2 top-right; shared centre leg R_mid; clockwise mesh currents I1 and I2'><g stroke='currentColor' stroke-width='2' fill='none' stroke-linecap='round'><line x1='45' y1='65' x2='80' y2='65'/><rect x='80' y='56' width='80' height='18'/><line x1='160' y1='65' x2='210' y2='65'/><line x1='210' y1='65' x2='240' y2='65'/><rect x='240' y='56' width='85' height='18'/><line x1='325' y1='65' x2='375' y2='65'/><line x1='45' y1='65' x2='45' y2='98'/><line x1='30' y1='98' x2='60' y2='98'/><line x1='35' y1='114' x2='55' y2='114'/><line x1='45' y1='114' x2='45' y2='190'/><line x1='375' y1='65' x2='375' y2='98'/><line x1='360' y1='98' x2='390' y2='98'/><line x1='365' y1='114' x2='385' y2='114'/><line x1='375' y1='114' x2='375' y2='190'/><line x1='45' y1='190' x2='375' y2='190'/><line x1='210' y1='65' x2='210' y2='95'/><rect x='203' y='95' width='14' height='58'/><line x1='210' y1='153' x2='210' y2='190'/></g><circle cx='210' cy='65' r='4' fill='currentColor'/><circle cx='210' cy='190' r='4' fill='currentColor'/><g fill='currentColor' font-family='system-ui,sans-serif' font-size='13' text-anchor='middle'><text x='120' y='50'>R&#8321; = 4 &#937;</text><text x='283' y='50'>R&#8322; = 5 &#937;</text><text x='235' y='120'>R_mid</text><text x='235' y='136'>= 4 &#937;</text><text x='15' y='102' font-size='11' text-anchor='end'>+</text><text x='15' y='118' font-size='11' text-anchor='end'>&#8722;</text><text x='15' y='152' font-size='12' text-anchor='end'>16 V</text><text x='405' y='102' font-size='11' text-anchor='start'>+</text><text x='405' y='118' font-size='11' text-anchor='start'>&#8722;</text><text x='405' y='152' font-size='12' text-anchor='start'>6 V</text><text x='110' y='155'>I&#8321;</text><text x='300' y='155'>I&#8322;</text></g></svg>",
+    "caption": "Two-mesh ladder: 16 V source, R₁ = 4 Ω (left mesh); R_mid = 4 Ω (shared centre leg); 6 V source, R₂ = 5 Ω (right mesh). Both mesh currents clockwise.",
+    "ans": 48,
+    "unit": "W",
+    "tol": 0.02,
+    "explain": "Step 1 — write mesh KVL equations (clockwise current positive). Mesh 1: +16 − 4I₁ − 4(I₁ − I₂) = 0 → 8I₁ − 4I₂ = 16. Mesh 2: +6 − 5I₂ − 4(I₂ − I₁) = 0 → −4I₁ + 9I₂ = 6. Step 2 — solve simultaneously. Divide mesh-1 by 4: 2I₁ − I₂ = 4, so I₂ = 2I₁ − 4. Substitute into mesh 2: −4I₁ + 9(2I₁ − 4) = 6 → 14I₁ = 42 → I₁ = 3 A; then I₂ = 2 A. Step 3 — power delivered by the 16 V source: P = V × I₁ = 16 × 3 = 48 W. Verification: 6 V source delivers 6 × 2 = 12 W; total source power = 60 W. Resistor dissipation: P_R₁ = 3² × 4 = 36 W, P_Rmid = (3 − 2)² × 4 = 4 W, P_R₂ = 2² × 5 = 20 W; total = 60 W ✓. Common error 1: writing the shared-resistor drop as 4I₁ in both equations instead of 4(I₁ − I₂) in mesh 1 and 4(I₂ − I₁) in mesh 2, giving I₁ = I₂ and wrong currents. Common error 2: computing I₁ × R₁ = 3 × 4 = 12 W (the power in R₁ only) instead of V_source × I_mesh = 48 W."
+  },
+  {
+    "id": "x1127b",
+    "topic": "history",
+    "diff": 2,
+    "type": "mc",
+    "q": "Alessandro Volta constructed the first electric battery, the voltaic pile, around 1800 and demonstrated it in Paris. Which pair of metals did Volta alternate in his stack, and what served as the electrolyte between each pair?",
+    "choices": [
+      "Zinc and copper discs, separated by brine-soaked cloth or pasteboard",
+      "Iron and silver rods, immersed in dilute sulfuric acid",
+      "Gold and platinum plates, separated by nitric acid",
+      "Tin and lead sheets, separated by vinegar-soaked paper"
+    ],
+    "ans": 0,
+    "explain": "The original voltaic pile alternated zinc (Zn) and copper (Cu) discs with brine-soaked cloth or pasteboard between each pair. Zinc is the anode (it oxidises), copper is the cathode, and the conducting salt solution allows ions to flow, completing each electrochemical cell. Volta sent a written description to the Royal Society of London in March 1800 and demonstrated the pile to Napoleon Bonaparte in 1801. Distractor B: Galvani's earlier experiments used iron and brass instruments, but those produced no sustained current; Volta deliberately chose Zn/Cu to maximise reliable output. Distractor C: gold and platinum are noble metals with very low reactivity — a stack of Au/Pt would produce negligible voltage. Distractor D: tin/lead electrodes with an acid electrolyte describe a lead-acid cell, invented by Gaston Planté in 1859 — more than half a century after Volta's pile."
   }
 ]

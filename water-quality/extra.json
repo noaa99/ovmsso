@@ -492,5 +492,31 @@
     ],
     "ans": 1,
     "explain": "The primary physical gradient on a rocky shore is set by tidal exposure: at high elevations a site is submerged for only a small fraction of each tidal cycle, so organisms endure prolonged aerial desiccation, solar heating, and temperature extremes with every low tide. Only highly stress-tolerant species such as barnacles and littorine snails can survive there. As elevation decreases, emersion time shortens and species richness increases, until competitive exclusion and predation shape community structure near the low-tide mark. This emersion-time gradient is the foundational concept of classical intertidal ecology. Distractor A is partly backward: evaporation from exposed upper rocks tends to concentrate salts rather than dilute them, and freshwater runoff is intermittent — salinity is not the primary zonation driver. Distractor C misidentifies the direction: wave energy is highest at mid-to-upper intertidal levels on exposed shores, not lowest — and wave action is a secondary modifier that compresses or expands zone boundaries rather than creating the basic vertical gradient. Distractor D confuses biotic interactions (predation sets the lower limits of prey distributions) with abiotic drivers; predation shapes community composition within zones but is not the physical factor that generates the zonation pattern itself."
+  },
+  {
+    "id": "x1127a",
+    "topic": "zones",
+    "diff": 2,
+    "type": "mc",
+    "q": "The neritic zone (continental shelf, roughly 0–200 m depth) covers only about 8% of ocean surface area, yet it supports a disproportionately large share of global marine fish catches. What most directly explains this elevated productivity compared with the open oceanic zone?",
+    "choices": [
+      "Light penetrates all the way to the seafloor throughout the neritic zone, allowing benthic algae to match the photosynthetic output of surface phytoplankton",
+      "Nutrients are continuously replenished from river runoff, regeneration of organics from the nearby seafloor, and coastal upwelling — sustaining phytoplankton biomass at levels the nutrient-poor open ocean cannot match",
+      "Neritic tidal basins trap phytoplankton cells longer than the open ocean, maximising the time available for photosynthesis before the cells sink out of the euphotic zone",
+      "Freshwater dilution from rivers lowers salinity below 30 ppt throughout the shelf, and marine phytoplankton grow faster at reduced salinity"
+    ],
+    "ans": 1,
+    "explain": "Open-ocean (oceanic) waters are nutrient deserts: dissolved nitrogen and phosphorus are stripped from the sunlit surface layer by phytoplankton and are only slowly resupplied by mixing from depth. The continental shelf receives three extra nutrient pathways: (1) river runoff carries land-derived nitrogen and phosphorus; (2) shallow water overlies the seafloor, so remineralised nutrients from sediment decomposition mix into the euphotic zone far more effectively than in the deep ocean; (3) coastal upwelling regularly delivers nutrient-rich bottom water to the surface. These inputs sustain dense phytoplankton blooms supporting rich zooplankton and commercial fish stocks. Distractor A is false: the neritic zone extends to ~200 m, far deeper than light penetration (typically 30–50 m); only the shallowest nearshore areas allow light to reach the bottom. Distractor C inverts the physics: coastal tidal mixing actively suspends and vertically transports cells rather than trapping them. Distractor D is false: most of the outer continental shelf retains full marine salinity; freshwater influence is restricted to narrow estuarine margins, not the shelf as a whole."
+  },
+  {
+    "id": "x1127b",
+    "topic": "nutrients",
+    "diff": 3,
+    "type": "num",
+    "q": "Nitrification is the two-step bacterial oxidation of ammonium to nitrate that occurs widely in coastal estuaries. The overall reaction is: NH₄⁺ + 2 O₂ → NO₃⁻ + 2 H⁺ + H₂O. An estuarine water sample contains 2.80 mg/L of ammonium-nitrogen (reported as NH₄⁺-N, meaning the mass of the N atom only). If bacteria completely nitrify all of this ammonium, how many milligrams per litre of dissolved oxygen are consumed? (Atomic masses: N = 14, O = 16)",
+    "ans": 12.8,
+    "unit": "mg/L",
+    "tol": 0.02,
+    "explain": "Step 1 — establish the mole ratio from the balanced equation: 1 mol N reacts with 2 mol O₂. Step 2 — convert the nitrogen concentration to oxygen demand: O₂ demand = [NH₄⁺-N] × (2 × M_O₂) ÷ M_N = 2.80 mg N/L × (2 × 32 g/mol) ÷ (14 g/mol) = 2.80 × 64/14 = 2.80 × 4.571 = 12.8 mg O₂/L. The factor 64/14 ≈ 4.57 g O₂ per g NH₄⁺-N is the standard nitrification oxygen demand (NOD) coefficient used in water-quality modelling. This shows why nitrogen loading creates hypoxia even indirectly: nitrifying bacteria consume 4.57 mg of dissolved oxygen for every 1 mg of ammonium-nitrogen they oxidise, compounding the depletion caused by decomposing algal biomass. Common error 1: using the molar mass of NH₄⁺ (18 g/mol) instead of just N (14 g/mol), giving 2.80 × 64/18 = 9.96 mg/L — this confuses the measurement form (reported as N) with the formula mass of the ion. Common error 2: using 1 mol O₂ instead of 2 mol O₂ per mol N, giving 2.80 × 32/14 = 6.40 mg/L — this applies half-reaction stoichiometry instead of the overall equation provided."
   }
 ]
