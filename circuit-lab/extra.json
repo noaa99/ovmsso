@@ -553,5 +553,33 @@
     ],
     "ans": 0,
     "explain": "The original voltaic pile alternated zinc (Zn) and copper (Cu) discs with brine-soaked cloth or pasteboard between each pair. Zinc is the anode (it oxidises), copper is the cathode, and the conducting salt solution allows ions to flow, completing each electrochemical cell. Volta sent a written description to the Royal Society of London in March 1800 and demonstrated the pile to Napoleon Bonaparte in 1801. Distractor B: Galvani's earlier experiments used iron and brass instruments, but those produced no sustained current; Volta deliberately chose Zn/Cu to maximise reliable output. Distractor C: gold and platinum are noble metals with very low reactivity — a stack of Au/Pt would produce negligible voltage. Distractor D: tin/lead electrodes with an acid electrolyte describe a lead-acid cell, invented by Gaston Planté in 1859 — more than half a century after Volta's pile."
+  },
+  {
+    "id": "x1128a",
+    "topic": "charges",
+    "diff": 3,
+    "type": "num",
+    "q": "The figure shows two point charges on the x-axis: q₁ = +6.0 μC at x = 0 and q₂ = −2.0 μC at x = 0.40 m. Point P is at x = 0.20 m, equidistant from both charges. Using k = 8.99 × 10⁹ N·m²/C², find the magnitude of the net electric field at P, in N/C.",
+    "svg": "<svg viewBox='0 0 420 100' role='img' aria-label='Two point charges on x-axis: q1 = +6.0 μC at x=0, q2 = −2.0 μC at x=0.40 m, point P midway at x=0.20 m'><g stroke='currentColor' stroke-width='2' fill='none' stroke-linecap='round'><line x1='20' y1='52' x2='395' y2='52'/><polyline points='388,47 395,52 388,57'/></g><circle cx='80' cy='52' r='13' stroke='currentColor' stroke-width='2' fill='none'/><circle cx='300' cy='52' r='13' stroke='currentColor' stroke-width='2' fill='none'/><line x1='190' y1='43' x2='190' y2='61' stroke='currentColor' stroke-width='2'/><g fill='currentColor' font-family='system-ui,sans-serif' text-anchor='middle' font-size='12'><text x='80' y='57'>+</text><text x='300' y='56'>&#8722;</text><text x='80' y='17'>q&#8321; = +6.0 &#956;C</text><text x='300' y='17'>q&#8322; = &#8722;2.0 &#956;C</text><text x='80' y='80'>x = 0</text><text x='190' y='80'>P</text><text x='190' y='93' font-size='10'>x = 0.20 m</text><text x='300' y='80'>x = 0.40 m</text><text x='405' y='57' text-anchor='start' font-size='10'>x</text></g></svg>",
+    "caption": "q₁ = +6.0 μC at x = 0, q₂ = −2.0 μC at x = 0.40 m; find the net electric field at P (x = 0.20 m).",
+    "ans": 1798000,
+    "unit": "N/C",
+    "tol": 0.02,
+    "explain": "Step 1 — determine directions at P. The field from q₁ (+6.0 μC) at x = 0 points radially AWAY from the positive charge; since P is to its right, E₁ points in the +x direction. The field from q₂ (−2.0 μC) at x = 0.40 m points radially TOWARD the negative charge; since P is to its left, E₂ also points in the +x direction (toward q₂). Both contributions point from q₁ toward q₂ — the most common error is assuming E₂ points in −x (away from P toward the left), but the field due to a negative charge points toward that charge, which from P's location is rightward. Step 2 — both charges are 0.20 m from P (the midpoint): E₁ = k|q₁|/r₁² = (8.99 × 10⁹)(6.0 × 10⁻⁶)/(0.20)² = 53.94/0.04 × 10³ = 1 348 500 N/C. E₂ = k|q₂|/r₂² = (8.99 × 10⁹)(2.0 × 10⁻⁶)/(0.20)² = 17.98/0.04 × 10³ = 449 500 N/C. Step 3 — both in +x, so they add: E_net = 1 348 500 + 449 500 = 1 798 000 N/C ≈ 1.80 × 10⁶ N/C. Common error: reversing E₂ and subtracting — 1 348 500 − 449 500 = 899 000 N/C — exactly half the correct answer."
+  },
+  {
+    "id": "x1128b",
+    "topic": "acdc",
+    "diff": 2,
+    "type": "mc",
+    "q": "A square wave alternates symmetrically between +V₀ and −V₀, spending exactly equal time at each level. A sine wave has the same peak value V₀. How do their RMS voltages compare?",
+    "choices": [
+      "Both have RMS = V₀/√2, because RMS depends only on the peak value, not on waveshape.",
+      "The sine wave has the higher RMS: since it continuously oscillates through all values up to V₀, its squared-average is dominated by the high-amplitude portion near the peak.",
+      "The square wave has the higher RMS — V₀ compared with V₀/√2 for the sine wave — because the square wave's instantaneous amplitude is always |V₀| and never tapers toward zero.",
+      "The two waveforms deliver equal average power to any resistor, so their RMS voltages must be equal regardless of waveshape."
+    ],
+    "ans": 2,
+    "explain": "RMS is defined as √(average of v(t)²). For the sine wave v = V₀ sin(ωt): v² oscillates between 0 and V₀² and its cycle average is V₀²/2, giving RMS = V₀/√2 ≈ 0.707 V₀. For the square wave: v is either +V₀ or −V₀ at every instant, so v² = V₀² always. The cycle average of v² is V₀², giving RMS = V₀. The square wave delivers twice the average power (P = V₀²/R) compared with the sine wave (P = V₀²/(2R)) at the same peak — consistent with the square wave having the higher RMS. Distractor A applies the sine-wave formula V₀/√2 universally; this ratio comes from the identity avg[sin²(ωt)] = 1/2, which is specific to sinusoids. Distractor B inverts the comparison; the sine wave's smooth taper is precisely why its RMS is LOWER — it spends time near zero, pulling down the squared-average. The square wave, never near zero, has a higher squared-average and therefore higher RMS. Distractor D is incorrect: RMS is a fixed property of the waveform (a square wave at peak V₀ always has RMS = V₀); two different waveforms with the same peak value generally have different RMS values."
   }
 ]

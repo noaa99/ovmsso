@@ -518,5 +518,31 @@
     "unit": "mg/L",
     "tol": 0.02,
     "explain": "Step 1 — establish the mole ratio from the balanced equation: 1 mol N reacts with 2 mol O₂. Step 2 — convert the nitrogen concentration to oxygen demand: O₂ demand = [NH₄⁺-N] × (2 × M_O₂) ÷ M_N = 2.80 mg N/L × (2 × 32 g/mol) ÷ (14 g/mol) = 2.80 × 64/14 = 2.80 × 4.571 = 12.8 mg O₂/L. The factor 64/14 ≈ 4.57 g O₂ per g NH₄⁺-N is the standard nitrification oxygen demand (NOD) coefficient used in water-quality modelling. This shows why nitrogen loading creates hypoxia even indirectly: nitrifying bacteria consume 4.57 mg of dissolved oxygen for every 1 mg of ammonium-nitrogen they oxidise, compounding the depletion caused by decomposing algal biomass. Common error 1: using the molar mass of NH₄⁺ (18 g/mol) instead of just N (14 g/mol), giving 2.80 × 64/18 = 9.96 mg/L — this confuses the measurement form (reported as N) with the formula mass of the ion. Common error 2: using 1 mol O₂ instead of 2 mol O₂ per mol N, giving 2.80 × 32/14 = 6.40 mg/L — this applies half-reaction stoichiometry instead of the overall equation provided."
+  },
+  {
+    "id": "x1128a",
+    "topic": "acid",
+    "diff": 2,
+    "type": "mc",
+    "q": "Coastal upwelling zones bring deep water to the surface that — even before human-caused acidification — often arrives with a lower pH and lower aragonite saturation state (Ω) than surrounding tropical surface water. What is the PRIMARY reason deep upwelled water has accumulated excess CO₂ before it reaches the surface?",
+    "choices": [
+      "Cold deep water has a greater capacity to dissolve atmospheric CO₂ under Henry's law, so it absorbs more gas from the atmosphere as it slowly sinks from the polar surface.",
+      "During its long residence time in the deep ocean (decades to centuries), isolated from the atmosphere, aerobic bacteria oxidize sinking organic matter and release CO₂ into the water column; this respiratory CO₂ cannot escape and accumulates.",
+      "Deep water flows from polar regions where it equilibrated with modern industrial CO₂ emissions, making it more acidic than tropical surface water that last exchanged gases with a pre-industrial atmosphere.",
+      "High pressure at depth converts dissolved carbonate ions into bicarbonate by compression, consuming CO₃²⁻ and lowering Ω without adding CO₂."
+    ],
+    "ans": 1,
+    "explain": "The biological pump continuously transports carbon from the sunlit surface to the deep ocean: phytoplankton fix atmospheric CO₂; when they die or are consumed and excreted, organic particles sink. Aerobic bacteria oxidize this material at depth — C_organic + O₂ → CO₂ + H₂O — releasing CO₂ into water that is isolated from the atmosphere. The dissolved CO₂ forms H₂CO₃, which releases H⁺ and HCO₃⁻, lowering pH and shifting the carbonate equilibrium so [CO₃²⁻] falls and Ω = [Ca²⁺][CO₃²⁻]/Ksp decreases. When upwelling lifts this CO₂-enriched water to the surface, it carries its low-pH, low-Ω signature. Distractor A (CO₂ solubility): cold water does absorb more CO₂ from the atmosphere during formation of the water mass, but this is a one-time surface process — it does not explain why the water becomes progressively MORE acidic during its centuries-long transit through the dark, isolated deep ocean. Distractor C reverses the age logic: deep water last contacted the atmosphere decades or centuries ago when CO₂ was LOWER than today; tropical surface water is actually equilibrating with current elevated atmospheric CO₂. Distractor D is physically wrong: pressure does not chemically convert CO₃²⁻ to HCO₃⁻ by compression; that conversion requires H⁺ from dissolved CO₂."
+  },
+  {
+    "id": "x1128b",
+    "topic": "reef",
+    "diff": 3,
+    "type": "num",
+    "q": "A coral reef in the Indo-Pacific has a maximum monthly mean (MMM) sea-surface temperature of 29.0 °C. SST readings for 8 consecutive weeks are (°C): 29.6, 30.4, 31.1, 30.8, 29.3, 28.8, 30.2, 29.9. Using the NOAA Coral Reef Watch method — HotSpot = SST − MMM; only weeks with HotSpot ≥ 1 °C contribute to DHW — calculate the total accumulated degree-heating weeks (DHW) for this 8-week period.",
+    "ans": 6.5,
+    "unit": "degree-weeks",
+    "tol": 0.02,
+    "explain": "Step 1 — compute HotSpot = SST − 29.0 °C for each week and filter for ≥ 1 °C: Wk 1: 29.6 − 29.0 = 0.6 °C (< 1, excluded); Wk 2: 30.4 − 29.0 = 1.4 °C ✓; Wk 3: 31.1 − 29.0 = 2.1 °C ✓; Wk 4: 30.8 − 29.0 = 1.8 °C ✓; Wk 5: 29.3 − 29.0 = 0.3 °C (excluded); Wk 6: 28.8 − 29.0 = −0.2 °C (excluded); Wk 7: 30.2 − 29.0 = 1.2 °C ✓; Wk 8: 29.9 − 29.0 = 0.9 °C (excluded). Step 2 — sum the four qualifying HotSpots: DHW = 1.4 + 2.1 + 1.8 + 1.2 = 6.5 degree-weeks. At DHW = 6.5 (with HotSpot ≥ 1 during those weeks) this reef falls in the NOAA CRW Warning category (DHW 4–8), indicating significant bleaching is likely. Common error 1: including all 8 weeks without the ≥ 1 threshold — adding 0.6, 0.3, and 0.9 gives 8.3 degree-weeks, overstating thermal stress. Common error 2: using raw SST values as HotSpots without subtracting MMM, producing a physically meaningless total around 240 degree-weeks. The two steps — first compute each HotSpot from raw temperature, then filter and sum — make this problem harder than when HotSpots are provided directly."
   }
 ]
